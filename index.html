@@ -6,6 +6,166 @@
 
   <title>Boialap — বই ও আরও অনেক কিছু</title>
 
+  /* PRODUCT DETAILS MODAL */
+
+.product-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.65);
+  z-index: 9999;
+  padding: 25px;
+  overflow-y: auto;
+}
+
+.product-modal.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-modal-box {
+  width: 100%;
+  max-width: 900px;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+}
+
+.modal-close {
+  position: absolute;
+  right: 15px;
+  top: 12px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: #111827;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.product-detail {
+  display: grid;
+  grid-template-columns: 42% 58%;
+}
+
+.product-detail-image {
+  min-height: 500px;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+.product-detail-image img {
+  width: 100%;
+  height: 440px;
+  object-fit: contain;
+}
+
+.product-detail-info {
+  padding: 45px 40px;
+}
+
+.detail-category {
+  color: #e63946;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.detail-name {
+  font-size: 32px;
+  line-height: 1.3;
+  margin-bottom: 15px;
+}
+
+.detail-price {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+.detail-stock {
+  display: inline-block;
+  background: #eaf8ef;
+  color: #16803c;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.detail-description {
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 25px;
+}
+
+.detail-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.detail-buy,
+.detail-whatsapp {
+  flex: 1;
+  padding: 13px;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+}
+
+.detail-buy {
+  background: #e63946;
+  color: white;
+}
+
+.detail-whatsapp {
+  background: #25D366;
+  color: white;
+}
+
+@media(max-width: 650px) {
+
+  .product-modal {
+    padding: 10px;
+  }
+
+  .product-detail {
+    grid-template-columns: 1fr;
+  }
+
+  .product-detail-image {
+    min-height: 320px;
+    padding: 20px;
+  }
+
+  .product-detail-image img {
+    height: 300px;
+  }
+
+  .product-detail-info {
+    padding: 30px 22px;
+  }
+
+  .detail-name {
+    font-size: 25px;
+  }
+
+  .detail-buttons {
+    flex-direction: column;
+  }
+
+}
   <style>
     * {
       box-sizing: border-box;
@@ -560,7 +720,87 @@
     }
   </style>
 </head>
+<!-- PRODUCT DETAILS MODAL -->
 
+<div
+  class="product-modal"
+  id="productModal"
+  onclick="closeModalOutside(event)"
+>
+
+  <div
+    class="product-modal-box"
+    onclick="event.stopPropagation()"
+  >
+
+    <button
+      class="modal-close"
+      onclick="closeProductDetails()"
+    >
+      ×
+    </button>
+
+    <div class="product-detail">
+
+      <div
+        class="product-detail-image"
+        id="detailImage"
+      >
+      </div>
+
+      <div class="product-detail-info">
+
+        <div
+          class="detail-category"
+          id="detailCategory"
+        ></div>
+
+        <h1
+          class="detail-name"
+          id="detailName"
+        ></h1>
+
+        <div
+          class="detail-price"
+          id="detailPrice"
+        ></div>
+
+        <div
+          class="detail-stock"
+          id="detailStock"
+        ></div>
+
+        <p
+          class="detail-description"
+          id="detailDescription"
+        ></p>
+
+        <div class="detail-buttons">
+
+          <button
+            class="detail-buy"
+            id="detailBuyButton"
+          >
+            🛒 Buy Now
+          </button>
+
+          <button
+            class="detail-whatsapp"
+            id="detailWhatsAppButton"
+          >
+            💬 WhatsApp
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+  
 <body>
 
   <!-- TOP BAR -->
@@ -1121,11 +1361,158 @@ const imageHTML =
 
     function showDetails(name) {
 
-      const product =
-        allProducts.find(item =>
-          String(item.Name) === String(name)
-        );
+  const product =
+    allProducts.find(item =>
+      String(item.Name) === String(name)
+    );
 
+  if (!product) {
+
+    alert("Product information পাওয়া যায়নি।");
+
+    return;
+
+  }
+
+  let image = String(product.Image || "").trim();
+
+  /* GitHub Blob URL → Raw Image URL */
+
+  if (
+    image.includes("github.com") &&
+    image.includes("/blob/")
+  ) {
+
+    image = image
+      .replace(
+        "https://github.com/",
+        "https://raw.githubusercontent.com/"
+      )
+      .replace("/blob/", "/");
+
+  }
+
+
+  /* IMAGE */
+
+  const imageContainer =
+    document.getElementById("detailImage");
+
+
+  if (image) {
+
+    imageContainer.innerHTML = `
+      <img
+        src="${image}"
+        alt="${product.Name}"
+        onerror="
+          this.style.display='none';
+          this.parentElement.innerHTML='<div class=&quot;placeholder&quot;>📚</div>';
+        "
+      >
+    `;
+
+  } else {
+
+    imageContainer.innerHTML =
+      `<div class="placeholder">📚</div>`;
+
+  }
+
+
+  /* INFORMATION */
+
+  document.getElementById("detailCategory")
+    .textContent =
+      product.Category || "";
+
+
+  document.getElementById("detailName")
+    .textContent =
+      product.Name || "Untitled";
+
+
+  document.getElementById("detailPrice")
+    .textContent =
+      `৳${Number(product.Price || 0).toLocaleString("en-BD")}`;
+
+
+  const stock =
+    Number(product.Stock || 0);
+
+
+  document.getElementById("detailStock")
+    .textContent =
+      stock > 0
+        ? `স্টকে আছে — ${stock} টি`
+        : "স্টক শেষ";
+
+
+  document.getElementById("detailDescription")
+    .textContent =
+      product.Description || "এই পণ্যের কোনো বর্ণনা দেওয়া হয়নি।";
+
+
+  /* BUY BUTTON */
+
+  document.getElementById("detailBuyButton")
+    .onclick = function() {
+
+      orderProduct(
+        product.Name,
+        product.Price
+      );
+
+    };
+
+
+  /* WHATSAPP BUTTON */
+
+  document.getElementById("detailWhatsAppButton")
+    .onclick = function() {
+
+      orderProduct(
+        product.Name,
+        product.Price
+      );
+
+    };
+
+
+  /* SHOW MODAL */
+
+  document
+    .getElementById("productModal")
+    .classList.add("show");
+
+
+  /* Prevent background scrolling */
+
+  document.body.style.overflow = "hidden";
+
+}
+function closeProductDetails() {
+
+  document
+    .getElementById("productModal")
+    .classList.remove("show");
+
+  document.body.style.overflow = "";
+
+}
+
+
+function closeModalOutside(event) {
+
+  if (
+    event.target.id === "productModal"
+  ) {
+
+    closeProductDetails();
+
+  }
+
+}
 
       if (!product) {
 
