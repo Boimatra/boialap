@@ -958,13 +958,25 @@
       container.innerHTML =
         activeProducts.map(product => {
 
-          const image =
-            String(product.Image || "").trim();
+          let image = String(product.Image || "").trim();
 
-          const imageHTML =
-            image
-              ? `<img src="${image}" alt="${product.Name}">`
-              : `<div class="placeholder">📚</div>`;
+/* GitHub Blob URL → Raw Image URL */
+if (image.includes("github.com") && image.includes("/blob/")) {
+  image = image
+    .replace("https://github.com/", "https://raw.githubusercontent.com/")
+    .replace("/blob/", "/");
+}
+
+const imageHTML =
+  image
+    ? `
+      <img
+        src="${image}"
+        alt="${product.Name}"
+        onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;placeholder&quot;>📚</div>';"
+      >
+    `
+    : `<div class="placeholder">📚</div>`;
 
 
           return `
