@@ -6,167 +6,8 @@
 
   <title>Boialap — বই ও আরও অনেক কিছু</title>
 
-  /* PRODUCT DETAILS MODAL */
-
-.product-modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.65);
-  z-index: 9999;
-  padding: 25px;
-  overflow-y: auto;
-}
-
-.product-modal.show {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.product-modal-box {
-  width: 100%;
-  max-width: 900px;
-  background: #fff;
-  border-radius: 16px;
-  overflow: hidden;
-  position: relative;
-  box-shadow: 0 20px 60px rgba(0,0,0,.25);
-}
-
-.modal-close {
-  position: absolute;
-  right: 15px;
-  top: 12px;
-  width: 40px;
-  height: 40px;
-  border: none;
-  border-radius: 50%;
-  background: #111827;
-  color: white;
-  font-size: 22px;
-  cursor: pointer;
-  z-index: 2;
-}
-
-.product-detail {
-  display: grid;
-  grid-template-columns: 42% 58%;
-}
-
-.product-detail-image {
-  min-height: 500px;
-  background: #f5f5f5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 30px;
-}
-
-.product-detail-image img {
-  width: 100%;
-  height: 440px;
-  object-fit: contain;
-}
-
-.product-detail-info {
-  padding: 45px 40px;
-}
-
-.detail-category {
-  color: #e63946;
-  font-size: 14px;
-  font-weight: bold;
-  margin-bottom: 8px;
-}
-
-.detail-name {
-  font-size: 32px;
-  line-height: 1.3;
-  margin-bottom: 15px;
-}
-
-.detail-price {
-  font-size: 28px;
-  font-weight: bold;
-  margin: 15px 0;
-}
-
-.detail-stock {
-  display: inline-block;
-  background: #eaf8ef;
-  color: #16803c;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 13px;
-  margin-bottom: 20px;
-}
-
-.detail-description {
-  color: #666;
-  line-height: 1.8;
-  margin-bottom: 25px;
-}
-
-.detail-buttons {
-  display: flex;
-  gap: 10px;
-}
-
-.detail-buy,
-.detail-whatsapp {
-  flex: 1;
-  padding: 13px;
-  border-radius: 8px;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  text-align: center;
-}
-
-.detail-buy {
-  background: #e63946;
-  color: white;
-}
-
-.detail-whatsapp {
-  background: #25D366;
-  color: white;
-}
-
-@media(max-width: 650px) {
-
-  .product-modal {
-    padding: 10px;
-  }
-
-  .product-detail {
-    grid-template-columns: 1fr;
-  }
-
-  .product-detail-image {
-    min-height: 320px;
-    padding: 20px;
-  }
-
-  .product-detail-image img {
-    height: 300px;
-  }
-
-  .product-detail-info {
-    padding: 30px 22px;
-  }
-
-  .detail-name {
-    font-size: 25px;
-  }
-
-  .detail-buttons {
-    flex-direction: column;
-  }
-
-}
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -185,7 +26,10 @@
       color: inherit;
     }
 
-    /* TOP BAR */
+    /* =========================
+       TOP BAR
+    ========================= */
+
     .topbar {
       background: #111827;
       color: #fff;
@@ -197,7 +41,10 @@
       flex-wrap: wrap;
     }
 
-    /* HEADER */
+    /* =========================
+       HEADER
+    ========================= */
+
     header {
       background: #fff;
       border-bottom: 1px solid #eee;
@@ -264,7 +111,10 @@
       cursor: pointer;
     }
 
-    /* NAV */
+    /* =========================
+       NAV
+    ========================= */
+
     nav {
       background: #fff;
       border-top: 1px solid #f2f2f2;
@@ -289,7 +139,10 @@
       color: #e63946;
     }
 
-    /* HERO */
+    /* =========================
+       HERO
+    ========================= */
+
     .hero {
       background: linear-gradient(135deg, #fff0f1, #f3f7ff);
       padding: 70px 20px;
@@ -350,7 +203,10 @@
       border: 1px solid #ddd;
     }
 
-    /* SECTION */
+    /* =========================
+       SECTION
+    ========================= */
+
     .section {
       max-width: 1200px;
       margin: auto;
@@ -375,7 +231,10 @@
       font-weight: bold;
     }
 
-    /* CATEGORY */
+    /* =========================
+       CATEGORY
+    ========================= */
+
     .categories {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
@@ -405,7 +264,10 @@
       font-size: 15px;
     }
 
-    /* PRODUCTS */
+    /* =========================
+       PRODUCTS
+    ========================= */
+
     .products {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -502,7 +364,10 @@
       background: #fff;
     }
 
-    /* OTHER PRODUCTS */
+    /* =========================
+       OTHER PRODUCTS
+    ========================= */
+
     .other-products {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -522,7 +387,10 @@
       margin-bottom: 10px;
     }
 
-    /* FEATURES */
+    /* =========================
+       FEATURES
+    ========================= */
+
     .features {
       background: #fff;
     }
@@ -556,7 +424,10 @@
       font-size: 13px;
     }
 
-    /* WHATSAPP */
+    /* =========================
+       WHATSAPP
+    ========================= */
+
     .whatsapp-section {
       background: #111827;
       color: white;
@@ -582,7 +453,10 @@
       font-weight: bold;
     }
 
-    /* FOOTER */
+    /* =========================
+       FOOTER
+    ========================= */
+
     footer {
       background: #0b1120;
       color: #bbb;
@@ -625,7 +499,10 @@
       font-size: 12px;
     }
 
-    /* LOADING */
+    /* =========================
+       LOADING / ERROR
+    ========================= */
+
     .loading {
       grid-column: 1 / -1;
       text-align: center;
@@ -642,8 +519,153 @@
       border-radius: 10px;
     }
 
-    /* MOBILE */
+    /* =========================
+       PRODUCT DETAILS MODAL
+    ========================= */
+
+    .product-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.65);
+      z-index: 9999;
+      padding: 25px;
+      overflow-y: auto;
+    }
+
+    .product-modal.show {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product-modal-box {
+      width: 100%;
+      max-width: 900px;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,.25);
+    }
+
+    .modal-close {
+      position: absolute;
+      right: 15px;
+      top: 12px;
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 50%;
+      background: #111827;
+      color: white;
+      font-size: 22px;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .product-detail {
+      display: grid;
+      grid-template-columns: 42% 58%;
+    }
+
+    .product-detail-image {
+      min-height: 500px;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+    }
+
+    .product-detail-image img {
+      width: 100%;
+      height: 440px;
+      object-fit: contain;
+    }
+
+    .product-detail-info {
+      padding: 45px 40px;
+    }
+
+    .detail-category {
+      color: #e63946;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .detail-name {
+      font-size: 32px;
+      line-height: 1.3;
+      margin-bottom: 15px;
+    }
+
+    .detail-price {
+      font-size: 28px;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+
+    .detail-stock {
+      display: inline-block;
+      background: #eaf8ef;
+      color: #16803c;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    .detail-stock.out-of-stock {
+      background: #fff0f0;
+      color: #d62828;
+    }
+
+    .detail-description {
+      color: #666;
+      line-height: 1.8;
+      margin-bottom: 25px;
+      white-space: pre-line;
+    }
+
+    .detail-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .detail-buy,
+    .detail-whatsapp {
+      flex: 1;
+      padding: 13px;
+      border-radius: 8px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .detail-buy {
+      background: #e63946;
+      color: white;
+    }
+
+    .detail-whatsapp {
+      background: #25D366;
+      color: white;
+    }
+
+    .detail-buy:disabled {
+      background: #aaa;
+      cursor: not-allowed;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
     @media(max-width: 900px) {
+
       .products {
         grid-template-columns: repeat(3, 1fr);
       }
@@ -663,9 +685,11 @@
       .footer-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+
     }
 
     @media(max-width: 650px) {
+
       .header-main {
         flex-wrap: wrap;
       }
@@ -707,9 +731,46 @@
       .product-image {
         height: 210px;
       }
+
+      /* PRODUCT DETAIL MOBILE */
+
+      .product-modal {
+        padding: 10px;
+      }
+
+      .product-modal-box {
+        border-radius: 12px;
+      }
+
+      .product-detail {
+        grid-template-columns: 1fr;
+      }
+
+      .product-detail-image {
+        min-height: 320px;
+        padding: 20px;
+      }
+
+      .product-detail-image img {
+        height: 300px;
+      }
+
+      .product-detail-info {
+        padding: 30px 22px;
+      }
+
+      .detail-name {
+        font-size: 25px;
+      }
+
+      .detail-buttons {
+        flex-direction: column;
+      }
+
     }
 
     @media(max-width: 420px) {
+
       .products {
         grid-template-columns: 1fr;
       }
@@ -717,99 +778,36 @@
       .other-products {
         grid-template-columns: 1fr;
       }
+
     }
+
   </style>
+
 </head>
-<!-- PRODUCT DETAILS MODAL -->
 
-<div
-  class="product-modal"
-  id="productModal"
-  onclick="closeModalOutside(event)"
->
+<body>
 
-  <div
-    class="product-modal-box"
-    onclick="event.stopPropagation()"
-  >
+  <!-- =========================
+       TOP BAR
+  ========================= -->
 
-    <button
-      class="modal-close"
-      onclick="closeProductDetails()"
-    >
-      ×
-    </button>
+  <div class="topbar">
 
-    <div class="product-detail">
+    <div>
+      📚 Boialap — বই ও আরও অনেক কিছু
+    </div>
 
-      <div
-        class="product-detail-image"
-        id="detailImage"
-      >
-      </div>
-
-      <div class="product-detail-info">
-
-        <div
-          class="detail-category"
-          id="detailCategory"
-        ></div>
-
-        <h1
-          class="detail-name"
-          id="detailName"
-        ></h1>
-
-        <div
-          class="detail-price"
-          id="detailPrice"
-        ></div>
-
-        <div
-          class="detail-stock"
-          id="detailStock"
-        ></div>
-
-        <p
-          class="detail-description"
-          id="detailDescription"
-        ></p>
-
-        <div class="detail-buttons">
-
-          <button
-            class="detail-buy"
-            id="detailBuyButton"
-          >
-            🛒 Buy Now
-          </button>
-
-          <button
-            class="detail-whatsapp"
-            id="detailWhatsAppButton"
-          >
-            💬 WhatsApp
-          </button>
-
-        </div>
-
-      </div>
-
+    <div>
+      WhatsApp Order Available
     </div>
 
   </div>
 
-</div>
-  
-<body>
 
-  <!-- TOP BAR -->
-  <div class="topbar">
-    <div>📚 Boialap — বই ও আরও অনেক কিছু</div>
-    <div>WhatsApp Order Available</div>
-  </div>
+  <!-- =========================
+       HEADER
+  ========================= -->
 
-  <!-- HEADER -->
   <header>
 
     <div class="header-main">
@@ -819,43 +817,86 @@
       </a>
 
       <div class="search">
+
         <input
           type="text"
           id="searchInput"
           placeholder="বই বা পণ্য খুঁজুন..."
         >
-        <button onclick="searchProducts()">🔍</button>
+
+        <button onclick="searchProducts()">
+          🔍
+        </button>
+
       </div>
 
       <div class="header-actions">
-        <button class="action-btn">👤</button>
-        <button class="action-btn">🛒</button>
+
+        <button class="action-btn">
+          👤
+        </button>
+
+        <button class="action-btn">
+          🛒
+        </button>
+
       </div>
 
     </div>
 
+
     <nav>
+
       <div class="nav-inner">
-        <a href="#">Home</a>
-        <a href="#">Books</a>
-        <a href="#">Islamic Books</a>
-        <a href="#">Literature</a>
-        <a href="#">Other Products</a>
-        <a href="#">New</a>
-        <a href="#">Articles</a>
+
+        <a href="#">
+          Home
+        </a>
+
+        <a href="#books">
+          Books
+        </a>
+
+        <a href="#">
+          Islamic Books
+        </a>
+
+        <a href="#">
+          Literature
+        </a>
+
+        <a href="#other-products">
+          Other Products
+        </a>
+
+        <a href="#">
+          New
+        </a>
+
+        <a href="#">
+          Articles
+        </a>
+
       </div>
+
     </nav>
 
   </header>
 
-  <!-- HERO -->
+
+  <!-- =========================
+       HERO
+  ========================= -->
+
   <section class="hero">
 
     <div class="hero-inner">
 
       <div class="hero-text">
 
-        <small>WELCOME TO BOIALAP</small>
+        <small>
+          WELCOME TO BOIALAP
+        </small>
 
         <h1>
           বইয়ের সঙ্গে<br>
@@ -868,13 +909,21 @@
         </p>
 
         <div class="hero-buttons">
-          <a href="#books" class="btn-primary">
+
+          <a
+            href="#books"
+            class="btn-primary"
+          >
             বই দেখুন
           </a>
 
-          <a href="#other-products" class="btn-secondary">
+          <a
+            href="#other-products"
+            class="btn-secondary"
+          >
             অন্যান্য পণ্য
           </a>
+
         </div>
 
       </div>
@@ -884,43 +933,98 @@
   </section>
 
 
-  <!-- CATEGORIES -->
+  <!-- =========================
+       CATEGORIES
+  ========================= -->
+
   <section class="section">
 
     <div class="section-head">
-      <h2>জনপ্রিয় ক্যাটাগরি</h2>
+
+      <h2>
+        জনপ্রিয় ক্যাটাগরি
+      </h2>
+
     </div>
+
 
     <div class="categories">
 
       <div class="category">
-        <div class="category-icon">📚</div>
-        <h3>Books</h3>
+
+        <div class="category-icon">
+          📚
+        </div>
+
+        <h3>
+          Books
+        </h3>
+
       </div>
 
-      <div class="category">
-        <div class="category-icon">🕌</div>
-        <h3>Islamic</h3>
-      </div>
 
       <div class="category">
-        <div class="category-icon">📖</div>
-        <h3>Literature</h3>
+
+        <div class="category-icon">
+          🕌
+        </div>
+
+        <h3>
+          Islamic
+        </h3>
+
       </div>
 
-      <div class="category">
-        <div class="category-icon">🎁</div>
-        <h3>Gifts</h3>
-      </div>
 
       <div class="category">
-        <div class="category-icon">✨</div>
-        <h3>Lifestyle</h3>
+
+        <div class="category-icon">
+          📖
+        </div>
+
+        <h3>
+          Literature
+        </h3>
+
       </div>
 
+
       <div class="category">
-        <div class="category-icon">🛍️</div>
-        <h3>Others</h3>
+
+        <div class="category-icon">
+          🎁
+        </div>
+
+        <h3>
+          Gifts
+        </h3>
+
+      </div>
+
+
+      <div class="category">
+
+        <div class="category-icon">
+          ✨
+        </div>
+
+        <h3>
+          Lifestyle
+        </h3>
+
+      </div>
+
+
+      <div class="category">
+
+        <div class="category-icon">
+          🛍️
+        </div>
+
+        <h3>
+          Others
+        </h3>
+
       </div>
 
     </div>
@@ -928,18 +1032,27 @@
   </section>
 
 
-  <!-- PRODUCTS -->
-  <section class="section" id="books">
+  <!-- =========================
+       PRODUCTS
+  ========================= -->
+
+  <section
+    class="section"
+    id="books"
+  >
 
     <div class="section-head">
 
-      <h2>জনপ্রিয় বই</h2>
+      <h2>
+        জনপ্রিয় বই
+      </h2>
 
       <a href="#">
         সব বই দেখুন →
       </a>
 
     </div>
+
 
     <div
       class="products"
@@ -955,37 +1068,91 @@
   </section>
 
 
-  <!-- OTHER PRODUCTS -->
-  <section class="section" id="other-products">
+  <!-- =========================
+       OTHER PRODUCTS
+  ========================= -->
+
+  <section
+    class="section"
+    id="other-products"
+  >
 
     <div class="section-head">
-      <h2>অন্যান্য পণ্য</h2>
+
+      <h2>
+        অন্যান্য পণ্য
+      </h2>
+
     </div>
+
 
     <div class="other-products">
 
       <div class="other-card">
-        <div>🎁</div>
-        <h3>Gift Items</h3>
-        <p>সুন্দর ও অর্থবহ উপহার</p>
+
+        <div>
+          🎁
+        </div>
+
+        <h3>
+          Gift Items
+        </h3>
+
+        <p>
+          সুন্দর ও অর্থবহ উপহার
+        </p>
+
       </div>
 
-      <div class="other-card">
-        <div>✏️</div>
-        <h3>Stationery</h3>
-        <p>প্রয়োজনীয় স্টেশনারি</p>
-      </div>
 
       <div class="other-card">
-        <div>🏠</div>
-        <h3>Lifestyle</h3>
-        <p>নির্বাচিত লাইফস্টাইল পণ্য</p>
+
+        <div>
+          ✏️
+        </div>
+
+        <h3>
+          Stationery
+        </h3>
+
+        <p>
+          প্রয়োজনীয় স্টেশনারি
+        </p>
+
       </div>
 
+
       <div class="other-card">
-        <div>🛍️</div>
-        <h3>Others</h3>
-        <p>আরও বিভিন্ন পণ্য</p>
+
+        <div>
+          🏠
+        </div>
+
+        <h3>
+          Lifestyle
+        </h3>
+
+        <p>
+          নির্বাচিত লাইফস্টাইল পণ্য
+        </p>
+
+      </div>
+
+
+      <div class="other-card">
+
+        <div>
+          🛍️
+        </div>
+
+        <h3>
+          Others
+        </h3>
+
+        <p>
+          আরও বিভিন্ন পণ্য
+        </p>
+
       </div>
 
     </div>
@@ -993,33 +1160,79 @@
   </section>
 
 
-  <!-- FEATURES -->
+  <!-- =========================
+       FEATURES
+  ========================= -->
+
   <section class="features">
 
     <div class="feature-grid">
 
       <div class="feature">
-        <div class="feature-icon">🚚</div>
-        <h3>সহজ অর্ডার</h3>
-        <p>সহজ ও দ্রুত অর্ডার প্রক্রিয়া</p>
+
+        <div class="feature-icon">
+          🚚
+        </div>
+
+        <h3>
+          সহজ অর্ডার
+        </h3>
+
+        <p>
+          সহজ ও দ্রুত অর্ডার প্রক্রিয়া
+        </p>
+
       </div>
 
-      <div class="feature">
-        <div class="feature-icon">💬</div>
-        <h3>WhatsApp Support</h3>
-        <p>সরাসরি WhatsApp-এ যোগাযোগ</p>
-      </div>
 
       <div class="feature">
-        <div class="feature-icon">💳</div>
-        <h3>সহজ Payment</h3>
-        <p>bKash ও অন্যান্য payment option</p>
+
+        <div class="feature-icon">
+          💬
+        </div>
+
+        <h3>
+          WhatsApp Support
+        </h3>
+
+        <p>
+          সরাসরি WhatsApp-এ যোগাযোগ
+        </p>
+
       </div>
 
+
       <div class="feature">
-        <div class="feature-icon">🔒</div>
-        <h3>নিরাপদ Shopping</h3>
-        <p>বিশ্বাসযোগ্য ও সহজ কেনাকাটা</p>
+
+        <div class="feature-icon">
+          💳
+        </div>
+
+        <h3>
+          সহজ Payment
+        </h3>
+
+        <p>
+          bKash ও অন্যান্য payment option
+        </p>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="feature-icon">
+          🔒
+        </div>
+
+        <h3>
+          নিরাপদ Shopping
+        </h3>
+
+        <p>
+          বিশ্বাসযোগ্য ও সহজ কেনাকাটা
+        </p>
+
       </div>
 
     </div>
@@ -1027,20 +1240,24 @@
   </section>
 
 
-  <!-- WHATSAPP -->
+  <!-- =========================
+       WHATSAPP
+  ========================= -->
+
   <section class="whatsapp-section">
 
-    <h2>অর্ডার করতে চান?</h2>
+    <h2>
+      অর্ডার করতে চান?
+    </h2>
 
     <p>
       আপনার পছন্দের বই বা পণ্যের নাম WhatsApp-এ পাঠান।
     </p>
 
-    <!-- WhatsApp number পরে বসানো হবে -->
-
     <a
       href="#"
       class="whatsapp-btn"
+      onclick="generalWhatsAppOrder(event)"
     >
       💬 WhatsApp Order
     </a>
@@ -1048,7 +1265,10 @@
   </section>
 
 
-  <!-- FOOTER -->
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
   <footer>
 
     <div class="footer-grid">
@@ -1066,55 +1286,214 @@
 
       </div>
 
+
       <div>
 
-        <h3>Quick Links</h3>
+        <h3>
+          Quick Links
+        </h3>
 
-        <a href="#">Home</a>
-        <a href="#books">Books</a>
-        <a href="#">Articles</a>
-        <a href="#">Contact</a>
+        <a href="#">
+          Home
+        </a>
+
+        <a href="#books">
+          Books
+        </a>
+
+        <a href="#">
+          Articles
+        </a>
+
+        <a href="#">
+          Contact
+        </a>
 
       </div>
 
+
       <div>
 
-        <h3>Categories</h3>
+        <h3>
+          Categories
+        </h3>
 
-        <a href="#">Islamic Books</a>
-        <a href="#">Literature</a>
-        <a href="#">Gifts</a>
-        <a href="#">Lifestyle</a>
+        <a href="#">
+          Islamic Books
+        </a>
+
+        <a href="#">
+          Literature
+        </a>
+
+        <a href="#">
+          Gifts
+        </a>
+
+        <a href="#">
+          Lifestyle
+        </a>
 
       </div>
 
+
       <div>
 
-        <h3>Support</h3>
+        <h3>
+          Support
+        </h3>
 
-        <a href="#">Order Information</a>
-        <a href="#">Payment</a>
-        <a href="#">Delivery</a>
-        <a href="#">Return Policy</a>
+        <a href="#">
+          Order Information
+        </a>
+
+        <a href="#">
+          Payment
+        </a>
+
+        <a href="#">
+          Delivery
+        </a>
+
+        <a href="#">
+          Return Policy
+        </a>
 
       </div>
 
     </div>
 
+
     <div class="copyright">
+
       © 2026 Boialap. All Rights Reserved.
+
     </div>
 
   </footer>
 
 
+  <!-- =========================
+       PRODUCT DETAILS MODAL
+  ========================= -->
+
+  <div
+    class="product-modal"
+    id="productModal"
+    onclick="closeModalOutside(event)"
+  >
+
+    <div
+      class="product-modal-box"
+      onclick="event.stopPropagation()"
+    >
+
+      <button
+        class="modal-close"
+        onclick="closeProductDetails()"
+        aria-label="Close"
+      >
+        ×
+      </button>
+
+
+      <div class="product-detail">
+
+
+        <!-- PRODUCT IMAGE -->
+
+        <div
+          class="product-detail-image"
+          id="detailImage"
+        >
+
+          <div class="placeholder">
+            📚
+          </div>
+
+        </div>
+
+
+        <!-- PRODUCT INFORMATION -->
+
+        <div class="product-detail-info">
+
+
+          <div
+            class="detail-category"
+            id="detailCategory"
+          >
+          </div>
+
+
+          <h1
+            class="detail-name"
+            id="detailName"
+          >
+          </h1>
+
+
+          <div
+            class="detail-price"
+            id="detailPrice"
+          >
+          </div>
+
+
+          <div
+            class="detail-stock"
+            id="detailStock"
+          >
+          </div>
+
+
+          <p
+            class="detail-description"
+            id="detailDescription"
+          >
+          </p>
+
+
+          <div class="detail-buttons">
+
+
+            <button
+              class="detail-buy"
+              id="detailBuyButton"
+            >
+              🛒 Buy Now
+            </button>
+
+
+            <button
+              class="detail-whatsapp"
+              id="detailWhatsAppButton"
+            >
+              💬 WhatsApp
+            </button>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
   <script>
 
-    /*
-      =====================================================
-      BOIALAP GOOGLE SHEETS API
-      =====================================================
-    */
+
+    /* =========================================
+       GOOGLE SHEETS API
+    ========================================= */
 
     const API_URL =
       "https://script.google.com/macros/s/AKfycbyIf3gAtT69SaaddmKvwHuAgYQDoP73cD9xZW44sDcy4YenxNB2uNr0t8jNq5WgyQ1qJg/exec";
@@ -1123,44 +1502,67 @@
     let allProducts = [];
 
 
-    /*
-      LOAD PRODUCTS
-    */
+    /* =========================================
+       LOAD PRODUCTS
+    ========================================= */
 
     async function loadProducts() {
 
       const container =
         document.getElementById("productContainer");
 
+
       try {
 
         const response =
           await fetch(API_URL);
 
+
         if (!response.ok) {
-          throw new Error("API connection failed");
+
+          throw new Error(
+            "API connection failed"
+          );
+
         }
+
 
         const products =
           await response.json();
 
-        allProducts = products;
 
-        displayProducts(products);
+        allProducts =
+          Array.isArray(products)
+            ? products
+            : [];
+
+
+        displayProducts(allProducts);
 
       }
 
       catch (error) {
 
-        console.error(error);
+        console.error(
+          "Product API Error:",
+          error
+        );
+
 
         container.innerHTML = `
+
           <div class="error">
-            <h3>Product Load Error</h3>
+
+            <h3>
+              Product Load Error
+            </h3>
+
             <p>
               Google Sheet থেকে পণ্য লোড করা যাচ্ছে না।
             </p>
+
           </div>
+
         `;
 
       }
@@ -1168,26 +1570,74 @@
     }
 
 
-    /*
-      DISPLAY PRODUCTS
-    */
+    /* =========================================
+       GITHUB IMAGE URL CONVERTER
+    ========================================= */
+
+    function convertGitHubImageURL(url) {
+
+      let image =
+        String(url || "").trim();
+
+
+      if (
+        image.includes("github.com") &&
+        image.includes("/blob/")
+      ) {
+
+        image =
+          image
+            .replace(
+              "https://github.com/",
+              "https://raw.githubusercontent.com/"
+            )
+            .replace(
+              "/blob/",
+              "/"
+            );
+
+      }
+
+
+      return image;
+
+    }
+
+
+    /* =========================================
+       DISPLAY PRODUCTS
+    ========================================= */
 
     function displayProducts(products) {
 
       const container =
-        document.getElementById("productContainer");
+        document.getElementById(
+          "productContainer"
+        );
+
 
       const activeProducts =
         products.filter(product =>
-          String(product.Status).toLowerCase() === "active"
+
+          String(product.Status || "")
+            .toLowerCase()
+            .trim() === "active"
+
         );
 
-      if (activeProducts.length === 0) {
+
+      if (
+        activeProducts.length === 0
+      ) {
 
         container.innerHTML = `
+
           <div class="loading">
+
             এখনো কোনো পণ্য পাওয়া যায়নি।
+
           </div>
+
         `;
 
         return;
@@ -1196,32 +1646,72 @@
 
 
       container.innerHTML =
+
         activeProducts.map(product => {
 
-          let image = String(product.Image || "").trim();
 
-/* GitHub Blob URL → Raw Image URL */
-if (image.includes("github.com") && image.includes("/blob/")) {
-  image = image
-    .replace("https://github.com/", "https://raw.githubusercontent.com/")
-    .replace("/blob/", "/");
-}
+          const image =
+            convertGitHubImageURL(
+              product.Image
+            );
 
-const imageHTML =
-  image
-    ? `
-      <img
-        src="${image}"
-        alt="${product.Name}"
-        onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;placeholder&quot;>📚</div>';"
-      >
-    `
-    : `<div class="placeholder">📚</div>`;
+
+          let imageHTML;
+
+
+          if (image) {
+
+            imageHTML = `
+
+              <img
+                src="${image}"
+                alt="${escapeHTML(product.Name)}"
+                onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;placeholder&quot;>📚</div>';"
+              >
+
+            `;
+
+          }
+
+          else {
+
+            imageHTML = `
+
+              <div class="placeholder">
+                📚
+              </div>
+
+            `;
+
+          }
+
+
+          const productName =
+            escapeHTML(
+              product.Name || "Untitled"
+            );
+
+
+          const category =
+            escapeHTML(
+              product.Category || ""
+            );
+
+
+          const description =
+            escapeHTML(
+              product.Description || ""
+            );
+
+
+          const price =
+            Number(product.Price || 0);
 
 
           return `
 
             <div class="product">
+
 
               <div class="product-image">
 
@@ -1229,62 +1719,435 @@ const imageHTML =
 
               </div>
 
+
               <div class="product-info">
 
+
                 <div class="product-category">
-                  ${product.Category || ""}
+
+                  ${category}
+
                 </div>
+
 
                 <div class="product-name">
-                  ${product.Name || "Untitled"}
+
+                  ${productName}
+
                 </div>
+
 
                 <div class="product-description">
-                  ${product.Description || ""}
+
+                  ${description}
+
                 </div>
 
+
                 <div class="price">
-                  ৳${Number(product.Price || 0).toLocaleString("en-BD")}
+
+                  ৳${price.toLocaleString("en-BD")}
+
                 </div>
+
 
                 <div class="product-actions">
 
+
                   <button
                     class="buy-btn"
-                    onclick="orderProduct('${escapeQuotes(product.Name)}', '${product.Price}')"
+                    onclick="orderProductByID('${escapeJS(product.ID)}')"
                   >
+
                     Buy Now
+
                   </button>
+
 
                   <button
                     class="details-btn"
-                    onclick="showDetails('${escapeQuotes(product.Name)}')"
+                    onclick="showDetailsByID('${escapeJS(product.ID)}')"
                   >
+
                     Details
+
                   </button>
+
 
                 </div>
 
+
               </div>
+
 
             </div>
 
           `;
+
 
         }).join("");
 
     }
 
 
-    /*
-      SEARCH
-    */
+    /* =========================================
+       SHOW PRODUCT DETAILS
+    ========================================= */
+
+    function showDetailsByID(id) {
+
+      const product =
+        allProducts.find(item =>
+
+          String(item.ID) === String(id)
+
+        );
+
+
+      if (!product) {
+
+        alert(
+          "Product information পাওয়া যায়নি।"
+        );
+
+        return;
+
+      }
+
+
+      showProductDetails(product);
+
+    }
+
+
+    function showProductDetails(product) {
+
+
+      /* IMAGE */
+
+      const image =
+        convertGitHubImageURL(
+          product.Image
+        );
+
+
+      const imageContainer =
+        document.getElementById(
+          "detailImage"
+        );
+
+
+      if (image) {
+
+        imageContainer.innerHTML = `
+
+          <img
+            src="${image}"
+            alt="${escapeHTML(product.Name)}"
+            onerror="
+              this.style.display='none';
+              this.parentElement.innerHTML='<div class=&quot;placeholder&quot;>📚</div>';
+            "
+          >
+
+        `;
+
+      }
+
+      else {
+
+        imageContainer.innerHTML = `
+
+          <div class="placeholder">
+            📚
+          </div>
+
+        `;
+
+      }
+
+
+      /* CATEGORY */
+
+      document
+        .getElementById("detailCategory")
+        .textContent =
+          product.Category || "";
+
+
+      /* NAME */
+
+      document
+        .getElementById("detailName")
+        .textContent =
+          product.Name || "Untitled";
+
+
+      /* PRICE */
+
+      const price =
+        Number(product.Price || 0);
+
+
+      document
+        .getElementById("detailPrice")
+        .textContent =
+          `৳${price.toLocaleString("en-BD")}`;
+
+
+      /* STOCK */
+
+      const stock =
+        Number(product.Stock || 0);
+
+
+      const stockElement =
+        document.getElementById(
+          "detailStock"
+        );
+
+
+      if (stock > 0) {
+
+        stockElement.textContent =
+          `স্টকে আছে — ${stock} টি`;
+
+        stockElement.classList.remove(
+          "out-of-stock"
+        );
+
+      }
+
+      else {
+
+        stockElement.textContent =
+          "স্টক শেষ";
+
+        stockElement.classList.add(
+          "out-of-stock"
+        );
+
+      }
+
+
+      /* DESCRIPTION */
+
+      document
+        .getElementById("detailDescription")
+        .textContent =
+          product.Description ||
+          "এই পণ্যের কোনো বর্ণনা দেওয়া হয়নি।";
+
+
+      /* BUY BUTTON */
+
+      const buyButton =
+        document.getElementById(
+          "detailBuyButton"
+        );
+
+
+      buyButton.onclick = function() {
+
+        if (stock <= 0) {
+
+          alert(
+            "দুঃখিত, এই পণ্যটি বর্তমানে স্টকে নেই।"
+          );
+
+          return;
+
+        }
+
+
+        orderProductByID(
+          product.ID
+        );
+
+      };
+
+
+      buyButton.disabled =
+        stock <= 0;
+
+
+      /* WHATSAPP BUTTON */
+
+      document
+        .getElementById(
+          "detailWhatsAppButton"
+        )
+        .onclick = function() {
+
+          orderProductByID(
+            product.ID
+          );
+
+        };
+
+
+      /* OPEN MODAL */
+
+      document
+        .getElementById(
+          "productModal"
+        )
+        .classList.add("show");
+
+
+      document.body.style.overflow =
+        "hidden";
+
+    }
+
+
+    /* =========================================
+       CLOSE PRODUCT DETAILS
+    ========================================= */
+
+    function closeProductDetails() {
+
+      document
+        .getElementById(
+          "productModal"
+        )
+        .classList.remove("show");
+
+
+      document.body.style.overflow =
+        "";
+
+    }
+
+
+    /* =========================================
+       CLOSE MODAL BY OUTSIDE CLICK
+    ========================================= */
+
+    function closeModalOutside(event) {
+
+      if (
+        event.target.id ===
+        "productModal"
+      ) {
+
+        closeProductDetails();
+
+      }
+
+    }
+
+
+    /* =========================================
+       ESC KEY CLOSE
+    ========================================= */
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (
+          event.key === "Escape"
+        ) {
+
+          closeProductDetails();
+
+        }
+
+      }
+    );
+
+
+    /* =========================================
+       ORDER PRODUCT
+    ========================================= */
+
+    function orderProductByID(id) {
+
+      const product =
+        allProducts.find(item =>
+
+          String(item.ID) === String(id)
+
+        );
+
+
+      if (!product) {
+
+        alert(
+          "Product information পাওয়া যায়নি।"
+        );
+
+        return;
+
+      }
+
+
+      const message =
+
+        `আসসালামু আলাইকুম।%0A%0A` +
+
+        `আমি "${product.Name}" বইটি অর্ডার করতে চাই।%0A` +
+
+        `মূল্য: ৳${product.Price}%0A` +
+
+        `Product ID: ${product.ID}%0A%0A` +
+
+        `দয়া করে অর্ডার প্রক্রিয়া জানাবেন।`;
+
+
+      /*
+        WhatsApp number পরে বসানো হবে।
+
+        উদাহরণ:
+        const whatsappNumber = "8801XXXXXXXXX";
+
+        তারপর:
+        window.open(
+          "https://wa.me/" +
+          whatsappNumber +
+          "?text=" +
+          message,
+          "_blank"
+        );
+      */
+
+
+      alert(
+        decodeURIComponent(message)
+      );
+
+    }
+
+
+    /* =========================================
+       GENERAL WHATSAPP
+    ========================================= */
+
+    function generalWhatsAppOrder(event) {
+
+      event.preventDefault();
+
+
+      alert(
+        "WhatsApp number যুক্ত করার পর এই button সরাসরি WhatsApp-এ যাবে।"
+      );
+
+    }
+
+
+    /* =========================================
+       SEARCH
+    ========================================= */
 
     function searchProducts() {
 
       const keyword =
+
         document
-          .getElementById("searchInput")
+          .getElementById(
+            "searchInput"
+          )
           .value
           .toLowerCase()
           .trim();
@@ -1292,7 +2155,9 @@ const imageHTML =
 
       if (!keyword) {
 
-        displayProducts(allProducts);
+        displayProducts(
+          allProducts
+        );
 
         return;
 
@@ -1302,260 +2167,121 @@ const imageHTML =
       const filtered =
         allProducts.filter(product =>
 
-          String(product.Name)
+          String(product.Name || "")
             .toLowerCase()
             .includes(keyword)
 
           ||
 
-          String(product.Category)
+          String(product.Category || "")
+            .toLowerCase()
+            .includes(keyword)
+
+          ||
+
+          String(product.Description || "")
             .toLowerCase()
             .includes(keyword)
 
         );
 
 
-      displayProducts(filtered);
+      displayProducts(
+        filtered
+      );
 
     }
 
 
-    /*
-      ENTER KEY SEARCH
-    */
+    /* =========================================
+       ENTER KEY SEARCH
+    ========================================= */
 
     document
-      .getElementById("searchInput")
-      .addEventListener("keydown", function(event) {
+      .getElementById(
+        "searchInput"
+      )
+      .addEventListener(
+        "keydown",
+        function(event) {
 
-        if (event.key === "Enter") {
+          if (
+            event.key === "Enter"
+          ) {
 
-          searchProducts();
+            searchProducts();
+
+          }
 
         }
-
-      });
-
-
-    /*
-      PRODUCT ORDER
-    */
-
-    function orderProduct(name, price) {
-
-      const message =
-        `আসসালামু আলাইকুম। আমি "${name}" বইটি অর্ডার করতে চাই। মূল্য: ৳${price}`;
-
-      /*
-        WhatsApp number পরে এখানে বসানো হবে।
-      */
-
-      alert(message);
-
-    }
-
-
-    /*
-      PRODUCT DETAILS
-    */
-
-    function showDetails(name) {
-
-  const product =
-    allProducts.find(item =>
-      String(item.Name) === String(name)
-    );
-
-  if (!product) {
-
-    alert("Product information পাওয়া যায়নি।");
-
-    return;
-
-  }
-
-  let image = String(product.Image || "").trim();
-
-  /* GitHub Blob URL → Raw Image URL */
-
-  if (
-    image.includes("github.com") &&
-    image.includes("/blob/")
-  ) {
-
-    image = image
-      .replace(
-        "https://github.com/",
-        "https://raw.githubusercontent.com/"
-      )
-      .replace("/blob/", "/");
-
-  }
-
-
-  /* IMAGE */
-
-  const imageContainer =
-    document.getElementById("detailImage");
-
-
-  if (image) {
-
-    imageContainer.innerHTML = `
-      <img
-        src="${image}"
-        alt="${product.Name}"
-        onerror="
-          this.style.display='none';
-          this.parentElement.innerHTML='<div class=&quot;placeholder&quot;>📚</div>';
-        "
-      >
-    `;
-
-  } else {
-
-    imageContainer.innerHTML =
-      `<div class="placeholder">📚</div>`;
-
-  }
-
-
-  /* INFORMATION */
-
-  document.getElementById("detailCategory")
-    .textContent =
-      product.Category || "";
-
-
-  document.getElementById("detailName")
-    .textContent =
-      product.Name || "Untitled";
-
-
-  document.getElementById("detailPrice")
-    .textContent =
-      `৳${Number(product.Price || 0).toLocaleString("en-BD")}`;
-
-
-  const stock =
-    Number(product.Stock || 0);
-
-
-  document.getElementById("detailStock")
-    .textContent =
-      stock > 0
-        ? `স্টকে আছে — ${stock} টি`
-        : "স্টক শেষ";
-
-
-  document.getElementById("detailDescription")
-    .textContent =
-      product.Description || "এই পণ্যের কোনো বর্ণনা দেওয়া হয়নি।";
-
-
-  /* BUY BUTTON */
-
-  document.getElementById("detailBuyButton")
-    .onclick = function() {
-
-      orderProduct(
-        product.Name,
-        product.Price
       );
 
-    };
 
+    /* =========================================
+       ESCAPE HTML
+    ========================================= */
 
-  /* WHATSAPP BUTTON */
-
-  document.getElementById("detailWhatsAppButton")
-    .onclick = function() {
-
-      orderProduct(
-        product.Name,
-        product.Price
-      );
-
-    };
-
-
-  /* SHOW MODAL */
-
-  document
-    .getElementById("productModal")
-    .classList.add("show");
-
-
-  /* Prevent background scrolling */
-
-  document.body.style.overflow = "hidden";
-
-}
-function closeProductDetails() {
-
-  document
-    .getElementById("productModal")
-    .classList.remove("show");
-
-  document.body.style.overflow = "";
-
-}
-
-
-function closeModalOutside(event) {
-
-  if (
-    event.target.id === "productModal"
-  ) {
-
-    closeProductDetails();
-
-  }
-
-}
-
-      if (!product) {
-
-        alert("Product information পাওয়া যায়নি।");
-
-        return;
-
-      }
-
-
-      alert(
-
-        `${product.Name}\n\n` +
-
-        `Category: ${product.Category}\n` +
-
-        `Price: ৳${product.Price}\n` +
-
-        `Stock: ${product.Stock}\n\n` +
-
-        `${product.Description}`
-
-      );
-
-    }
-
-
-    /*
-      SAFE QUOTES
-    */
-
-    function escapeQuotes(text) {
+    function escapeHTML(text) {
 
       return String(text || "")
-        .replace(/'/g, "\\'")
-        .replace(/"/g, '&quot;');
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+        .replace(
+          /</g,
+          "&lt;"
+        )
+        .replace(
+          />/g,
+          "&gt;"
+        )
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+        .replace(
+          /'/g,
+          "&#039;"
+        );
 
     }
 
 
-    /*
-      START
-    */
+    /* =========================================
+       ESCAPE JAVASCRIPT
+    ========================================= */
+
+    function escapeJS(text) {
+
+      return String(text || "")
+        .replace(
+          /\\/g,
+          "\\\\"
+        )
+        .replace(
+          /'/g,
+          "\\'"
+        )
+        .replace(
+          /"/g,
+          '\\"'
+        )
+        .replace(
+          /\n/g,
+          "\\n"
+        )
+        .replace(
+          /\r/g,
+          "\\r"
+        );
+
+    }
+
+
+    /* =========================================
+       START WEBSITE
+    ========================================= */
 
     loadProducts();
 
