@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -13,10 +14,26 @@
       padding: 0;
     }
 
+    :root {
+      --green: #2f7d5b;
+      --green-dark: #236247;
+      --green-light: #eaf6ef;
+      --green-soft: #f4fbf7;
+      --border: #dcebe2;
+      --text: #18352a;
+      --muted: #66756d;
+      --white: #ffffff;
+      --danger: #d64545;
+    }
+
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background: #f7f7f7;
-      color: #222;
+      background: var(--green-soft);
+      color: var(--text);
+    }
+
+    body.no-scroll {
+      overflow: hidden;
     }
 
     a {
@@ -32,8 +49,9 @@
     /* =========================
        TOP BAR
     ========================== */
+
     .topbar {
-      background: #111;
+      background: var(--green-dark);
       color: #fff;
       padding: 8px 5%;
       font-size: 13px;
@@ -45,6 +63,7 @@
     /* =========================
        HEADER
     ========================== */
+
     header {
       background: #fff;
       padding: 18px 5%;
@@ -55,18 +74,18 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 10px rgba(47,125,91,0.08);
     }
 
     .logo {
       font-size: 30px;
       font-weight: 800;
-      color: #111;
+      color: var(--green-dark);
       white-space: nowrap;
     }
 
     .logo span {
-      color: #e63946;
+      color: var(--green);
     }
 
     .search-box {
@@ -78,25 +97,34 @@
     .search-box input {
       width: 100%;
       padding: 13px 16px;
-      border: 1px solid #ddd;
+      border: 1px solid var(--border);
       border-radius: 8px 0 0 8px;
       outline: none;
       font-size: 15px;
+      color: var(--text);
+    }
+
+    .search-box input:focus {
+      border-color: var(--green);
     }
 
     .search-box button {
       padding: 0 20px;
       border: none;
-      background: #111;
+      background: var(--green);
       color: #fff;
       border-radius: 0 8px 8px 0;
     }
 
-    /* CART */
+    /* =========================
+       CART BUTTON
+    ========================== */
+
     .cart-button {
       position: relative;
-      background: #fff;
-      border: 1px solid #ddd;
+      background: var(--green-light);
+      border: 1px solid var(--border);
+      color: var(--green-dark);
       padding: 11px 16px;
       border-radius: 8px;
       font-size: 16px;
@@ -111,7 +139,7 @@
       height: 22px;
       padding: 0 5px;
       border-radius: 50%;
-      background: #e63946;
+      background: var(--danger);
       color: white;
       font-size: 12px;
       display: flex;
@@ -122,10 +150,11 @@
     /* =========================
        NAV
     ========================== */
+
     nav {
       background: #fff;
-      border-top: 1px solid #eee;
-      border-bottom: 1px solid #eee;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
       padding: 12px 5%;
       display: flex;
       gap: 25px;
@@ -136,21 +165,24 @@
       white-space: nowrap;
       font-size: 14px;
       font-weight: 600;
+      color: var(--green-dark);
     }
 
     nav a:hover {
-      color: #e63946;
+      color: var(--green);
     }
 
     /* =========================
        HERO
     ========================== */
+
     .hero {
       margin: 25px 5%;
       padding: 55px 35px;
       border-radius: 15px;
-      background: linear-gradient(135deg, #111, #333);
-      color: #fff;
+      background: linear-gradient(135deg, #dff2e7, #f4fbf7);
+      color: var(--green-dark);
+      border: 1px solid var(--border);
     }
 
     .hero h1 {
@@ -161,12 +193,13 @@
     .hero p {
       max-width: 650px;
       line-height: 1.7;
-      color: #ddd;
+      color: #496057;
     }
 
     /* =========================
        SECTIONS
     ========================== */
+
     .section {
       padding: 25px 5%;
     }
@@ -174,11 +207,13 @@
     .section-title {
       font-size: 28px;
       margin-bottom: 20px;
+      color: var(--green-dark);
     }
 
     /* =========================
        CATEGORY
     ========================== */
+
     .categories {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -190,18 +225,21 @@
       padding: 25px 15px;
       text-align: center;
       border-radius: 10px;
-      border: 1px solid #eee;
+      border: 1px solid var(--border);
+      color: var(--green-dark);
       transition: 0.2s;
     }
 
     .category-card:hover {
       transform: translateY(-3px);
-      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      box-shadow: 0 5px 20px rgba(47,125,91,0.10);
+      background: var(--green-light);
     }
 
     /* =========================
        PRODUCT GRID
     ========================== */
+
     .product-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -212,18 +250,18 @@
       background: #fff;
       border-radius: 12px;
       overflow: hidden;
-      border: 1px solid #eee;
+      border: 1px solid var(--border);
       transition: 0.2s;
     }
 
     .product-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.09);
+      box-shadow: 0 8px 25px rgba(47,125,91,0.10);
     }
 
     .product-image {
       height: 280px;
-      background: #f0f0f0;
+      background: var(--green-light);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -237,7 +275,7 @@
     }
 
     .no-image {
-      color: #999;
+      color: #8b9b93;
       font-size: 14px;
     }
 
@@ -247,7 +285,7 @@
 
     .product-category {
       font-size: 12px;
-      color: #777;
+      color: var(--muted);
       margin-bottom: 7px;
     }
 
@@ -256,12 +294,14 @@
       font-weight: 700;
       margin-bottom: 10px;
       min-height: 44px;
+      color: var(--text);
     }
 
     .product-price {
       font-size: 21px;
       font-weight: 800;
       margin-bottom: 12px;
+      color: var(--green-dark);
     }
 
     .product-stock {
@@ -285,28 +325,28 @@
 
     .buy-btn {
       border: none;
-      background: #111;
+      background: var(--green);
       color: white;
     }
 
-    .details-btn {
-      border: 1px solid #111;
-      background: white;
-      color: #111;
+    .buy-btn:hover {
+      background: var(--green-dark);
     }
 
-    .buy-btn:hover {
-      background: #e63946;
+    .details-btn {
+      border: 1px solid var(--green);
+      background: white;
+      color: var(--green-dark);
     }
 
     .details-btn:hover {
-      background: #111;
-      color: #fff;
+      background: var(--green-light);
     }
 
     /* =========================
        FEATURES
     ========================== */
+
     .features {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -318,7 +358,7 @@
       padding: 25px;
       border-radius: 10px;
       text-align: center;
-      border: 1px solid #eee;
+      border: 1px solid var(--border);
     }
 
     .feature-icon {
@@ -326,11 +366,16 @@
       margin-bottom: 10px;
     }
 
+    .feature h3 {
+      color: var(--green-dark);
+    }
+
     /* =========================
        FOOTER
     ========================== */
+
     footer {
-      background: #111;
+      background: var(--green-dark);
       color: #fff;
       padding: 45px 5%;
       margin-top: 40px;
@@ -347,18 +392,19 @@
     }
 
     footer p {
-      color: #bbb;
+      color: #d7e8df;
       line-height: 1.7;
     }
 
     /* =========================
        PRODUCT DETAILS MODAL
     ========================== */
+
     .product-modal {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.7);
+      background: rgba(20,55,42,0.65);
       z-index: 3000;
       padding: 25px;
       overflow-y: auto;
@@ -386,7 +432,8 @@
       width: 40px;
       height: 40px;
       border: none;
-      background: #f1f1f1;
+      background: var(--green-light);
+      color: var(--green-dark);
       border-radius: 50%;
       font-size: 25px;
       z-index: 5;
@@ -401,7 +448,7 @@
 
     .product-detail-image {
       height: 480px;
-      background: #f5f5f5;
+      background: var(--green-light);
       border-radius: 10px;
       overflow: hidden;
       display: flex;
@@ -416,7 +463,7 @@
     }
 
     .detail-category {
-      color: #777;
+      color: var(--muted);
       font-size: 14px;
       margin-bottom: 10px;
     }
@@ -424,12 +471,14 @@
     .detail-name {
       font-size: 32px;
       margin-bottom: 15px;
+      color: var(--green-dark);
     }
 
     .detail-price {
       font-size: 28px;
       font-weight: 800;
       margin-bottom: 12px;
+      color: var(--green);
     }
 
     .detail-stock {
@@ -438,7 +487,7 @@
     }
 
     .detail-description {
-      color: #555;
+      color: #52635b;
       line-height: 1.8;
       margin-bottom: 25px;
     }
@@ -457,25 +506,30 @@
     }
 
     .detail-buy {
-      background: #111;
+      background: var(--green);
       color: #fff;
       border: none;
     }
 
+    .detail-buy:hover {
+      background: var(--green-dark);
+    }
+
     .detail-whatsapp {
       background: #fff;
-      color: #111;
-      border: 1px solid #111;
+      color: var(--green-dark);
+      border: 1px solid var(--green);
     }
 
     /* =========================
        CART DRAWER
     ========================== */
+
     .cart-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.55);
+      background: rgba(20,55,42,0.55);
       z-index: 4000;
     }
 
@@ -495,7 +549,7 @@
       transition: right 0.3s ease;
       display: flex;
       flex-direction: column;
-      box-shadow: -5px 0 25px rgba(0,0,0,0.15);
+      box-shadow: -5px 0 25px rgba(0,0,0,0.12);
     }
 
     .cart-drawer.show {
@@ -504,7 +558,7 @@
 
     .cart-header {
       padding: 20px;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -512,13 +566,15 @@
 
     .cart-header h2 {
       font-size: 22px;
+      color: var(--green-dark);
     }
 
     .cart-close {
       width: 35px;
       height: 35px;
       border: none;
-      background: #f1f1f1;
+      background: var(--green-light);
+      color: var(--green-dark);
       border-radius: 50%;
       font-size: 22px;
     }
@@ -532,23 +588,26 @@
     .empty-cart {
       text-align: center;
       padding: 60px 20px;
-      color: #777;
+      color: var(--muted);
     }
 
     .cart-item {
       display: flex;
       gap: 12px;
       padding: 14px 0;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid var(--border);
     }
 
     .cart-item-image {
       width: 75px;
       height: 90px;
       flex-shrink: 0;
-      background: #f2f2f2;
+      background: var(--green-light);
       border-radius: 7px;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .cart-item-image img {
@@ -565,11 +624,13 @@
       font-weight: 700;
       font-size: 15px;
       margin-bottom: 6px;
+      color: var(--text);
     }
 
     .cart-item-price {
       font-size: 14px;
       margin-bottom: 8px;
+      color: #506158;
     }
 
     .quantity-controls {
@@ -581,8 +642,9 @@
     .quantity-controls button {
       width: 27px;
       height: 27px;
-      border: 1px solid #ddd;
-      background: #fff;
+      border: 1px solid var(--border);
+      background: var(--green-light);
+      color: var(--green-dark);
       border-radius: 5px;
       font-size: 17px;
     }
@@ -596,13 +658,13 @@
     .remove-item {
       border: none;
       background: transparent;
-      color: #e63946;
+      color: var(--danger);
       font-size: 12px;
       margin-top: 5px;
     }
 
     .cart-footer {
-      border-top: 1px solid #eee;
+      border-top: 1px solid var(--border);
       padding: 20px;
       background: #fff;
     }
@@ -613,6 +675,7 @@
       font-size: 20px;
       font-weight: 800;
       margin-bottom: 15px;
+      color: var(--green-dark);
     }
 
     .checkout-btn {
@@ -620,34 +683,280 @@
       padding: 15px;
       border: none;
       border-radius: 8px;
-      background: #111;
+      background: var(--green);
       color: white;
       font-size: 16px;
       font-weight: 700;
     }
 
     .checkout-btn:hover {
-      background: #e63946;
+      background: var(--green-dark);
     }
 
     /* =========================
-       LOADING / MESSAGE
+       CHECKOUT MODAL
     ========================== */
+
+    .checkout-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(20,55,42,0.65);
+      z-index: 6000;
+      padding: 15px;
+      overflow-y: auto;
+    }
+
+    .checkout-modal.show {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .checkout-box {
+      width: 100%;
+      max-width: 850px;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 15px 50px rgba(0,0,0,0.20);
+    }
+
+    .checkout-header {
+      padding: 20px 25px;
+      background: var(--green-light);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .checkout-header h2 {
+      color: var(--green-dark);
+      font-size: 23px;
+    }
+
+    .checkout-close {
+      width: 36px;
+      height: 36px;
+      border: none;
+      border-radius: 50%;
+      background: #fff;
+      color: var(--green-dark);
+      font-size: 22px;
+    }
+
+    .checkout-body {
+      padding: 25px;
+    }
+
+    .checkout-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+    }
+
+    .form-section h3,
+    .summary-section h3 {
+      color: var(--green-dark);
+      margin-bottom: 15px;
+      font-size: 19px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .required {
+      color: var(--danger);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 13px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      outline: none;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--text);
+      background: #fff;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(47,125,91,0.08);
+    }
+
+    .form-group textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .summary-box {
+      background: var(--green-soft);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 15px;
+    }
+
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    .summary-item:last-child {
+      border-bottom: none;
+    }
+
+    .summary-item-name {
+      flex: 1;
+      font-weight: 600;
+    }
+
+    .summary-item-price {
+      white-space: nowrap;
+      font-weight: 700;
+    }
+
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 2px solid var(--green);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--green-dark);
+    }
+
+    .checkout-actions {
+      margin-top: 25px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .back-cart-btn,
+    .confirm-order-btn {
+      flex: 1;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .back-cart-btn {
+      border: 1px solid var(--green);
+      background: #fff;
+      color: var(--green-dark);
+    }
+
+    .confirm-order-btn {
+      border: none;
+      background: var(--green);
+      color: #fff;
+    }
+
+    .confirm-order-btn:hover {
+      background: var(--green-dark);
+    }
+
+    /* =========================
+       ORDER SUCCESS
+    ========================== */
+
+    .order-success {
+      display: none;
+      text-align: center;
+      padding: 45px 25px;
+    }
+
+    .order-success.show {
+      display: block;
+    }
+
+    .success-icon {
+      font-size: 60px;
+      margin-bottom: 15px;
+    }
+
+    .order-success h2 {
+      color: var(--green-dark);
+      margin-bottom: 10px;
+    }
+
+    .order-success p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .success-close-btn {
+      margin-top: 20px;
+      padding: 13px 25px;
+      border: none;
+      border-radius: 8px;
+      background: var(--green);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    /* =========================
+       LOADING
+    ========================== */
+
     .loading {
       text-align: center;
       padding: 40px;
-      color: #777;
+      color: var(--muted);
+    }
+
+    .loading-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-direction: column;
+    }
+
+    .loading-spinner {
+      width: 28px;
+      height: 28px;
+      border: 3px solid #d7e9df;
+      border-top-color: var(--green);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
     }
 
     .no-products {
       text-align: center;
       padding: 40px;
-      color: #777;
+      color: var(--muted);
     }
 
     /* =========================
        MOBILE
     ========================== */
+
     @media (max-width: 700px) {
 
       header {
@@ -722,23 +1031,40 @@
       .cart-drawer {
         max-width: 100%;
       }
+
+      .checkout-modal {
+        padding: 8px;
+      }
+
+      .checkout-body {
+        padding: 18px 15px;
+      }
+
+      .checkout-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .checkout-actions {
+        flex-direction: column;
+      }
+
+      .checkout-header {
+        padding: 17px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- =========================
-       TOP BAR
-  ========================== -->
+  <!-- TOP BAR -->
   <div class="topbar">
     <span>মানুষ একটি হয়ে উঠবার বিষয়</span>
     <span>Books • Lifestyle • More</span>
   </div>
 
-  <!-- =========================
-       HEADER
-  ========================== -->
+  <!-- HEADER -->
   <header>
 
     <div class="logo">
@@ -762,9 +1088,7 @@
 
   </header>
 
-  <!-- =========================
-       NAVIGATION
-  ========================== -->
+  <!-- NAVIGATION -->
   <nav>
     <a href="#" onclick="showAllProducts(); return false;">সব পণ্য</a>
     <a href="#" onclick="filterCategory('ইসলামিক'); return false;">ইসলামিক</a>
@@ -773,20 +1097,16 @@
     <a href="#" onclick="filterCategory('শিক্ষা'); return false;">শিক্ষা</a>
   </nav>
 
-  <!-- =========================
-       HERO
-  ========================== -->
+  <!-- HERO -->
   <section class="hero">
     <h1>বইয়ের সাথে থাকুন</h1>
     <p>
       আপনার পছন্দের বই এবং প্রয়োজনীয় পণ্য খুঁজে নিন বই-আলাপ-এ।
-      সহজে পছন্দ করুন, Cart-এ যোগ করুন এবং পরবর্তীতে সহজেই Order করুন।
+      সহজে পছন্দ করুন, Cart-এ যোগ করুন এবং সহজেই Order করুন।
     </p>
   </section>
 
-  <!-- =========================
-       CATEGORIES
-  ========================== -->
+  <!-- CATEGORIES -->
   <section class="section">
 
     <h2 class="section-title">ক্যাটাগরি</h2>
@@ -825,9 +1145,7 @@
 
   </section>
 
-  <!-- =========================
-       PRODUCTS
-  ========================== -->
+  <!-- PRODUCTS -->
   <section class="section">
 
     <h2 class="section-title" id="productsTitle">
@@ -835,16 +1153,19 @@
     </h2>
 
     <div id="productGrid" class="product-grid">
+
       <div class="loading">
-        পণ্য লোড হচ্ছে...
+        <div class="loading-box">
+          <div class="loading-spinner"></div>
+          <div>পণ্য লোড হচ্ছে...</div>
+        </div>
       </div>
+
     </div>
 
   </section>
 
-  <!-- =========================
-       FEATURES
-  ========================== -->
+  <!-- FEATURES -->
   <section class="section">
 
     <div class="features">
@@ -864,22 +1185,21 @@
       <div class="feature">
         <div class="feature-icon">💬</div>
         <h3>সহজ যোগাযোগ</h3>
-        <p>WhatsApp-এর মাধ্যমে যোগাযোগের সুবিধা।</p>
+        <p>WhatsApp-এর মাধ্যমে সরাসরি যোগাযোগ।</p>
       </div>
 
       <div class="feature">
         <div class="feature-icon">🚚</div>
         <h3>ডেলিভারি</h3>
-        <p>পরবর্তীতে Delivery workflow যুক্ত করা হবে।</p>
+        <p>সহজ ও সুবিধাজনক অর্ডার ব্যবস্থা।</p>
       </div>
 
     </div>
 
   </section>
 
-  <!-- =========================
-       PRODUCT DETAILS MODAL
-  ========================== -->
+  <!-- PRODUCT DETAILS MODAL -->
+
   <div
     class="product-modal"
     id="productModal"
@@ -958,18 +1278,16 @@
 
   </div>
 
-  <!-- =========================
-       CART OVERLAY
-  ========================== -->
+  <!-- CART OVERLAY -->
+
   <div
     class="cart-overlay"
     id="cartOverlay"
     onclick="closeCart()"
   ></div>
 
-  <!-- =========================
-       CART DRAWER
-  ========================== -->
+  <!-- CART DRAWER -->
+
   <div
     class="cart-drawer"
     id="cartDrawer"
@@ -1012,8 +1330,183 @@
   </div>
 
   <!-- =========================
-       FOOTER
+       CHECKOUT MODAL
   ========================== -->
+
+  <div
+    class="checkout-modal"
+    id="checkoutModal"
+  >
+
+    <div
+      class="checkout-box"
+      onclick="event.stopPropagation()"
+    >
+
+      <div class="checkout-header">
+
+        <h2>🛍️ Order Information</h2>
+
+        <button
+          class="checkout-close"
+          onclick="closeCheckout()"
+        >
+          ×
+        </button>
+
+      </div>
+
+      <!-- CHECKOUT FORM -->
+
+      <div
+        class="checkout-body"
+        id="checkoutBody"
+      >
+
+        <div class="checkout-grid">
+
+          <!-- CUSTOMER INFORMATION -->
+
+          <div class="form-section">
+
+            <h3>Customer Information</h3>
+
+            <div class="form-group">
+
+              <label>
+                নাম <span class="required">*</span>
+              </label>
+
+              <input
+                type="text"
+                id="customerName"
+                placeholder="আপনার নাম"
+                autocomplete="name"
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label>
+                মোবাইল নম্বর <span class="required">*</span>
+              </label>
+
+              <input
+                type="tel"
+                id="customerPhone"
+                placeholder="01XXXXXXXXX"
+                autocomplete="tel"
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label>
+                Delivery Address <span class="required">*</span>
+              </label>
+
+              <textarea
+                id="customerAddress"
+                placeholder="বাড়ি/ফ্ল্যাট, রোড, এলাকা, থানা, জেলা"
+                autocomplete="street-address"
+              ></textarea>
+
+            </div>
+
+            <div class="form-group">
+
+              <label>
+                Note / Instruction
+              </label>
+
+              <textarea
+                id="customerNote"
+                placeholder="কোনো বিশেষ নির্দেশনা থাকলে লিখুন..."
+              ></textarea>
+
+            </div>
+
+          </div>
+
+          <!-- ORDER SUMMARY -->
+
+          <div class="summary-section">
+
+            <h3>Order Summary</h3>
+
+            <div
+              class="summary-box"
+              id="orderSummary"
+            ></div>
+
+          </div>
+
+        </div>
+
+        <div class="checkout-actions">
+
+          <button
+            class="back-cart-btn"
+            onclick="backToCart()"
+          >
+            ← Back to Cart
+          </button>
+
+          <button
+            class="confirm-order-btn"
+            onclick="confirmOrder()"
+          >
+            💬 Confirm Order
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- SUCCESS -->
+
+      <div
+        class="order-success"
+        id="orderSuccess"
+      >
+
+        <div class="success-icon">
+          ✅
+        </div>
+
+        <h2>Order Ready!</h2>
+
+        <p>
+          আপনার অর্ডারের তথ্য WhatsApp-এ পাঠানোর জন্য
+          প্রস্তুত করা হয়েছে।
+        </p>
+
+        <p
+          id="successOrderId"
+          style="
+            margin-top:10px;
+            font-weight:700;
+            color:#2f7d5b;
+          "
+        ></p>
+
+        <button
+          class="success-close-btn"
+          onclick="closeCheckout()"
+        >
+          Done
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+
   <footer>
 
     <div class="footer-grid">
@@ -1035,8 +1528,12 @@
 
       <div>
         <h3>Contact</h3>
-        <p>WhatsApp: Coming Soon</p>
-        <p>Email: Coming Soon</p>
+        <p>
+          WhatsApp: +8801790178666
+        </p>
+        <p>
+          Email: Coming Soon
+        </p>
       </div>
 
     </div>
@@ -1044,111 +1541,254 @@
   </footer>
 
 
-  <script>
+<script>
 
-    /* =====================================================
-       GOOGLE SHEETS API
-    ====================================================== */
+  /* =====================================================
+     CONFIGURATION
+  ====================================================== */
 
-    const API_URL =
-      "https://script.google.com/macros/s/AKfycbyIf3gAtT69SaaddmKvwHuAgYQDoP73cD9xZW44sDcy4YenxNB2uNr0t8jNq5WgyQ1qJg/exec";
+  const API_URL =
+    "https://script.google.com/macros/s/AKfycbyIf3gAtT69SaaddmKvwHuAgYQDoP73cD9xZW44sDcy4YenxNB2uNr0t8jNq5WgyQ1qJg/exec";
 
+  const WHATSAPP_NUMBER =
+    "8801790178666";
 
-    /* =====================================================
-       GLOBAL DATA
-    ====================================================== */
+  const PRODUCT_CACHE_KEY =
+    "boialapProductsCache";
 
-    let allProducts = [];
-
-    let cart = JSON.parse(
-      localStorage.getItem("boialapCart") || "[]"
-    );
+  const CUSTOMER_CACHE_KEY =
+    "boialapCustomer";
 
 
-    /* =====================================================
-       IMAGE URL CONVERTER
-    ====================================================== */
+  /* =====================================================
+     GLOBAL DATA
+  ====================================================== */
 
-    function convertImageUrl(url) {
+  let allProducts = [];
 
-      let image = String(url || "").trim();
+  let cart = JSON.parse(
+    localStorage.getItem("boialapCart") || "[]"
+  );
+
+
+  /* =====================================================
+     IMAGE URL CONVERTER
+  ====================================================== */
+
+  function convertImageUrl(url) {
+
+    let image =
+      String(url || "").trim();
+
+    if (
+      image.includes("github.com") &&
+      image.includes("/blob/")
+    ) {
+
+      image = image
+        .replace(
+          "https://github.com/",
+          "https://raw.githubusercontent.com/"
+        )
+        .replace(
+          "/blob/",
+          "/"
+        );
+    }
+
+    return image;
+  }
+
+
+  /* =====================================================
+     HTML ESCAPE
+  ====================================================== */
+
+  function escapeHTML(text) {
+
+    return String(text ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+
+  /* =====================================================
+     JAVASCRIPT STRING ESCAPE
+  ====================================================== */
+
+  function escapeJS(text) {
+
+    return String(text ?? "")
+      .replace(/\\/g, "\\\\")
+      .replace(/'/g, "\\'");
+  }
+
+
+  /* =====================================================
+     LOAD CACHED PRODUCTS FIRST
+  ====================================================== */
+
+  function loadCachedProducts() {
+
+    try {
+
+      const cached =
+        localStorage.getItem(
+          PRODUCT_CACHE_KEY
+        );
+
+      if (!cached) return false;
+
+      const parsed =
+        JSON.parse(cached);
 
       if (
-        image.includes("github.com") &&
-        image.includes("/blob/")
+        Array.isArray(parsed) &&
+        parsed.length
       ) {
 
-        image = image
-          .replace(
-            "https://github.com/",
-            "https://raw.githubusercontent.com/"
-          )
-          .replace(
-            "/blob/",
-            "/"
-          );
+        allProducts = parsed;
+
+        displayProducts(
+          allProducts
+        );
+
+        return true;
+
       }
 
-      return image;
+    } catch (error) {
+
+      console.warn(
+        "Cache read error:",
+        error
+      );
+
+    }
+
+    return false;
+  }
+
+
+  /* =====================================================
+     SAVE PRODUCT CACHE
+  ====================================================== */
+
+  function saveProductCache(products) {
+
+    try {
+
+      localStorage.setItem(
+        PRODUCT_CACHE_KEY,
+        JSON.stringify(products)
+      );
+
+    } catch (error) {
+
+      console.warn(
+        "Cache save error:",
+        error
+      );
+
+    }
+
+  }
+
+
+  /* =====================================================
+     LOAD PRODUCTS
+     
+     Cache is shown immediately.
+     Google Sheets is then refreshed in background.
+  ====================================================== */
+
+  async function loadProducts() {
+
+    const grid =
+      document.getElementById(
+        "productGrid"
+      );
+
+    const hasCache =
+      loadCachedProducts();
+
+
+    if (!hasCache) {
+
+      grid.innerHTML = `
+        <div class="loading">
+          <div class="loading-box">
+            <div class="loading-spinner"></div>
+            <div>পণ্য লোড হচ্ছে...</div>
+          </div>
+        </div>
+      `;
+
     }
 
 
-    /* =====================================================
-       HTML ESCAPE
-    ====================================================== */
+    try {
 
-    function escapeHTML(text) {
-
-      return String(text ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-    }
+      const response =
+        await fetch(
+          API_URL,
+          {
+            cache: "no-store"
+          }
+        );
 
 
-    /* =====================================================
-       JAVASCRIPT STRING ESCAPE
-    ====================================================== */
+      if (!response.ok) {
 
-    function escapeJS(text) {
+        throw new Error(
+          "Network response failed"
+        );
 
-      return String(text ?? "")
-        .replace(/\\/g, "\\\\")
-        .replace(/'/g, "\\'");
-    }
+      }
 
 
-    /* =====================================================
-       LOAD PRODUCTS
-    ====================================================== */
+      const data =
+        await response.json();
 
-    async function loadProducts() {
 
-      const grid =
-        document.getElementById("productGrid");
+      const products =
+        Array.isArray(data)
+          ? data
+          : data.products || [];
 
-      try {
 
-        const response =
-          await fetch(API_URL);
-
-        const data =
-          await response.json();
+      if (products.length) {
 
         allProducts =
-          Array.isArray(data)
-            ? data
-            : data.products || [];
+          products;
 
-        displayProducts(allProducts);
+        saveProductCache(
+          allProducts
+        );
 
-        updateCart();
+        displayProducts(
+          allProducts
+        );
 
-      } catch (error) {
+      } else if (!hasCache) {
 
-        console.error(error);
+        displayProducts([]);
+
+      }
+
+
+      updateCart();
+
+
+    } catch (error) {
+
+      console.error(error);
+
+
+      if (!hasCache) {
 
         grid.innerHTML = `
           <div class="no-products">
@@ -1161,164 +1801,195 @@
 
     }
 
-
-    /* =====================================================
-       DISPLAY PRODUCTS
-    ====================================================== */
-
-    function displayProducts(products) {
-
-      const grid =
-        document.getElementById("productGrid");
-
-      if (!products.length) {
-
-        grid.innerHTML = `
-          <div class="no-products">
-            কোনো পণ্য পাওয়া যায়নি।
-          </div>
-        `;
-
-        return;
-      }
+  }
 
 
-      grid.innerHTML =
-        products.map(product => {
+  /* =====================================================
+     DISPLAY PRODUCTS
+  ====================================================== */
 
-          const image =
-            convertImageUrl(product.Image);
+  function displayProducts(products) {
 
-          const name =
-            escapeHTML(product.Name);
-
-          const category =
-            escapeHTML(product.Category);
-
-          const price =
-            Number(product.Price || 0);
-
-          const stock =
-            Number(product.Stock || 0);
-
-          const id =
-            escapeJS(product.ID);
+    const grid =
+      document.getElementById(
+        "productGrid"
+      );
 
 
-          return `
+    if (!products.length) {
 
-            <div class="product-card">
+      grid.innerHTML = `
+        <div class="no-products">
+          কোনো পণ্য পাওয়া যায়নি।
+        </div>
+      `;
 
-              <div class="product-image">
+      return;
+    }
 
-                ${
-                  image
-                    ? `
-                      <img
-                        src="${image}"
-                        alt="${name}"
-                        loading="lazy"
-                        onerror="this.style.display='none';"
-                      >
-                    `
-                    : `
-                      <span class="no-image">
-                        No Image
-                      </span>
-                    `
-                }
 
+    grid.innerHTML =
+      products.map(product => {
+
+        const image =
+          convertImageUrl(
+            product.Image
+          );
+
+        const name =
+          escapeHTML(
+            product.Name
+          );
+
+        const category =
+          escapeHTML(
+            product.Category
+          );
+
+        const price =
+          Number(
+            product.Price || 0
+          );
+
+        const stock =
+          Number(
+            product.Stock || 0
+          );
+
+        const id =
+          escapeJS(
+            product.ID
+          );
+
+
+        return `
+
+          <div class="product-card">
+
+            <div class="product-image">
+
+              ${
+                image
+                  ? `
+                    <img
+                      src="${image}"
+                      alt="${name}"
+                      loading="lazy"
+                      decoding="async"
+                      onerror="this.style.display='none';"
+                    >
+                  `
+                  : `
+                    <span class="no-image">
+                      No Image
+                    </span>
+                  `
+              }
+
+            </div>
+
+            <div class="product-info">
+
+              <div class="product-category">
+                ${category}
               </div>
 
-              <div class="product-info">
+              <div class="product-name">
+                ${name}
+              </div>
 
-                <div class="product-category">
-                  ${category}
-                </div>
+              <div class="product-price">
+                ৳${price.toLocaleString("en-BD")}
+              </div>
 
-                <div class="product-name">
-                  ${name}
-                </div>
+              <div class="product-stock">
+                ${
+                  stock > 0
+                    ? `স্টক: ${stock}`
+                    : "Out of Stock"
+                }
+              </div>
 
-                <div class="product-price">
-                  ৳${price.toLocaleString("en-BD")}
-                </div>
+              <div class="product-actions">
 
-                <div class="product-stock">
-                  ${
-                    stock > 0
-                      ? `স্টক: ${stock}`
-                      : "Out of Stock"
-                  }
-                </div>
+                <button
+                  class="buy-btn"
+                  onclick="addProductById('${id}')"
+                >
+                  🛒 Add to Cart
+                </button>
 
-                <div class="product-actions">
-
-                  <button
-                    class="buy-btn"
-                    onclick="addProductById('${id}')"
-                  >
-                    🛒 Add to Cart
-                  </button>
-
-                  <button
-                    class="details-btn"
-                    onclick="showDetailsById('${id}')"
-                  >
-                    Details
-                  </button>
-
-                </div>
+                <button
+                  class="details-btn"
+                  onclick="showDetailsById('${id}')"
+                >
+                  Details
+                </button>
 
               </div>
 
             </div>
 
-          `;
+          </div>
 
-        }).join("");
+        `;
 
+      }).join("");
+
+  }
+
+
+  /* =====================================================
+     SEARCH
+  ====================================================== */
+
+  function searchProducts() {
+
+    const search =
+      document
+        .getElementById(
+          "searchInput"
+        )
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    if (!search) {
+
+      displayProducts(
+        allProducts
+      );
+
+      document
+        .getElementById(
+          "productsTitle"
+        )
+        .textContent =
+          "সব পণ্য";
+
+      return;
     }
 
 
-    /* =====================================================
-       SEARCH
-    ====================================================== */
-
-    function searchProducts() {
-
-      const search =
-        document
-          .getElementById("searchInput")
-          .value
-          .toLowerCase()
-          .trim();
-
-      if (!search) {
-
-        displayProducts(allProducts);
-
-        document.getElementById("productsTitle")
-          .textContent = "সব পণ্য";
-
-        return;
-      }
-
-
-      const filtered =
-        allProducts.filter(product => {
+    const filtered =
+      allProducts.filter(
+        product => {
 
           const name =
-            String(product.Name || "")
-              .toLowerCase();
+            String(
+              product.Name || ""
+            ).toLowerCase();
 
           const category =
-            String(product.Category || "")
-              .toLowerCase();
+            String(
+              product.Category || ""
+            ).toLowerCase();
 
           const description =
-            String(product.Description || "")
-              .toLowerCase();
+            String(
+              product.Description || ""
+            ).toLowerCase();
 
           return (
             name.includes(search) ||
@@ -1326,411 +1997,525 @@
             description.includes(search)
           );
 
-        });
+        }
+      );
 
 
-      document.getElementById("productsTitle")
-        .textContent = "Search Results";
+    document
+      .getElementById(
+        "productsTitle"
+      )
+      .textContent =
+        "Search Results";
 
-      displayProducts(filtered);
+
+    displayProducts(
+      filtered
+    );
+
+  }
+
+
+  /* =====================================================
+     CATEGORY FILTER
+  ====================================================== */
+
+  function filterCategory(category) {
+
+    const filtered =
+      allProducts.filter(
+        product =>
+          String(
+            product.Category || ""
+          )
+          .trim()
+          .toLowerCase() ===
+          String(category)
+            .trim()
+            .toLowerCase()
+      );
+
+
+    document
+      .getElementById(
+        "productsTitle"
+      )
+      .textContent =
+        category;
+
+
+    displayProducts(
+      filtered
+    );
+
+
+    window.scrollTo({
+      top:
+        document
+          .getElementById(
+            "productGrid"
+          )
+          .offsetTop - 100,
+      behavior: "smooth"
+    });
+
+  }
+
+
+  /* =====================================================
+     SHOW ALL PRODUCTS
+  ====================================================== */
+
+  function showAllProducts() {
+
+    document
+      .getElementById(
+        "productsTitle"
+      )
+      .textContent =
+        "সব পণ্য";
+
+
+    displayProducts(
+      allProducts
+    );
+
+  }
+
+
+  /* =====================================================
+     PRODUCT DETAILS
+  ====================================================== */
+
+  function showDetailsById(id) {
+
+    const product =
+      allProducts.find(
+        item =>
+          String(item.ID) ===
+          String(id)
+      );
+
+
+    if (!product) {
+
+      alert(
+        "Product not found."
+      );
+
+      return;
+    }
+
+
+    const image =
+      convertImageUrl(
+        product.Image
+      );
+
+
+    document
+      .getElementById(
+        "detailCategory"
+      )
+      .textContent =
+        product.Category || "";
+
+
+    document
+      .getElementById(
+        "detailName"
+      )
+      .textContent =
+        product.Name || "";
+
+
+    document
+      .getElementById(
+        "detailPrice"
+      )
+      .textContent =
+        "৳" +
+        Number(
+          product.Price || 0
+        )
+        .toLocaleString("en-BD");
+
+
+    const stock =
+      Number(
+        product.Stock || 0
+      );
+
+
+    document
+      .getElementById(
+        "detailStock"
+      )
+      .textContent =
+        stock > 0
+          ? `স্টকে আছে: ${stock} টি`
+          : "Out of Stock";
+
+
+    document
+      .getElementById(
+        "detailDescription"
+      )
+      .textContent =
+        product.Description ||
+        "এই পণ্যের কোনো বর্ণনা দেওয়া হয়নি।";
+
+
+    const imageBox =
+      document.getElementById(
+        "detailImage"
+      );
+
+
+    if (image) {
+
+      imageBox.innerHTML = `
+        <img
+          src="${image}"
+          alt="${escapeHTML(product.Name)}"
+          loading="eager"
+          decoding="async"
+          onerror="this.style.display='none';"
+        >
+      `;
+
+    } else {
+
+      imageBox.innerHTML = `
+        <span class="no-image">
+          No Image
+        </span>
+      `;
 
     }
 
 
-    /* =====================================================
-       CATEGORY FILTER
-    ====================================================== */
+    /* ADD TO CART */
 
-    function filterCategory(category) {
+    const buyButton =
+      document.getElementById(
+        "detailBuyButton"
+      );
 
-      const filtered =
-        allProducts.filter(product =>
-          String(product.Category || "")
-            .trim()
-            .toLowerCase() ===
-          String(category)
-            .trim()
-            .toLowerCase()
+
+    buyButton.onclick =
+      function() {
+
+        addToCart(product);
+
+        closeProductDetails();
+
+        openCart();
+
+      };
+
+
+    /* WHATSAPP PRODUCT INQUIRY */
+
+    const whatsappButton =
+      document.getElementById(
+        "detailWhatsAppButton"
+      );
+
+
+    whatsappButton.onclick =
+      function() {
+
+        const price =
+          Number(
+            product.Price || 0
+          )
+          .toLocaleString("en-BD");
+
+
+        const message =
+`Assalamu Alaikum,
+
+I would like to know about this product from Boialap.
+
+📚 Product: ${product.Name || ""}
+📂 Category: ${product.Category || ""}
+💰 Price: ৳${price}
+
+Please provide availability and delivery information.
+
+Thank you.`;
+
+
+        openWhatsApp(
+          message
         );
 
+      };
 
-      document.getElementById("productsTitle")
-        .textContent = category;
 
-      displayProducts(filtered);
+    document
+      .getElementById(
+        "productModal"
+      )
+      .classList.add("show");
 
-      window.scrollTo({
-        top: document
-          .getElementById("productGrid")
-          .offsetTop - 100,
-        behavior: "smooth"
+
+    document.body.classList.add(
+      "no-scroll"
+    );
+
+  }
+
+
+  /* =====================================================
+     CLOSE PRODUCT DETAILS
+  ====================================================== */
+
+  function closeProductDetails() {
+
+    document
+      .getElementById(
+        "productModal"
+      )
+      .classList.remove("show");
+
+
+    document.body.classList.remove(
+      "no-scroll"
+    );
+
+  }
+
+
+  /* =====================================================
+     CLOSE MODAL OUTSIDE
+  ====================================================== */
+
+  function closeModalOutside(event) {
+
+    if (
+      event.target.id ===
+      "productModal"
+    ) {
+
+      closeProductDetails();
+
+    }
+
+  }
+
+
+  /* =====================================================
+     ADD PRODUCT BY ID
+  ====================================================== */
+
+  function addProductById(id) {
+
+    const product =
+      allProducts.find(
+        item =>
+          String(item.ID) ===
+          String(id)
+      );
+
+
+    if (!product) {
+
+      alert(
+        "Product not found."
+      );
+
+      return;
+    }
+
+
+    addToCart(product);
+
+    openCart();
+
+  }
+
+
+  /* =====================================================
+     ADD TO CART
+  ====================================================== */
+
+  function addToCart(product) {
+
+    const stock =
+      Number(
+        product.Stock || 0
+      );
+
+
+    if (stock <= 0) {
+
+      alert(
+        "এই পণ্যটি বর্তমানে স্টকে নেই।"
+      );
+
+      return;
+
+    }
+
+
+    const existing =
+      cart.find(
+        item =>
+          String(item.ID) ===
+          String(product.ID)
+      );
+
+
+    if (existing) {
+
+      if (
+        existing.quantity >=
+        stock
+      ) {
+
+        alert(
+          "স্টকের চেয়ে বেশি quantity নেওয়া যাবে না।"
+        );
+
+        return;
+
+      }
+
+
+      existing.quantity += 1;
+
+    } else {
+
+      cart.push({
+
+        ID: product.ID,
+
+        Name: product.Name,
+
+        Price:
+          Number(
+            product.Price || 0
+          ),
+
+        Stock: stock,
+
+        Image:
+          convertImageUrl(
+            product.Image
+          ),
+
+        quantity: 1
+
       });
 
     }
 
 
-    /* =====================================================
-       SHOW ALL PRODUCTS
-    ====================================================== */
+    saveCart();
 
-    function showAllProducts() {
+    updateCart();
 
-      document.getElementById("productsTitle")
-        .textContent = "সব পণ্য";
+  }
 
-      displayProducts(allProducts);
 
-    }
+  /* =====================================================
+     SAVE CART
+  ====================================================== */
 
+  function saveCart() {
 
-    /* =====================================================
-       PRODUCT DETAILS
-    ====================================================== */
+    localStorage.setItem(
+      "boialapCart",
+      JSON.stringify(cart)
+    );
 
-    function showDetailsById(id) {
+  }
 
-      const product =
-        allProducts.find(
-          item =>
-            String(item.ID) === String(id)
-        );
 
-      if (!product) {
+  /* =====================================================
+     UPDATE CART
+  ====================================================== */
 
-        alert("Product not found.");
+  function updateCart() {
 
-        return;
-      }
-
-
-      const image =
-        convertImageUrl(product.Image);
-
-
-      document.getElementById("detailCategory")
-        .textContent =
-          product.Category || "";
-
-
-      document.getElementById("detailName")
-        .textContent =
-          product.Name || "";
-
-
-      document.getElementById("detailPrice")
-        .textContent =
-          "৳" +
-          Number(product.Price || 0)
-            .toLocaleString("en-BD");
-
-
-      const stock =
-        Number(product.Stock || 0);
-
-
-      document.getElementById("detailStock")
-        .textContent =
-          stock > 0
-            ? `স্টকে আছে: ${stock} টি`
-            : "Out of Stock";
-
-
-      document.getElementById("detailDescription")
-        .textContent =
-          product.Description ||
-          "এই পণ্যের কোনো বর্ণনা দেওয়া হয়নি।";
-
-
-      const imageBox =
-        document.getElementById("detailImage");
-
-
-      if (image) {
-
-        imageBox.innerHTML = `
-          <img
-            src="${image}"
-            alt="${escapeHTML(product.Name)}"
-            onerror="this.style.display='none';"
-          >
-        `;
-
-      } else {
-
-        imageBox.innerHTML = `
-          <span class="no-image">
-            No Image
-          </span>
-        `;
-
-      }
-
-
-      /* ADD TO CART BUTTON */
-
-      const buyButton =
-        document.getElementById(
-          "detailBuyButton"
-        );
-
-
-      buyButton.onclick =
-        function() {
-
-          addToCart(product);
-
-          closeProductDetails();
-
-          openCart();
-
-        };
-
-
-      /* WHATSAPP BUTTON */
-
-      const whatsappButton =
-        document.getElementById(
-          "detailWhatsAppButton"
-        );
-
-
-      whatsappButton.onclick =
-        function() {
-
-          alert(
-            "WhatsApp ordering will be connected in the next step."
-          );
-
-        };
-
-
-      document
-        .getElementById("productModal")
-        .classList.add("show");
-
-
-      document.body.style.overflow =
-        "hidden";
-
-    }
-
-
-    /* =====================================================
-       CLOSE PRODUCT DETAILS
-    ====================================================== */
-
-    function closeProductDetails() {
-
-      document
-        .getElementById("productModal")
-        .classList.remove("show");
-
-      document.body.style.overflow = "";
-
-    }
-
-
-    /* =====================================================
-       CLOSE MODAL OUTSIDE
-    ====================================================== */
-
-    function closeModalOutside(event) {
-
-      if (
-        event.target.id ===
-        "productModal"
-      ) {
-
-        closeProductDetails();
-
-      }
-
-    }
-
-
-    /* =====================================================
-       ADD PRODUCT BY ID
-    ====================================================== */
-
-    function addProductById(id) {
-
-      const product =
-        allProducts.find(
-          item =>
-            String(item.ID) === String(id)
-        );
-
-      if (!product) {
-
-        alert("Product not found.");
-
-        return;
-      }
-
-
-      addToCart(product);
-
-      openCart();
-
-    }
-
-
-    /* =====================================================
-       ADD TO CART
-    ====================================================== */
-
-    function addToCart(product) {
-
-      const stock =
-        Number(product.Stock || 0);
-
-
-      if (stock <= 0) {
-
-        alert("এই পণ্যটি বর্তমানে স্টকে নেই।");
-
-        return;
-
-      }
-
-
-      const existing =
-        cart.find(
-          item =>
-            String(item.ID) ===
-            String(product.ID)
-        );
-
-
-      if (existing) {
-
-        if (
-          existing.quantity >= stock
-        ) {
-
-          alert(
-            "স্টকের চেয়ে বেশি quantity নেওয়া যাবে না।"
-          );
-
-          return;
-
-        }
-
-        existing.quantity += 1;
-
-      } else {
-
-        cart.push({
-
-          ID: product.ID,
-
-          Name: product.Name,
-
-          Price: Number(product.Price || 0),
-
-          Stock: stock,
-
-          Image: convertImageUrl(
-            product.Image
+    const count =
+      cart.reduce(
+        (total, item) =>
+          total +
+          Number(
+            item.quantity || 0
           ),
-
-          quantity: 1
-
-        });
-
-      }
-
-
-      saveCart();
-
-      updateCart();
-
-    }
-
-
-    /* =====================================================
-       SAVE CART
-    ====================================================== */
-
-    function saveCart() {
-
-      localStorage.setItem(
-        "boialapCart",
-        JSON.stringify(cart)
+        0
       );
 
-    }
+
+    document.getElementById(
+      "cartCount"
+    ).textContent =
+      count;
 
 
-    /* =====================================================
-       UPDATE CART
-    ====================================================== */
+    renderCart();
 
-    function updateCart() {
+  }
 
-      const count =
-        cart.reduce(
-          (total, item) =>
-            total +
-            Number(item.quantity || 0),
-          0
-        );
+
+  /* =====================================================
+     RENDER CART
+  ====================================================== */
+
+  function renderCart() {
+
+    const container =
+      document.getElementById(
+        "cartItems"
+      );
+
+
+    if (!cart.length) {
+
+      container.innerHTML = `
+        <div class="empty-cart">
+
+          <div style="font-size:50px;">
+            🛒
+          </div>
+
+          <h3>
+            আপনার Cart খালি
+          </h3>
+
+          <p style="margin-top:10px;">
+            পছন্দের বই বা পণ্য Cart-এ যোগ করুন।
+          </p>
+
+        </div>
+      `;
 
 
       document.getElementById(
-        "cartCount"
-      ).textContent = count;
+        "cartTotal"
+      ).textContent =
+        "৳0";
 
 
-      renderCart();
-
+      return;
     }
 
 
-    /* =====================================================
-       RENDER CART
-    ====================================================== */
-
-    function renderCart() {
-
-      const container =
-        document.getElementById(
-          "cartItems"
-        );
-
-
-      if (!cart.length) {
-
-        container.innerHTML = `
-          <div class="empty-cart">
-            <div style="font-size:50px;">
-              🛒
-            </div>
-
-            <h3>আপনার Cart খালি</h3>
-
-            <p style="margin-top:10px;">
-              পছন্দের বই বা পণ্য Cart-এ যোগ করুন।
-            </p>
-          </div>
-        `;
-
-
-        document.getElementById(
-          "cartTotal"
-        ).textContent = "৳0";
-
-
-        return;
-      }
-
-
-      container.innerHTML =
-        cart.map((item, index) => {
+    container.innerHTML =
+      cart.map(
+        (item, index) => {
 
           const subtotal =
-            Number(item.Price || 0) *
-            Number(item.quantity || 0);
+            Number(
+              item.Price || 0
+            ) *
+            Number(
+              item.quantity || 0
+            );
 
 
           return `
@@ -1745,6 +2530,8 @@
                       <img
                         src="${item.Image}"
                         alt="${escapeHTML(item.Name)}"
+                        loading="lazy"
+                        decoding="async"
                       >
                     `
                     : `
@@ -1764,14 +2551,19 @@
                 </div>
 
                 <div class="cart-item-price">
+
                   ৳${Number(item.Price)
                     .toLocaleString("en-BD")}
+
                   × ${item.quantity}
+
                   =
+
                   <strong>
                     ৳${subtotal
                       .toLocaleString("en-BD")}
                   </strong>
+
                 </div>
 
 
@@ -1809,223 +2601,825 @@
 
           `;
 
-        }).join("");
+        }
+      ).join("");
 
 
-      const total =
-        cart.reduce(
-          (sum, item) =>
-            sum +
-            Number(item.Price || 0) *
-            Number(item.quantity || 0),
-          0
-        );
+    const total =
+      getCartTotal();
 
 
-      document.getElementById(
-        "cartTotal"
-      ).textContent =
-        "৳" +
-        total.toLocaleString("en-BD");
-
-    }
-
-
-    /* =====================================================
-       CHANGE QUANTITY
-    ====================================================== */
-
-    function changeQuantity(index, amount) {
-
-      const item =
-        cart[index];
-
-      if (!item) return;
-
-
-      const newQuantity =
-        Number(item.quantity) +
-        Number(amount);
-
-
-      if (newQuantity <= 0) {
-
-        cart.splice(index, 1);
-
-      } else if (
-        newQuantity >
-        Number(item.Stock || 0)
-      ) {
-
-        alert(
-          "স্টকের চেয়ে বেশি quantity নেওয়া যাবে না।"
-        );
-
-        return;
-
-      } else {
-
-        item.quantity =
-          newQuantity;
-
-      }
-
-
-      saveCart();
-
-      updateCart();
-
-    }
-
-
-    /* =====================================================
-       REMOVE FROM CART
-    ====================================================== */
-
-    function removeFromCart(index) {
-
-      cart.splice(index, 1);
-
-      saveCart();
-
-      updateCart();
-
-    }
-
-
-    /* =====================================================
-       OPEN CART
-    ====================================================== */
-
-    function openCart() {
-
-      document
-        .getElementById("cartDrawer")
-        .classList.add("show");
-
-
-      document
-        .getElementById("cartOverlay")
-        .classList.add("show");
-
-
-      document.body.style.overflow =
-        "hidden";
-
-
-      renderCart();
-
-    }
-
-
-    /* =====================================================
-       CLOSE CART
-    ====================================================== */
-
-    function closeCart() {
-
-      document
-        .getElementById("cartDrawer")
-        .classList.remove("show");
-
-
-      document
-        .getElementById("cartOverlay")
-        .classList.remove("show");
-
-
-      document.body.style.overflow = "";
-
-    }
-
-
-    /* =====================================================
-       CHECKOUT
-    ====================================================== */
-
-    function checkoutCart() {
-
-      if (!cart.length) {
-
-        alert(
-          "প্রথমে Cart-এ কোনো পণ্য যোগ করুন।"
-        );
-
-        return;
-      }
-
-
-      let message =
-        "আপনার Cart-এ নিচের পণ্যগুলো আছে:\n\n";
-
-
-      cart.forEach((item, index) => {
-
-        message +=
-          `${index + 1}. ${item.Name}\n`;
-
-        message +=
-          `Quantity: ${item.quantity}\n`;
-
-        message +=
-          `Price: ৳${Number(item.Price)
-            .toLocaleString("en-BD")}\n\n`;
-
-      });
-
-
-      const total =
-        cart.reduce(
-          (sum, item) =>
-            sum +
-            Number(item.Price || 0) *
-            Number(item.quantity || 0),
-          0
-        );
-
-
-      message +=
-        `Total: ৳${total
-          .toLocaleString("en-BD")}`;
-
-
-      alert(
-        message +
-        "\n\nOrder/WhatsApp system পরবর্তী ধাপে যুক্ত করা হবে।"
+    document.getElementById(
+      "cartTotal"
+    ).textContent =
+      "৳" +
+      total.toLocaleString(
+        "en-BD"
       );
 
+  }
+
+
+  /* =====================================================
+     CART TOTAL
+  ====================================================== */
+
+  function getCartTotal() {
+
+    return cart.reduce(
+      (sum, item) =>
+        sum +
+        Number(
+          item.Price || 0
+        ) *
+        Number(
+          item.quantity || 0
+        ),
+      0
+    );
+
+  }
+
+
+  /* =====================================================
+     CHANGE QUANTITY
+  ====================================================== */
+
+  function changeQuantity(
+    index,
+    amount
+  ) {
+
+    const item =
+      cart[index];
+
+
+    if (!item) return;
+
+
+    const newQuantity =
+      Number(item.quantity) +
+      Number(amount);
+
+
+    if (newQuantity <= 0) {
+
+      cart.splice(
+        index,
+        1
+      );
+
+    } else if (
+      newQuantity >
+      Number(item.Stock || 0)
+    ) {
+
+      alert(
+        "স্টকের চেয়ে বেশি quantity নেওয়া যাবে না।"
+      );
+
+      return;
+
+    } else {
+
+      item.quantity =
+        newQuantity;
+
     }
 
 
-    /* =====================================================
-       ESC KEY
-    ====================================================== */
+    saveCart();
 
-    document.addEventListener(
-      "keydown",
-      function(event) {
+    updateCart();
 
-        if (event.key === "Escape") {
+  }
 
-          closeProductDetails();
 
-          closeCart();
+  /* =====================================================
+     REMOVE FROM CART
+  ====================================================== */
 
-        }
+  function removeFromCart(index) {
+
+    cart.splice(
+      index,
+      1
+    );
+
+
+    saveCart();
+
+    updateCart();
+
+  }
+
+
+  /* =====================================================
+     OPEN CART
+  ====================================================== */
+
+  function openCart() {
+
+    document
+      .getElementById(
+        "cartDrawer"
+      )
+      .classList.add("show");
+
+
+    document
+      .getElementById(
+        "cartOverlay"
+      )
+      .classList.add("show");
+
+
+    document.body.classList.add(
+      "no-scroll"
+    );
+
+
+    renderCart();
+
+  }
+
+
+  /* =====================================================
+     CLOSE CART
+  ====================================================== */
+
+  function closeCart() {
+
+    document
+      .getElementById(
+        "cartDrawer"
+      )
+      .classList.remove("show");
+
+
+    document
+      .getElementById(
+        "cartOverlay"
+      )
+      .classList.remove("show");
+
+
+    document.body.classList.remove(
+      "no-scroll"
+    );
+
+  }
+
+
+  /* =====================================================
+     CHECKOUT
+  ====================================================== */
+
+  function checkoutCart() {
+
+    if (!cart.length) {
+
+      alert(
+        "প্রথমে Cart-এ কোনো পণ্য যোগ করুন।"
+      );
+
+      return;
+    }
+
+
+    loadCustomerInfo();
+
+    renderOrderSummary();
+
+
+    closeCart();
+
+
+    document
+      .getElementById(
+        "checkoutBody"
+      )
+      .style.display =
+        "block";
+
+
+    document
+      .getElementById(
+        "orderSuccess"
+      )
+      .classList.remove(
+        "show"
+      );
+
+
+    document
+      .getElementById(
+        "checkoutModal"
+      )
+      .classList.add(
+        "show"
+      );
+
+
+    document.body.classList.add(
+      "no-scroll"
+    );
+
+  }
+
+
+  /* =====================================================
+     RENDER ORDER SUMMARY
+  ====================================================== */
+
+  function renderOrderSummary() {
+
+    const container =
+      document.getElementById(
+        "orderSummary"
+      );
+
+
+    if (!cart.length) {
+
+      container.innerHTML =
+        "<p>Cart is empty.</p>";
+
+      return;
+
+    }
+
+
+    let html = "";
+
+
+    cart.forEach(
+      item => {
+
+        const subtotal =
+          Number(
+            item.Price || 0
+          ) *
+          Number(
+            item.quantity || 0
+          );
+
+
+        html += `
+
+          <div class="summary-item">
+
+            <div class="summary-item-name">
+
+              ${escapeHTML(item.Name)}
+
+              <div
+                style="
+                  font-size:12px;
+                  color:#718078;
+                  margin-top:4px;
+                  font-weight:400;
+                "
+              >
+                ৳${Number(item.Price)
+                  .toLocaleString("en-BD")}
+                × ${item.quantity}
+              </div>
+
+            </div>
+
+            <div class="summary-item-price">
+              ৳${subtotal
+                .toLocaleString("en-BD")}
+            </div>
+
+          </div>
+
+        `;
 
       }
     );
 
 
-    /* =====================================================
-       START
-    ====================================================== */
+    html += `
 
-    loadProducts();
+      <div class="summary-total">
 
-    updateCart();
+        <span>
+          Grand Total
+        </span>
 
-  </script>
+        <span>
+          ৳${getCartTotal()
+            .toLocaleString("en-BD")}
+        </span>
+
+      </div>
+
+    `;
+
+
+    container.innerHTML =
+      html;
+
+  }
+
+
+  /* =====================================================
+     CUSTOMER INFO CACHE
+  ====================================================== */
+
+  function saveCustomerInfo() {
+
+    const customer = {
+
+      name:
+        document.getElementById(
+          "customerName"
+        ).value.trim(),
+
+      phone:
+        document.getElementById(
+          "customerPhone"
+        ).value.trim(),
+
+      address:
+        document.getElementById(
+          "customerAddress"
+        ).value.trim(),
+
+      note:
+        document.getElementById(
+          "customerNote"
+        ).value.trim()
+
+    };
+
+
+    localStorage.setItem(
+      CUSTOMER_CACHE_KEY,
+      JSON.stringify(customer)
+    );
+
+  }
+
+
+  /* =====================================================
+     LOAD CUSTOMER INFO
+  ====================================================== */
+
+  function loadCustomerInfo() {
+
+    try {
+
+      const saved =
+        localStorage.getItem(
+          CUSTOMER_CACHE_KEY
+        );
+
+
+      if (!saved) return;
+
+
+      const customer =
+        JSON.parse(saved);
+
+
+      document.getElementById(
+        "customerName"
+      ).value =
+        customer.name || "";
+
+
+      document.getElementById(
+        "customerPhone"
+      ).value =
+        customer.phone || "";
+
+
+      document.getElementById(
+        "customerAddress"
+      ).value =
+        customer.address || "";
+
+
+      document.getElementById(
+        "customerNote"
+      ).value =
+        customer.note || "";
+
+    } catch (error) {
+
+      console.warn(
+        "Customer cache error:",
+        error
+      );
+
+    }
+
+  }
+
+
+  /* =====================================================
+     BACK TO CART
+  ====================================================== */
+
+  function backToCart() {
+
+    closeCheckout();
+
+    openCart();
+
+  }
+
+
+  /* =====================================================
+     CONFIRM ORDER
+  ====================================================== */
+
+  function confirmOrder() {
+
+    if (!cart.length) {
+
+      alert(
+        "আপনার Cart খালি।"
+      );
+
+      closeCheckout();
+
+      return;
+
+    }
+
+
+    const name =
+      document
+        .getElementById(
+          "customerName"
+        )
+        .value
+        .trim();
+
+
+    const phone =
+      document
+        .getElementById(
+          "customerPhone"
+        )
+        .value
+        .trim();
+
+
+    const address =
+      document
+        .getElementById(
+          "customerAddress"
+        )
+        .value
+        .trim();
+
+
+    const note =
+      document
+        .getElementById(
+          "customerNote"
+        )
+        .value
+        .trim();
+
+
+    if (!name) {
+
+      alert(
+        "অনুগ্রহ করে আপনার নাম দিন।"
+      );
+
+      document
+        .getElementById(
+          "customerName"
+        )
+        .focus();
+
+      return;
+
+    }
+
+
+    if (!phone) {
+
+      alert(
+        "অনুগ্রহ করে মোবাইল নম্বর দিন।"
+      );
+
+      document
+        .getElementById(
+          "customerPhone"
+        )
+        .focus();
+
+      return;
+
+    }
+
+
+    if (!isValidPhone(phone)) {
+
+      alert(
+        "সঠিক মোবাইল নম্বর দিন।"
+      );
+
+      document
+        .getElementById(
+          "customerPhone"
+        )
+        .focus();
+
+      return;
+
+    }
+
+
+    if (!address) {
+
+      alert(
+        "অনুগ্রহ করে Delivery Address দিন।"
+      );
+
+      document
+        .getElementById(
+          "customerAddress"
+        )
+        .focus();
+
+      return;
+
+    }
+
+
+    saveCustomerInfo();
+
+
+    const orderId =
+      generateOrderId();
+
+
+    const total =
+      getCartTotal();
+
+
+    let message =
+`🛍️ *NEW ORDER – BOIALAP*
+
+━━━━━━━━━━━━━━
+📋 *Order ID:* ${orderId}
+
+👤 *Customer Information*
+Name: ${name}
+Mobile: ${phone}
+Address: ${address}
+${note ? `Note: ${note}\n` : ""}
+━━━━━━━━━━━━━━
+📚 *ORDER ITEMS*
+
+`;
+
+
+    cart.forEach(
+      (item, index) => {
+
+        const subtotal =
+          Number(
+            item.Price || 0
+          ) *
+          Number(
+            item.quantity || 0
+          );
+
+
+        message +=
+`${index + 1}. ${item.Name}
+   Qty: ${item.quantity}
+   Unit Price: ৳${Number(item.Price)
+     .toLocaleString("en-BD")}
+   Subtotal: ৳${subtotal
+     .toLocaleString("en-BD")}
+
+`;
+
+      }
+    );
+
+
+    message +=
+`━━━━━━━━━━━━━━
+💰 *GRAND TOTAL: ৳${total
+  .toLocaleString("en-BD")}*
+
+Please confirm the order and delivery details.
+
+Thank you.
+Boialap`;
+
+
+    /* Show success before opening WhatsApp */
+
+    document
+      .getElementById(
+        "checkoutBody"
+      )
+      .style.display =
+        "none";
+
+
+    document
+      .getElementById(
+        "orderSuccess"
+      )
+      .classList.add(
+        "show"
+      );
+
+
+    document
+      .getElementById(
+        "successOrderId"
+      )
+      .textContent =
+        "Order ID: " +
+        orderId;
+
+
+    openWhatsApp(
+      message
+    );
+
+  }
+
+
+  /* =====================================================
+     VALIDATE PHONE
+  ====================================================== */
+
+  function isValidPhone(phone) {
+
+    const cleaned =
+      phone.replace(
+        /[\s\-]/g,
+        ""
+      );
+
+
+    return (
+      /^01[3-9]\d{8}$/.test(
+        cleaned
+      ) ||
+      /^\+8801[3-9]\d{8}$/.test(
+        cleaned
+      ) ||
+      /^8801[3-9]\d{8}$/.test(
+        cleaned
+      )
+    );
+
+  }
+
+
+  /* =====================================================
+     GENERATE ORDER ID
+  ====================================================== */
+
+  function generateOrderId() {
+
+    const now =
+      new Date();
+
+
+    const date =
+      now.getFullYear() +
+      String(
+        now.getMonth() + 1
+      ).padStart(2, "0") +
+      String(
+        now.getDate()
+      ).padStart(2, "0");
+
+
+    const random =
+      Math.floor(
+        1000 +
+        Math.random() * 9000
+      );
+
+
+    return (
+      "BA-" +
+      date +
+      "-" +
+      random
+    );
+
+  }
+
+
+  /* =====================================================
+     OPEN WHATSAPP
+  ====================================================== */
+
+  function openWhatsApp(message) {
+
+    const url =
+      "https://wa.me/" +
+      WHATSAPP_NUMBER +
+      "?text=" +
+      encodeURIComponent(
+        message
+      );
+
+
+    window.open(
+      url,
+      "_blank"
+    );
+
+  }
+
+
+  /* =====================================================
+     CLOSE CHECKOUT
+  ====================================================== */
+
+  function closeCheckout() {
+
+    document
+      .getElementById(
+        "checkoutModal"
+      )
+      .classList.remove(
+        "show"
+      );
+
+
+    document
+      .getElementById(
+        "orderSuccess"
+      )
+      .classList.remove(
+        "show"
+      );
+
+
+    document
+      .getElementById(
+        "checkoutBody"
+      )
+      .style.display =
+        "block";
+
+
+    document.body.classList.remove(
+      "no-scroll"
+    );
+
+  }
+
+
+  /* =====================================================
+     ESC KEY
+  ====================================================== */
+
+  document.addEventListener(
+    "keydown",
+    function(event) {
+
+      if (
+        event.key === "Escape"
+      ) {
+
+        closeProductDetails();
+
+        closeCart();
+
+        closeCheckout();
+
+      }
+
+    }
+  );
+
+
+  /* =====================================================
+     START
+
+     1. Show cached products immediately.
+     2. Refresh from Google Sheets in background.
+  ====================================================== */
+
+  loadProducts();
+
+  updateCart();
+
+</script>
 
 </body>
 </html>
+```
