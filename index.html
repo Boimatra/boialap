@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Boialap – Books & More</title>
+<title>বই-আলাপ – Books & More</title>
 
 <meta
   name="description"
@@ -12,11 +12,6 @@
 >
 
 <style>
-
-/* =========================================================
-   BOIALAP — PREMIUM EDITORIAL THEME
-   Ink Blue + Warm Gold + Ivory
-   ========================================================= */
 
 :root{
 
@@ -49,11 +44,6 @@
   --shadow-hover:
     0 12px 32px rgba(32,48,54,.13);
 }
-
-
-/* =========================================================
-   RESET
-   ========================================================= */
 
 *{
   box-sizing:border-box;
@@ -363,6 +353,34 @@ header{
 
 
 /* =========================================================
+   ANNOUNCEMENT
+   ========================================================= */
+
+.announcement-bar{
+
+  display:none;
+
+  background:#edf6f1;
+
+  border-bottom:1px solid #d8e8df;
+
+  color:#355f4c;
+
+  text-align:center;
+
+  padding:8px 15px;
+
+  font-size:13px;
+
+  font-weight:700;
+}
+
+.announcement-bar.show{
+  display:block;
+}
+
+
+/* =========================================================
    HERO
    ========================================================= */
 
@@ -396,6 +414,37 @@ header{
   position:relative;
 
   overflow:hidden;
+
+  min-height:190px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:center;
+
+  align-items:center;
+}
+
+.hero-box.has-image{
+
+  background-size:cover;
+
+  background-position:center;
+
+  color:white;
+}
+
+.hero-box.has-image:before{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background:rgba(20,40,45,.42);
+
 }
 
 .hero-box:after{
@@ -441,6 +490,13 @@ header{
   position:relative;
 
   z-index:1;
+}
+
+.hero-box.has-image h1,
+.hero-box.has-image p{
+
+  color:white;
+
 }
 
 
@@ -848,6 +904,45 @@ footer p{
   color:#b9c7ca;
 
   font-size:13px;
+}
+
+.social-links{
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+
+  margin-top:16px;
+}
+
+.social-links a{
+
+  display:none;
+
+  padding:7px 13px;
+
+  border:1px solid rgba(255,255,255,.15);
+
+  border-radius:20px;
+
+  color:#dbe5e7;
+
+  font-size:13px;
+
+  transition:.2s;
+}
+
+.social-links a:hover{
+
+  background:rgba(255,255,255,.08);
+
+  color:white;
 }
 
 
@@ -1777,7 +1872,7 @@ footer p{
 
   <div class="topbar-inner">
 
-    <span>
+    <span id="topbarMessage">
       মানুষ একটি হয়ে উঠবার বিষয়
     </span>
 
@@ -1791,6 +1886,16 @@ footer p{
 
 
 <!-- =======================================================
+     ANNOUNCEMENT
+     ======================================================= -->
+
+<div
+  class="announcement-bar"
+  id="announcementBar"
+></div>
+
+
+<!-- =======================================================
      HEADER
      ======================================================= -->
 
@@ -1798,7 +1903,10 @@ footer p{
 
   <div class="header-inner">
 
-    <div class="logo">
+    <div
+      class="logo"
+      id="storeLogo"
+    >
       বই-আলাপ<span>.</span>
     </div>
 
@@ -1860,13 +1968,16 @@ footer p{
 
 <section class="hero">
 
-  <div class="hero-box">
+  <div
+    class="hero-box"
+    id="heroBox"
+  >
 
-    <h1>
+    <h1 id="heroTitle">
       বইয়ের সাথে থাকুন
     </h1>
 
-    <p>
+    <p id="heroTagline">
       পছন্দের বই খুঁজুন, কার্টে যোগ করুন এবং সহজেই অর্ডার করুন।
     </p>
 
@@ -2025,15 +2136,55 @@ footer p{
 
   <div class="footer-inner">
 
-    <h3>
+    <h3 id="footerStoreName">
       বই-আলাপ.
     </h3>
 
-    <p>
+    <p id="footerTagline">
       বই, জ্ঞান ও আরও কিছু।
     </p>
 
-    <p style="margin-top:8px;">
+    <div class="social-links">
+
+      <a
+        id="facebookLink"
+        href="#"
+        target="_blank"
+        rel="noopener"
+      >
+        Facebook
+      </a>
+
+      <a
+        id="youtubeLink"
+        href="#"
+        target="_blank"
+        rel="noopener"
+      >
+        YouTube
+      </a>
+
+      <a
+        id="instagramLink"
+        href="#"
+        target="_blank"
+        rel="noopener"
+      >
+        Instagram
+      </a>
+
+      <a
+        id="whatsappLink"
+        href="#"
+        target="_blank"
+        rel="noopener"
+      >
+        WhatsApp
+      </a>
+
+    </div>
+
+    <p style="margin-top:12px;">
       © 2026 Boialap. All Rights Reserved.
     </p>
 
@@ -2328,11 +2479,25 @@ footer p{
    CONFIGURATION
    ========================================================= */
 
-const API_URL =
-  "https://script.google.com/macros/s/AKfycbw6gEjyBoAOoxtb77QwfAOrCT2ptMHq4WAiWflmhUor55FygvK308ZgS1zN7_6X4Q-JOw/exec";
+/*
+  IMPORTANT:
+  এটি আপনার নতুন Google Apps Script deployment,
+  যেখানে Website Settings-ও যুক্ত আছে।
+*/
 
-const WHATSAPP_NUMBER =
+const API_URL =
+  "https://script.google.com/macros/s/AKfycbxYgCkIO17GP1R5mj3g8c4wrtCv3LWleNhVEXOGm_LNTXmkq17zlbYhF419WybsJYEtwA/exec";
+
+
+/*
+  Fallback WhatsApp number.
+  Admin Settings থেকে নতুন নম্বর পাওয়া গেলে
+  সেটি automatically ব্যবহার হবে।
+*/
+
+let WHATSAPP_NUMBER =
   "8801790178666";
+
 
 const PRODUCT_CACHE_KEY =
   "boialapProductsCache";
@@ -2342,6 +2507,9 @@ const CUSTOMER_CACHE_KEY =
 
 const CART_KEY =
   "boialapCart";
+
+const SETTINGS_CACHE_KEY =
+  "boialapWebsiteSettings";
 
 
 /* =========================================================
@@ -2356,6 +2524,8 @@ let cart =
   );
 
 let currentOrder = null;
+
+let websiteSettings = {};
 
 
 /* =========================================================
@@ -2443,6 +2613,619 @@ function getProductStock(product){
     product.stock ??
     0
   ) || 0;
+
+}
+
+
+/* =========================================================
+   WEBSITE SETTINGS
+   ========================================================= */
+
+function getSetting(name, fallback=""){
+
+  const exact =
+    Object.keys(websiteSettings)
+      .find(
+        key =>
+          String(key).trim().toLowerCase()
+          ===
+          String(name).trim().toLowerCase()
+      );
+
+  if(exact){
+
+    const value =
+      websiteSettings[exact];
+
+    if(
+      value !== undefined &&
+      value !== null &&
+      String(value).trim() !== ""
+    ){
+
+      return String(value).trim();
+
+    }
+
+  }
+
+  return fallback;
+
+}
+
+
+/* =========================================================
+   LOAD CACHED SETTINGS
+   ========================================================= */
+
+function loadCachedSettings(){
+
+  try{
+
+    const cached =
+      localStorage.getItem(
+        SETTINGS_CACHE_KEY
+      );
+
+    if(!cached) return false;
+
+    const settings =
+      JSON.parse(cached);
+
+    if(
+      !settings ||
+      typeof settings !== "object"
+    ){
+
+      return false;
+
+    }
+
+    websiteSettings =
+      settings;
+
+    applyWebsiteSettings();
+
+    return true;
+
+  }catch(error){
+
+    console.warn(
+      "Settings cache error:",
+      error
+    );
+
+    return false;
+
+  }
+
+}
+
+
+/* =========================================================
+   SAVE SETTINGS CACHE
+   ========================================================= */
+
+function saveSettingsCache(settings){
+
+  try{
+
+    localStorage.setItem(
+      SETTINGS_CACHE_KEY,
+      JSON.stringify(settings)
+    );
+
+  }catch(error){
+
+    console.warn(
+      "Settings cache save error:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   LOAD WEBSITE SETTINGS
+   ========================================================= */
+
+async function loadWebsiteSettings(){
+
+  /*
+    First show cached settings immediately.
+    This helps the website feel faster.
+  */
+
+  loadCachedSettings();
+
+
+  try{
+
+    const response =
+      await fetch(
+        API_URL + "?action=settings",
+        {
+          method:"GET",
+          cache:"no-store"
+        }
+      );
+
+
+    if(!response.ok){
+
+      throw new Error(
+        "Settings HTTP " +
+        response.status
+      );
+
+    }
+
+
+    const data =
+      await response.json();
+
+
+    if(
+      !data ||
+      data.success === false ||
+      !data.settings
+    ){
+
+      throw new Error(
+        data?.error ||
+        "Invalid settings data"
+      );
+
+    }
+
+
+    websiteSettings =
+      data.settings;
+
+
+    saveSettingsCache(
+      websiteSettings
+    );
+
+
+    applyWebsiteSettings();
+
+
+  }catch(error){
+
+    console.warn(
+      "Website settings loading error:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   APPLY WEBSITE SETTINGS
+   ========================================================= */
+
+function applyWebsiteSettings(){
+
+  /*
+    STORE NAME
+  */
+
+  const storeName =
+    getSetting(
+      "Store Name",
+      "বই-আলাপ"
+    );
+
+
+  /*
+    TAGLINE
+  */
+
+  const tagline =
+    getSetting(
+      "Tagline",
+      "পছন্দের বই খুঁজুন, কার্টে যোগ করুন এবং সহজেই অর্ডার করুন।"
+    );
+
+
+  /*
+    ANNOUNCEMENT
+  */
+
+  const announcement =
+    getSetting(
+      "Announcement",
+      ""
+    );
+
+
+  /*
+    WHATSAPP
+  */
+
+  const whatsapp =
+    getSetting(
+      "WhatsApp",
+      WHATSAPP_NUMBER
+    );
+
+
+  if(whatsapp){
+
+    WHATSAPP_NUMBER =
+      normalizeWhatsAppNumber(
+        whatsapp
+      );
+
+  }
+
+
+  /*
+    HEADER LOGO
+  */
+
+  const logo =
+    document.getElementById(
+      "storeLogo"
+    );
+
+
+  if(logo){
+
+    logo.innerHTML =
+      escapeHTML(storeName) +
+      "<span>.</span>";
+
+  }
+
+
+  /*
+    FOOTER STORE NAME
+  */
+
+  const footerName =
+    document.getElementById(
+      "footerStoreName"
+    );
+
+
+  if(footerName){
+
+    footerName.textContent =
+      storeName + ".";
+
+  }
+
+
+  /*
+    HERO TITLE
+  */
+
+  const heroTitle =
+    document.getElementById(
+      "heroTitle"
+    );
+
+
+  if(heroTitle){
+
+    heroTitle.textContent =
+      storeName;
+
+  }
+
+
+  /*
+    HERO TAGLINE
+  */
+
+  const heroTagline =
+    document.getElementById(
+      "heroTagline"
+    );
+
+
+  if(heroTagline){
+
+    heroTagline.textContent =
+      tagline;
+
+  }
+
+
+  /*
+    FOOTER TAGLINE
+  */
+
+  const footerTagline =
+    document.getElementById(
+      "footerTagline"
+    );
+
+
+  if(footerTagline){
+
+    footerTagline.textContent =
+      tagline;
+
+  }
+
+
+  /*
+    PAGE TITLE
+  */
+
+  document.title =
+    storeName +
+    " – Books & More";
+
+
+  /*
+    META DESCRIPTION
+  */
+
+  const metaDescription =
+    document.querySelector(
+      'meta[name="description"]'
+    );
+
+
+  if(metaDescription){
+
+    metaDescription.setAttribute(
+      "content",
+      storeName +
+      " — " +
+      tagline
+    );
+
+  }
+
+
+  /*
+    ANNOUNCEMENT
+  */
+
+  const announcementBar =
+    document.getElementById(
+      "announcementBar"
+    );
+
+
+  if(announcementBar){
+
+    if(announcement){
+
+      announcementBar.textContent =
+        announcement;
+
+      announcementBar.classList.add(
+        "show"
+      );
+
+    }else{
+
+      announcementBar.textContent =
+        "";
+
+      announcementBar.classList.remove(
+        "show"
+      );
+
+    }
+
+  }
+
+
+  /*
+    HERO BANNER IMAGE
+  */
+
+  const banner =
+    convertImageUrl(
+      getSetting(
+        "Banner Image",
+        ""
+      )
+    );
+
+
+  const heroBox =
+    document.getElementById(
+      "heroBox"
+    );
+
+
+  if(heroBox){
+
+    if(banner){
+
+      heroBox.style.backgroundImage =
+        "url('" +
+        escapeCSSUrl(banner) +
+        "')";
+
+      heroBox.classList.add(
+        "has-image"
+      );
+
+    }else{
+
+      heroBox.style.backgroundImage =
+        "";
+
+      heroBox.classList.remove(
+        "has-image"
+      );
+
+    }
+
+  }
+
+
+  /*
+    SOCIAL LINKS
+  */
+
+  applySocialLink(
+    "facebookLink",
+    getSetting("Facebook","")
+  );
+
+  applySocialLink(
+    "youtubeLink",
+    getSetting("YouTube","")
+  );
+
+  applySocialLink(
+    "instagramLink",
+    getSetting("Instagram","")
+  );
+
+  applySocialLink(
+    "whatsappLink",
+    WHATSAPP_NUMBER
+      ? "https://wa.me/" +
+        WHATSAPP_NUMBER
+      : ""
+  );
+
+}
+
+
+/* =========================================================
+   CSS URL SAFETY
+   ========================================================= */
+
+function escapeCSSUrl(url){
+
+  return String(url || "")
+    .replace(/\\/g,"\\\\")
+    .replace(/'/g,"\\'")
+    .replace(/\)/g,"%29")
+    .replace(/\(/g,"%28");
+
+}
+
+
+/* =========================================================
+   SOCIAL LINK
+   ========================================================= */
+
+function applySocialLink(id,url){
+
+  const element =
+    document.getElementById(id);
+
+  if(!element) return;
+
+
+  if(!url){
+
+    element.style.display =
+      "none";
+
+    element.removeAttribute(
+      "href"
+    );
+
+    return;
+
+  }
+
+
+  let finalUrl =
+    String(url).trim();
+
+
+  if(
+    id !== "whatsappLink" &&
+    !/^https?:\/\//i.test(finalUrl)
+  ){
+
+    finalUrl =
+      "https://" +
+      finalUrl;
+
+  }
+
+
+  if(
+    id === "whatsappLink" &&
+    !finalUrl.startsWith("https://")
+  ){
+
+    finalUrl =
+      "https://" +
+      finalUrl;
+
+  }
+
+
+  element.href =
+    finalUrl;
+
+  element.style.display =
+    "inline-block";
+
+}
+
+
+/* =========================================================
+   NORMALIZE WHATSAPP
+   ========================================================= */
+
+function normalizeWhatsAppNumber(number){
+
+  let value =
+    String(number || "")
+      .trim();
+
+
+  value =
+    value.replace(
+      /[^\d+]/g,
+      ""
+    );
+
+
+  if(
+    value.startsWith("+")
+  ){
+
+    value =
+      value.substring(1);
+
+  }
+
+
+  if(
+    value.startsWith("01") &&
+    value.length === 11
+  ){
+
+    value =
+      "880" +
+      value.substring(1);
+
+  }
+
+
+  if(
+    value.startsWith("880")
+  ){
+
+    return value;
+
+  }
+
+
+  return value;
 
 }
 
@@ -4492,7 +5275,7 @@ function openWhatsApp(){
   let message =
 `আসসালামু আলাইকুম।
 
-বই-আলাপ থেকে আমি একটি অর্ডার করতে চাই।
+${getSetting("Store Name","বই-আলাপ")} থেকে আমি একটি অর্ডার করতে চাই।
 
 Order ID: ${order.orderId}
 
@@ -4537,9 +5320,26 @@ ${order.note}
 `;
 
 
+  const number =
+    normalizeWhatsAppNumber(
+      WHATSAPP_NUMBER
+    );
+
+
+  if(!number){
+
+    showToast(
+      "WhatsApp নম্বর পাওয়া যায়নি।"
+    );
+
+    return;
+
+  }
+
+
   const url =
     "https://wa.me/" +
-    WHATSAPP_NUMBER +
+    number +
     "?text=" +
     encodeURIComponent(message);
 
@@ -4648,7 +5448,16 @@ document.addEventListener(
    START
    ========================================================= */
 
-loadProducts();
+/*
+  Settings এবং Books একই সময়ে load হবে।
+  এতে অতিরিক্ত অপেক্ষা কমবে।
+*/
+
+Promise.all([
+  loadWebsiteSettings(),
+  loadProducts()
+]);
+
 
 updateCart();
 
