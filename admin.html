@@ -33,6 +33,7 @@
   --border:#e5ddd3;
 
   --danger:#b94b4b;
+  --success:#557253;
 
   --shadow:
     0 15px 45px rgba(60,45,35,.08);
@@ -41,6 +42,10 @@
 
 *{
   box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
 }
 
 body{
@@ -57,6 +62,13 @@ body{
     Arial,
     sans-serif;
 
+}
+
+button,
+input,
+select,
+textarea{
+  font-family:inherit;
 }
 
 
@@ -138,11 +150,15 @@ body{
 
   margin-bottom:14px;
 
+  background:white;
+
 }
 
 .login-box input:focus{
 
   border-color:var(--plum);
+
+  box-shadow:0 0 0 3px rgba(91,58,82,.08);
 
 }
 
@@ -166,6 +182,17 @@ body{
 
   cursor:pointer;
 
+  transition:.2s;
+
+}
+
+.login-btn:hover{
+  background:var(--plum-dark);
+}
+
+.login-btn:disabled{
+  opacity:.65;
+  cursor:not-allowed;
 }
 
 .login-error{
@@ -175,6 +202,8 @@ body{
   margin-top:12px;
 
   display:none;
+
+  font-size:14px;
 
 }
 
@@ -203,6 +232,12 @@ body{
 
   align-items:center;
 
+  position:sticky;
+
+  top:0;
+
+  z-index:500;
+
 }
 
 .top-logo{
@@ -212,6 +247,21 @@ body{
   font-size:24px;
 
   font-weight:800;
+
+}
+
+.top-logo small{
+
+  font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  font-size:13px;
+
+  font-weight:500;
+
+  opacity:.75;
 
 }
 
@@ -231,6 +281,10 @@ body{
 
 }
 
+.logout:hover{
+  background:rgba(255,255,255,.08);
+}
+
 .layout{
 
   display:flex;
@@ -240,11 +294,15 @@ body{
 }
 
 
-/* SIDEBAR */
+/* =====================================================
+   SIDEBAR
+===================================================== */
 
 .sidebar{
 
   width:230px;
+
+  flex-shrink:0;
 
   background:var(--paper);
 
@@ -292,7 +350,9 @@ body{
 }
 
 
-/* MAIN */
+/* =====================================================
+   MAIN
+===================================================== */
 
 .main{
 
@@ -301,6 +361,8 @@ body{
   padding:30px;
 
   max-width:1500px;
+
+  min-width:0;
 
 }
 
@@ -340,7 +402,9 @@ body{
 }
 
 
-/* DASHBOARD */
+/* =====================================================
+   DASHBOARD
+===================================================== */
 
 .stats{
 
@@ -404,7 +468,9 @@ body{
 }
 
 
-/* TOOLBAR */
+/* =====================================================
+   TOOLBAR
+===================================================== */
 
 .toolbar{
 
@@ -441,6 +507,19 @@ body{
 
 }
 
+.toolbar input{
+
+  min-width:230px;
+
+}
+
+.toolbar input:focus,
+.toolbar select:focus{
+
+  border-color:var(--plum);
+
+}
+
 .btn{
 
   border:none;
@@ -453,6 +532,22 @@ body{
 
   font-weight:700;
 
+  transition:.15s;
+
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+}
+
+.btn:disabled{
+
+  opacity:.6;
+
+  cursor:not-allowed;
+
+  transform:none;
+
 }
 
 .btn-primary{
@@ -461,6 +556,10 @@ body{
 
   color:white;
 
+}
+
+.btn-primary:hover{
+  background:var(--plum-dark);
 }
 
 .btn-secondary{
@@ -480,7 +579,9 @@ body{
 }
 
 
-/* TABLE */
+/* =====================================================
+   TABLE
+===================================================== */
 
 .table-wrap{
 
@@ -516,6 +617,8 @@ th{
 
   padding:13px;
 
+  white-space:nowrap;
+
 }
 
 td{
@@ -525,6 +628,8 @@ td{
   border-top:1px solid var(--border);
 
   font-size:14px;
+
+  vertical-align:middle;
 
 }
 
@@ -553,6 +658,8 @@ td{
 
   font-weight:700;
 
+  white-space:nowrap;
+
 }
 
 .badge-active{
@@ -580,7 +687,9 @@ td{
 }
 
 
-/* MODAL */
+/* =====================================================
+   MODAL
+===================================================== */
 
 .modal{
 
@@ -623,6 +732,8 @@ td{
   border-radius:20px;
 
   padding:28px;
+
+  box-shadow:0 20px 60px rgba(0,0,0,.18);
 
 }
 
@@ -688,6 +799,26 @@ td{
 
   outline:none;
 
+  background:white;
+
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+
+  border-color:var(--plum);
+
+  box-shadow:0 0 0 3px rgba(91,58,82,.06);
+
+}
+
+.form-group input:read-only{
+
+  background:#f3eee8;
+
+  color:#777;
+
 }
 
 .form-group textarea{
@@ -711,7 +842,9 @@ td{
 }
 
 
-/* ORDER */
+/* =====================================================
+   ORDER
+===================================================== */
 
 .order-card{
 
@@ -764,6 +897,12 @@ td{
 
 }
 
+.order-field{
+
+  overflow-wrap:anywhere;
+
+}
+
 .order-field strong{
 
   display:block;
@@ -798,10 +937,98 @@ td{
 
   border-radius:8px;
 
+  background:white;
+
 }
 
 
-/* MOBILE */
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading{
+
+  padding:35px;
+
+  text-align:center;
+
+  color:var(--muted);
+
+}
+
+.empty{
+
+  padding:35px;
+
+  text-align:center;
+
+  color:var(--muted);
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+.toast{
+
+  position:fixed;
+
+  right:20px;
+
+  bottom:20px;
+
+  z-index:2000;
+
+  background:#292522;
+
+  color:white;
+
+  padding:13px 17px;
+
+  border-radius:10px;
+
+  box-shadow:0 10px 30px rgba(0,0,0,.18);
+
+  opacity:0;
+
+  transform:translateY(15px);
+
+  pointer-events:none;
+
+  transition:.25s;
+
+  max-width:350px;
+
+  font-size:14px;
+
+}
+
+.toast.show{
+
+  opacity:1;
+
+  transform:translateY(0);
+
+}
+
+.toast.success{
+
+  background:#557253;
+
+}
+
+.toast.error{
+
+  background:#b94b4b;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media(max-width:900px){
 
@@ -818,6 +1045,8 @@ td{
     font-size:0;
 
     text-align:center;
+
+    padding:13px 5px;
 
   }
 
@@ -847,6 +1076,12 @@ td{
   .topbar{
 
     padding:13px 15px;
+
+  }
+
+  .top-logo{
+
+    font-size:20px;
 
   }
 
@@ -882,9 +1117,37 @@ td{
 
   }
 
+  .form-group.full{
+
+    grid-column:auto;
+
+  }
+
   .order-body{
 
     grid-template-columns:1fr;
+
+  }
+
+  .toolbar input{
+
+    width:100%;
+
+    min-width:0;
+
+  }
+
+  .modal{
+
+    padding:10px;
+
+  }
+
+  .modal-box{
+
+    padding:20px;
+
+    max-height:94vh;
 
   }
 
@@ -918,12 +1181,12 @@ td{
       type="password"
       id="password"
       placeholder="Admin Password"
-      onkeydown="if(event.key==='Enter') login()"
+      autocomplete="current-password"
     >
 
     <button
       class="login-btn"
-      onclick="login()"
+      id="loginButton"
     >
       Login
     </button>
@@ -955,7 +1218,7 @@ td{
 
     <button
       class="logout"
-      onclick="logout()"
+      id="logoutButton"
     >
       Logout
     </button>
@@ -972,21 +1235,21 @@ td{
 
       <button
         class="nav-btn active"
-        onclick="showPage('dashboard',this)"
+        data-page="dashboard"
       >
         🏠 Dashboard
       </button>
 
       <button
         class="nav-btn"
-        onclick="showPage('books',this)"
+        data-page="books"
       >
         📚 Books
       </button>
 
       <button
         class="nav-btn"
-        onclick="showPage('orders',this)"
+        data-page="orders"
       >
         📦 Orders
       </button>
@@ -1089,21 +1352,21 @@ td{
 
           <button
             class="btn btn-primary"
-            onclick="loadAll()"
+            id="refreshAllButton"
           >
             ↻ Refresh Data
           </button>
 
           <button
             class="btn btn-secondary"
-            onclick="showPage('books')"
+            data-goto="books"
           >
             + Manage Books
           </button>
 
           <button
             class="btn btn-secondary"
-            onclick="showPage('orders')"
+            data-goto="orders"
           >
             View Orders
           </button>
@@ -1135,7 +1398,7 @@ td{
 
           <button
             class="btn btn-primary"
-            onclick="openAddBook()"
+            id="addBookButton"
           >
             + Add New Book
           </button>
@@ -1143,12 +1406,11 @@ td{
           <input
             id="bookSearch"
             placeholder="Search book..."
-            oninput="renderBooks()"
           >
 
           <button
             class="btn btn-secondary"
-            onclick="loadBooks()"
+            id="refreshBooksButton"
           >
             ↻ Refresh
           </button>
@@ -1211,12 +1473,11 @@ td{
           <input
             id="orderSearch"
             placeholder="Search Order ID / Customer / Mobile..."
-            oninput="renderOrders()"
           >
 
           <button
             class="btn btn-secondary"
-            onclick="loadOrders()"
+            id="refreshOrdersButton"
           >
             ↻ Refresh Orders
           </button>
@@ -1226,7 +1487,9 @@ td{
 
         <div id="ordersContainer">
 
-          Loading...
+          <div class="loading">
+            Loading...
+          </div>
 
         </div>
 
@@ -1395,14 +1658,14 @@ td{
 
       <button
         class="btn btn-secondary"
-        onclick="closeBookModal()"
+        id="cancelBookButton"
       >
         Cancel
       </button>
 
       <button
         class="btn btn-primary"
-        onclick="saveBook()"
+        id="saveBookButton"
       >
         Save Book
       </button>
@@ -1412,6 +1675,14 @@ td{
   </div>
 
 </div>
+
+
+<!-- TOAST -->
+
+<div
+  class="toast"
+  id="toast"
+></div>
 
 
 <script>
@@ -1425,12 +1696,9 @@ const API_URL =
 "https://script.google.com/macros/s/AKfycbw6gEjyBoAOoxtb77QwfAOrCT2ptMHq4WAiWflmhUor55FygvK308ZgS1zN7_6X4Q-JOw/exec";
 
 
-// IMPORTANT:
-// এই password পরে অবশ্যই পরিবর্তন করবেন।
-
-const ADMIN_PASSWORD =
-"Boialap@2026";
-
+// =====================================================
+// STATE
+// =====================================================
 
 let books = [];
 
@@ -1438,44 +1706,37 @@ let orders = [];
 
 let editingBookID = null;
 
+let adminToken =
+  sessionStorage.getItem(
+    "boialapAdminToken"
+  ) || "";
+
+let toastTimer = null;
+
 
 // =====================================================
-// LOGIN
+// DOM READY
 // =====================================================
 
-function login(){
+document.addEventListener(
+  "DOMContentLoaded",
+  init
+);
 
-  const password =
-    document
-      .getElementById("password")
-      .value;
 
-  if(
-    password ===
-    ADMIN_PASSWORD
-  ){
+function init(){
 
-    sessionStorage
-      .setItem(
-        "boialapAdmin",
-        "yes"
-      );
+  setupEvents();
 
-    document
-      .getElementById("loginScreen")
-      .style.display = "none";
+  if(adminToken){
 
-    document
-      .getElementById("adminPanel")
-      .style.display = "block";
+    showAdmin();
 
     loadAll();
 
   }else{
 
-    document
-      .getElementById("loginError")
-      .style.display = "block";
+    showLogin();
 
   }
 
@@ -1483,24 +1744,336 @@ function login(){
 
 
 // =====================================================
-// CHECK LOGIN
+// EVENT SETUP
 // =====================================================
 
-if(
-  sessionStorage.getItem(
-    "boialapAdmin"
-  ) === "yes"
-){
+function setupEvents(){
+
+  document
+    .getElementById("loginButton")
+    .addEventListener(
+      "click",
+      login
+    );
+
+
+  document
+    .getElementById("password")
+    .addEventListener(
+      "keydown",
+      function(event){
+
+        if(
+          event.key === "Enter"
+        ){
+
+          login();
+
+        }
+
+      }
+    );
+
+
+  document
+    .getElementById("logoutButton")
+    .addEventListener(
+      "click",
+      logout
+    );
+
+
+  document
+    .querySelectorAll(".nav-btn")
+    .forEach(button => {
+
+      button.addEventListener(
+        "click",
+        function(){
+
+          showPage(
+            this.dataset.page,
+            this
+          );
+
+        }
+      );
+
+    });
+
+
+  document
+    .querySelectorAll("[data-goto]")
+    .forEach(button => {
+
+      button.addEventListener(
+        "click",
+        function(){
+
+          const page =
+            this.dataset.goto;
+
+          showPage(page);
+
+        }
+      );
+
+    });
+
+
+  document
+    .getElementById("refreshAllButton")
+    .addEventListener(
+      "click",
+      loadAll
+    );
+
+
+  document
+    .getElementById("addBookButton")
+    .addEventListener(
+      "click",
+      openAddBook
+    );
+
+
+  document
+    .getElementById("refreshBooksButton")
+    .addEventListener(
+      "click",
+      loadBooks
+    );
+
+
+  document
+    .getElementById("refreshOrdersButton")
+    .addEventListener(
+      "click",
+      loadOrders
+    );
+
+
+  document
+    .getElementById("bookSearch")
+    .addEventListener(
+      "input",
+      renderBooks
+    );
+
+
+  document
+    .getElementById("orderSearch")
+    .addEventListener(
+      "input",
+      renderOrders
+    );
+
+
+  document
+    .getElementById("saveBookButton")
+    .addEventListener(
+      "click",
+      saveBook
+    );
+
+
+  document
+    .getElementById("cancelBookButton")
+    .addEventListener(
+      "click",
+      closeBookModal
+    );
+
+
+  document
+    .getElementById("bookModal")
+    .addEventListener(
+      "click",
+      function(event){
+
+        if(
+          event.target === this
+        ){
+
+          closeBookModal();
+
+        }
+
+      }
+    );
+
+
+  document.addEventListener(
+    "keydown",
+    function(event){
+
+      if(
+        event.key === "Escape"
+      ){
+
+        closeBookModal();
+
+      }
+
+    }
+  );
+
+}
+
+
+// =====================================================
+// LOGIN
+// =====================================================
+
+async function login(){
+
+  const password =
+    document
+      .getElementById("password")
+      .value;
+
+
+  const errorBox =
+    document
+      .getElementById("loginError");
+
+
+  const button =
+    document
+      .getElementById("loginButton");
+
+
+  if(!password){
+
+    errorBox.textContent =
+      "Password দিন।";
+
+    errorBox.style.display =
+      "block";
+
+    return;
+
+  }
+
+
+  button.disabled = true;
+
+  button.textContent =
+    "Logging in...";
+
+  errorBox.style.display =
+    "none";
+
+
+  try{
+
+    const result =
+      await publicPost({
+
+        action:"adminlogin",
+
+        password:password
+
+      });
+
+
+    if(
+      !result ||
+      result.success !== true ||
+      !result.token
+    ){
+
+      throw new Error(
+        result?.error ||
+        "Invalid password"
+      );
+
+    }
+
+
+    adminToken =
+      result.token;
+
+
+    sessionStorage.setItem(
+      "boialapAdminToken",
+      adminToken
+    );
+
+
+    document
+      .getElementById("password")
+      .value = "";
+
+
+    showAdmin();
+
+    showToast(
+      "Login successful",
+      "success"
+    );
+
+
+    await loadAll();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    errorBox.textContent =
+      error.message ||
+      "Login failed";
+
+    errorBox.style.display =
+      "block";
+
+  }finally{
+
+    button.disabled = false;
+
+    button.textContent =
+      "Login";
+
+  }
+
+}
+
+
+// =====================================================
+// SHOW LOGIN
+// =====================================================
+
+function showLogin(){
 
   document
     .getElementById("loginScreen")
-    .style.display = "none";
+    .style.display =
+    "flex";
 
   document
     .getElementById("adminPanel")
-    .style.display = "block";
+    .style.display =
+    "none";
 
-  loadAll();
+}
+
+
+// =====================================================
+// SHOW ADMIN
+// =====================================================
+
+function showAdmin(){
+
+  document
+    .getElementById("loginScreen")
+    .style.display =
+    "none";
+
+  document
+    .getElementById("adminPanel")
+    .style.display =
+    "block";
 
 }
 
@@ -1509,13 +2082,57 @@ if(
 // LOGOUT
 // =====================================================
 
-function logout(){
+async function logout(){
+
+  try{
+
+    if(adminToken){
+
+      await publicPost({
+
+        action:"adminlogout",
+
+        token:adminToken
+
+      });
+
+    }
+
+  }catch(error){
+
+    console.warn(
+      "Logout request failed",
+      error
+    );
+
+  }
+
+
+  adminToken = "";
 
   sessionStorage.removeItem(
-    "boialapAdmin"
+    "boialapAdminToken"
   );
 
-  location.reload();
+
+  books = [];
+
+  orders = [];
+
+
+  showLogin();
+
+
+  document
+    .getElementById("loginError")
+    .style.display =
+    "none";
+
+
+  showToast(
+    "Logged out",
+    "success"
+  );
 
 }
 
@@ -1532,24 +2149,47 @@ function showPage(
   document
     .querySelectorAll(".page")
     .forEach(
-      p => p.classList.remove("active")
+      p =>
+        p.classList.remove("active")
     );
 
-  document
-    .getElementById(page)
-    .classList.add("active");
+
+  const target =
+    document.getElementById(page);
+
+
+  if(!target){
+    return;
+  }
+
+
+  target.classList.add("active");
 
 
   document
     .querySelectorAll(".nav-btn")
     .forEach(
-      b => b.classList.remove("active")
+      b =>
+        b.classList.remove("active")
     );
 
 
   if(button){
 
     button.classList.add("active");
+
+  }else{
+
+    const nav =
+      document.querySelector(
+        `.nav-btn[data-page="${page}"]`
+      );
+
+    if(nav){
+
+      nav.classList.add("active");
+
+    }
 
   }
 
@@ -1559,6 +2199,7 @@ function showPage(
     loadBooks();
 
   }
+
 
   if(page === "orders"){
 
@@ -1575,12 +2216,147 @@ function showPage(
 
 async function loadAll(){
 
+  if(!adminToken){
+
+    showLogin();
+
+    return;
+
+  }
+
+
   await Promise.all([
     loadBooks(),
     loadOrders()
   ]);
 
+
   updateDashboard();
+
+}
+
+
+// =====================================================
+// GENERIC PUBLIC POST
+// =====================================================
+
+async function publicPost(payload){
+
+  const response =
+    await fetch(
+      API_URL,
+      {
+
+        method:"POST",
+
+        headers:{
+          "Content-Type":
+            "text/plain;charset=utf-8"
+        },
+
+        body:
+          JSON.stringify(payload)
+
+      }
+    );
+
+
+  const text =
+    await response.text();
+
+
+  let data;
+
+
+  try{
+
+    data =
+      JSON.parse(text);
+
+  }catch(error){
+
+    throw new Error(
+      "Server returned invalid response."
+    );
+
+  }
+
+
+  return data;
+
+}
+
+
+// =====================================================
+// ADMIN POST
+// =====================================================
+
+async function adminPost(payload){
+
+  if(!adminToken){
+
+    forceLogin();
+
+    throw new Error(
+      "UNAUTHORIZED"
+    );
+
+  }
+
+
+  const result =
+    await publicPost({
+
+      ...payload,
+
+      token:adminToken
+
+    });
+
+
+  if(
+    result &&
+    (
+      result.error ===
+      "UNAUTHORIZED"
+      ||
+      result.code ===
+      "UNAUTHORIZED"
+    )
+  ){
+
+    forceLogin();
+
+    throw new Error(
+      "Session expired. Please login again."
+    );
+
+  }
+
+
+  return result;
+
+}
+
+
+// =====================================================
+// FORCE LOGIN
+// =====================================================
+
+function forceLogin(){
+
+  adminToken = "";
+
+  sessionStorage.removeItem(
+    "boialapAdminToken"
+  );
+
+  showLogin();
+
+  document
+    .getElementById("loginError")
+    .textContent =
+    "Session expired. Please login again.";
 
 }
 
@@ -1591,29 +2367,38 @@ async function loadAll(){
 
 async function loadBooks(){
 
+  const tbody =
+    document
+      .getElementById("booksTable");
+
+
+  tbody.innerHTML =
+    `<tr>
+      <td colspan="8">
+        <div class="loading">
+          Loading books...
+        </div>
+      </td>
+    </tr>`;
+
+
   try{
 
-    const response =
-      await fetch(
-        API_URL +
-        "?t=" +
-        Date.now(),
-        {
-          cache:"no-store"
-        }
-      );
-
     const data =
-      await response.json();
+      await adminPost({
+
+        action:"getadminbooks"
+
+      });
 
 
     if(
-      data &&
+      !data ||
       data.success === false
     ){
 
       throw new Error(
-        data.error ||
+        data?.error ||
         "Book loading failed"
       );
 
@@ -1621,9 +2406,11 @@ async function loadBooks(){
 
 
     books =
-      Array.isArray(data)
-        ? data
-        : [];
+      Array.isArray(data.books)
+        ? data.books
+        : Array.isArray(data)
+          ? data
+          : [];
 
 
     renderBooks();
@@ -1635,9 +2422,18 @@ async function loadBooks(){
 
     console.error(error);
 
-    document
-      .getElementById("booksTable")
-      .innerHTML =
+
+    if(
+      error.message ===
+      "UNAUTHORIZED"
+    ){
+
+      return;
+
+    }
+
+
+    tbody.innerHTML =
       `<tr>
         <td colspan="8">
           ❌ Books loading failed:
@@ -1693,7 +2489,9 @@ function renderBooks(){
     tbody.innerHTML =
       `<tr>
         <td colspan="8">
-          No books found.
+          <div class="empty">
+            No books found.
+          </div>
         </td>
       </tr>`;
 
@@ -1705,14 +2503,26 @@ function renderBooks(){
   tbody.innerHTML =
     filtered.map(book => {
 
+      const originalIndex =
+        books.findIndex(
+          item =>
+            String(item.ID) ===
+            String(book.ID)
+        );
+
+
       const image =
-        normalizeImage(book.Image);
+        normalizeImage(
+          book.Image
+        );
 
 
       const status =
         String(
-          book.Status || "Active"
-        ).toLowerCase();
+          book.Status ||
+          "Active"
+        )
+          .toLowerCase();
 
 
       return `
@@ -1727,6 +2537,7 @@ function renderBooks(){
               `<img
                 class="book-thumb"
                 src="${escapeAttr(image)}"
+                alt=""
                 onerror="this.style.display='none'"
               >`
               :
@@ -1738,7 +2549,9 @@ function renderBooks(){
 
           <td>
             <strong>
-              ${escapeHTML(book.ID || "")}
+              ${escapeHTML(
+                book.ID || ""
+              )}
             </strong>
           </td>
 
@@ -1746,24 +2559,32 @@ function renderBooks(){
           <td>
 
             <strong>
-              ${escapeHTML(book.Name || "")}
+              ${escapeHTML(
+                book.Name || ""
+              )}
             </strong>
 
           </td>
 
 
           <td>
-            ${escapeHTML(book.Category || "")}
+            ${escapeHTML(
+              book.Category || ""
+            )}
           </td>
 
 
           <td>
-            ৳${formatNumber(book.Price)}
+            ৳${formatNumber(
+              book.Price
+            )}
           </td>
 
 
           <td>
-            ${formatNumber(book.Stock)}
+            ${formatNumber(
+              book.Stock
+            )}
           </td>
 
 
@@ -1791,8 +2612,8 @@ function renderBooks(){
           <td>
 
             <button
-              class="btn btn-secondary"
-              onclick='openEditBook(${JSON.stringify(book).replace(/'/g,"&#39;")})'
+              class="btn btn-secondary edit-book-btn"
+              data-index="${originalIndex}"
             >
               Edit
             </button>
@@ -1805,6 +2626,38 @@ function renderBooks(){
 
     }).join("");
 
+
+  document
+    .querySelectorAll(
+      ".edit-book-btn"
+    )
+    .forEach(button => {
+
+      button.addEventListener(
+        "click",
+        function(){
+
+          const index =
+            Number(
+              this.dataset.index
+            );
+
+
+          const book =
+            books[index];
+
+
+          if(book){
+
+            openEditBook(book);
+
+          }
+
+        }
+      );
+
+    });
+
 }
 
 
@@ -1816,8 +2669,11 @@ function openAddBook(){
 
   editingBookID = null;
 
+
   document
-    .getElementById("bookModalTitle")
+    .getElementById(
+      "bookModalTitle"
+    )
     .textContent =
     "Add New Book";
 
@@ -1825,8 +2681,22 @@ function openAddBook(){
   clearBookForm();
 
 
+  const idInput =
+    document.getElementById(
+      "bookID"
+    );
+
+
+  idInput.readOnly = false;
+
+  idInput.placeholder =
+    "Auto generated";
+
+
   document
-    .getElementById("bookModal")
+    .getElementById(
+      "bookModal"
+    )
     .classList.add("show");
 
 }
@@ -1839,71 +2709,98 @@ function openAddBook(){
 function openEditBook(book){
 
   editingBookID =
-    book.ID;
+    String(book.ID || "");
 
 
   document
-    .getElementById("bookModalTitle")
+    .getElementById(
+      "bookModalTitle"
+    )
     .textContent =
     "Edit Book";
 
 
-  document
-    .getElementById("bookID")
-    .value =
+  const idInput =
+    document.getElementById(
+      "bookID"
+    );
+
+
+  idInput.value =
     book.ID || "";
 
 
+  idInput.readOnly = true;
+
+
   document
-    .getElementById("bookName")
+    .getElementById(
+      "bookName"
+    )
     .value =
     book.Name || "";
 
 
   document
-    .getElementById("bookCategory")
+    .getElementById(
+      "bookCategory"
+    )
     .value =
     book.Category || "";
 
 
   document
-    .getElementById("bookPrice")
+    .getElementById(
+      "bookPrice"
+    )
     .value =
     book.Price || "";
 
 
   document
-    .getElementById("bookStock")
+    .getElementById(
+      "bookStock"
+    )
     .value =
     book.Stock || "";
 
 
   document
-    .getElementById("bookImage")
+    .getElementById(
+      "bookImage"
+    )
     .value =
     book.Image || "";
 
 
   document
-    .getElementById("bookDescription")
+    .getElementById(
+      "bookDescription"
+    )
     .value =
     book.Description || "";
 
 
   document
-    .getElementById("bookFeatured")
+    .getElementById(
+      "bookFeatured"
+    )
     .value =
     book.Featured || "No";
 
 
   document
-    .getElementById("bookStatus")
+    .getElementById(
+      "bookStatus"
+    )
     .value =
     book.Status || "Active";
 
 
   document
-    .getElementById("bookModal")
+    .getElementById(
+      "bookModal"
+    )
     .classList.add("show");
 
 }
@@ -1934,13 +2831,19 @@ function clearBookForm(){
 
 
   document
-    .getElementById("bookFeatured")
-    .value = "No";
+    .getElementById(
+      "bookFeatured"
+    )
+    .value =
+    "No";
 
 
   document
-    .getElementById("bookStatus")
-    .value = "Active";
+    .getElementById(
+      "bookStatus"
+    )
+    .value =
+    "Active";
 
 }
 
@@ -1952,7 +2855,9 @@ function clearBookForm(){
 function closeBookModal(){
 
   document
-    .getElementById("bookModal")
+    .getElementById(
+      "bookModal"
+    )
     .classList.remove("show");
 
 }
@@ -1964,60 +2869,84 @@ function closeBookModal(){
 
 async function saveBook(){
 
+  const saveButton =
+    document.getElementById(
+      "saveBookButton"
+    );
+
+
   const book = {
 
     ID:
       document
-        .getElementById("bookID")
+        .getElementById(
+          "bookID"
+        )
         .value
         .trim(),
 
     Name:
       document
-        .getElementById("bookName")
+        .getElementById(
+          "bookName"
+        )
         .value
         .trim(),
 
     Category:
       document
-        .getElementById("bookCategory")
+        .getElementById(
+          "bookCategory"
+        )
         .value
         .trim(),
 
     Price:
       Number(
         document
-          .getElementById("bookPrice")
+          .getElementById(
+            "bookPrice"
+          )
           .value || 0
       ),
 
     Stock:
       Number(
         document
-          .getElementById("bookStock")
+          .getElementById(
+            "bookStock"
+          )
           .value || 0
       ),
 
     Image:
       document
-        .getElementById("bookImage")
+        .getElementById(
+          "bookImage"
+        )
         .value
         .trim(),
 
     Description:
       document
-        .getElementById("bookDescription")
+        .getElementById(
+          "bookDescription"
+        )
         .value
         .trim(),
 
     Featured:
       document
-        .getElementById("bookFeatured")
+        .getElementById(
+          "bookFeatured"
+        )
         .value,
 
     Status:
       document
-        .getElementById("bookStatus")
+        .getElementById(
+          "bookStatus"
+        )
         .value
 
   };
@@ -2025,8 +2954,9 @@ async function saveBook(){
 
   if(!book.Name){
 
-    alert(
-      "Book Name দিন।"
+    showToast(
+      "Book Name দিন।",
+      "error"
     );
 
     return;
@@ -2034,68 +2964,103 @@ async function saveBook(){
   }
 
 
+  const isEdit =
+    Boolean(editingBookID);
+
+
   const action =
-    editingBookID
+    isEdit
       ? "updatebook"
       : "addbook";
 
 
+  saveButton.disabled = true;
+
+  saveButton.textContent =
+    "Saving...";
+
+
   try{
 
-    const response =
-      await fetch(
-        API_URL,
-        {
-          method:"POST",
+    const payload = {
 
-          headers:{
-            "Content-Type":
-              "text/plain;charset=utf-8"
-          },
+      action,
 
-          body:
-            JSON.stringify({
-              action,
-              ...book
-            })
-        }
-      );
+      ...book
+
+    };
+
+
+    if(isEdit){
+
+      payload.originalID =
+        editingBookID;
+
+    }
 
 
     const result =
-      await response.json();
+      await adminPost(
+        payload
+      );
 
 
     if(
+      !result ||
       result.success === false
     ){
 
       throw new Error(
-        result.error ||
+        result?.error ||
         "Save failed"
       );
 
     }
 
 
-    alert(
-      editingBookID
-      ? "Book updated successfully!"
-      : "Book added successfully!"
+    closeBookModal();
+
+
+    showToast(
+      isEdit
+        ? "Book updated successfully!"
+        : "Book added successfully!",
+      "success"
     );
 
 
-    closeBookModal();
-
     await loadBooks();
+
+    updateDashboard();
 
 
   }catch(error){
 
-    alert(
+    console.error(error);
+
+
+    if(
+      error.message ===
+      "UNAUTHORIZED"
+    ){
+
+      return;
+
+    }
+
+
+    showToast(
       "Error: " +
-      error.message
+      error.message,
+      "error"
     );
+
+  }finally{
+
+    saveButton.disabled = false;
+
+    saveButton.textContent =
+      "Save Book";
 
   }
 
@@ -2110,37 +3075,34 @@ async function loadOrders(){
 
   const container =
     document
-      .getElementById("ordersContainer");
+      .getElementById(
+        "ordersContainer"
+      );
 
 
   container.innerHTML =
-    "Loading orders...";
+    `<div class="loading">
+      Loading orders...
+    </div>`;
 
 
   try{
 
-    const response =
-      await fetch(
-        API_URL +
-        "?action=orders&t=" +
-        Date.now(),
-        {
-          cache:"no-store"
-        }
-      );
-
-
     const data =
-      await response.json();
+      await adminPost({
+
+        action:"getorders"
+
+      });
 
 
     if(
-      data &&
+      !data ||
       data.success === false
     ){
 
       throw new Error(
-        data.error ||
+        data?.error ||
         "Order loading failed"
       );
 
@@ -2148,9 +3110,11 @@ async function loadOrders(){
 
 
     orders =
-      Array.isArray(data)
-        ? data
-        : [];
+      Array.isArray(data.orders)
+        ? data.orders
+        : Array.isArray(data)
+          ? data
+          : [];
 
 
     renderOrders();
@@ -2160,11 +3124,31 @@ async function loadOrders(){
 
   }catch(error){
 
+    console.error(error);
+
+
+    if(
+      error.message ===
+      "UNAUTHORIZED"
+    ){
+
+      return;
+
+    }
+
+
     container.innerHTML =
       `<div class="order-card">
+
         <div class="order-body">
-          ❌ ${escapeHTML(error.message)}
+
+          ❌
+          ${escapeHTML(
+            error.message
+          )}
+
         </div>
+
       </div>`;
 
   }
@@ -2180,13 +3164,17 @@ function renderOrders(){
 
   const container =
     document
-      .getElementById("ordersContainer");
+      .getElementById(
+        "ordersContainer"
+      );
 
 
   const search =
     String(
       document
-        .getElementById("orderSearch")
+        .getElementById(
+          "orderSearch"
+        )
         ?.value || ""
     )
       .toLowerCase()
@@ -2194,30 +3182,50 @@ function renderOrders(){
 
 
   const filtered =
-    orders.filter(order => {
+    orders
+      .map(
+        (order,index) => ({
+          order,
+          index
+        })
+      )
+      .filter(item => {
 
-      const text =
-        [
-          order.OrderID,
-          order.CustomerName,
-          order.Mobile,
-          order.Address
-        ]
-          .join(" ")
-          .toLowerCase();
+        const order =
+          item.order;
 
-      return text.includes(search);
 
-    });
+        const text =
+          [
+            order.OrderID,
+            order.CustomerName,
+            order.Mobile,
+            order.Address
+          ]
+            .join(" ")
+            .toLowerCase();
+
+
+        return text.includes(
+          search
+        );
+
+      });
 
 
   if(!filtered.length){
 
     container.innerHTML =
       `<div class="order-card">
+
         <div class="order-body">
-          No orders found.
+
+          <div class="empty">
+            No orders found.
+          </div>
+
         </div>
+
       </div>`;
 
     return;
@@ -2229,7 +3237,14 @@ function renderOrders(){
     filtered
       .slice()
       .reverse()
-      .map(order => {
+      .map(item => {
+
+        const order =
+          item.order;
+
+        const index =
+          item.index;
+
 
         return `
 
@@ -2240,11 +3255,17 @@ function renderOrders(){
             <div>
 
               <div class="order-id">
-                ${escapeHTML(order.OrderID || "")}
+                ${escapeHTML(
+                  order.OrderID || ""
+                )}
               </div>
 
               <small>
-                ${formatDate(order.DateTime)}
+                ${escapeHTML(
+                  formatDate(
+                    order.DateTime
+                  )
+                )}
               </small>
 
             </div>
@@ -2254,7 +3275,8 @@ function renderOrders(){
 
               <span class="badge badge-new">
                 ${escapeHTML(
-                  order.OrderStatus || "New"
+                  order.OrderStatus ||
+                  "New"
                 )}
               </span>
 
@@ -2312,7 +3334,9 @@ function renderOrders(){
               </strong>
 
               <b>
-                ৳${formatNumber(order.Total)}
+                ৳${formatNumber(
+                  order.Total
+                )}
               </b>
 
             </div>
@@ -2338,7 +3362,35 @@ function renderOrders(){
               </strong>
 
               ${escapeHTML(
-                order.PaymentMethod || "COD"
+                order.PaymentMethod ||
+                "COD"
+              )}
+
+            </div>
+
+
+            <div class="order-field">
+
+              <strong>
+                PAYMENT STATUS
+              </strong>
+
+              ${escapeHTML(
+                order.PaymentStatus ||
+                "Pending"
+              )}
+
+            </div>
+
+
+            <div class="order-field">
+
+              <strong>
+                NOTE
+              </strong>
+
+              ${escapeHTML(
+                order.Note || ""
               )}
 
             </div>
@@ -2351,40 +3403,61 @@ function renderOrders(){
 
 
             <select
-              id="status-${escapeAttr(order.OrderID)}"
+              class="order-status-select"
+              data-index="${index}"
             >
 
               <option
                 value="New"
-                ${order.OrderStatus==="New"?"selected":""}
+                ${String(
+                  order.OrderStatus || "New"
+                ) === "New"
+                  ? "selected"
+                  : ""}
               >
                 New
               </option>
 
               <option
                 value="Confirmed"
-                ${order.OrderStatus==="Confirmed"?"selected":""}
+                ${String(
+                  order.OrderStatus || ""
+                ) === "Confirmed"
+                  ? "selected"
+                  : ""}
               >
                 Confirmed
               </option>
 
               <option
                 value="Processing"
-                ${order.OrderStatus==="Processing"?"selected":""}
+                ${String(
+                  order.OrderStatus || ""
+                ) === "Processing"
+                  ? "selected"
+                  : ""}
               >
                 Processing
               </option>
 
               <option
                 value="Delivered"
-                ${order.OrderStatus==="Delivered"?"selected":""}
+                ${String(
+                  order.OrderStatus || ""
+                ) === "Delivered"
+                  ? "selected"
+                  : ""}
               >
                 Delivered
               </option>
 
               <option
                 value="Cancelled"
-                ${order.OrderStatus==="Cancelled"?"selected":""}
+                ${String(
+                  order.OrderStatus || ""
+                ) === "Cancelled"
+                  ? "selected"
+                  : ""}
               >
                 Cancelled
               </option>
@@ -2393,33 +3466,50 @@ function renderOrders(){
 
 
             <select
-              id="payment-${escapeAttr(order.OrderID)}"
+              class="payment-status-select"
+              data-index="${index}"
             >
 
               <option
                 value="Pending"
-                ${order.PaymentStatus==="Pending"?"selected":""}
+                ${String(
+                  order.PaymentStatus || "Pending"
+                ) === "Pending"
+                  ? "selected"
+                  : ""}
               >
                 Payment Pending
               </option>
 
               <option
                 value="Paid"
-                ${order.PaymentStatus==="Paid"?"selected":""}
+                ${String(
+                  order.PaymentStatus || ""
+                ) === "Paid"
+                  ? "selected"
+                  : ""}
               >
                 Paid
               </option>
 
               <option
                 value="Failed"
-                ${order.PaymentStatus==="Failed"?"selected":""}
+                ${String(
+                  order.PaymentStatus || ""
+                ) === "Failed"
+                  ? "selected"
+                  : ""}
               >
                 Failed
               </option>
 
               <option
                 value="Refunded"
-                ${order.PaymentStatus==="Refunded"?"selected":""}
+                ${String(
+                  order.PaymentStatus || ""
+                ) === "Refunded"
+                  ? "selected"
+                  : ""}
               >
                 Refunded
               </option>
@@ -2428,8 +3518,8 @@ function renderOrders(){
 
 
             <button
-              class="btn btn-primary"
-              onclick="updateOrder('${escapeAttr(order.OrderID)}')"
+              class="btn btn-primary save-order-btn"
+              data-index="${index}"
             >
               Save Changes
             </button>
@@ -2444,6 +3534,29 @@ function renderOrders(){
       })
       .join("");
 
+
+  document
+    .querySelectorAll(
+      ".save-order-btn"
+    )
+    .forEach(button => {
+
+      button.addEventListener(
+        "click",
+        function(){
+
+          updateOrder(
+            Number(
+              this.dataset.index
+            ),
+            this
+          );
+
+        }
+      );
+
+    });
+
 }
 
 
@@ -2451,73 +3564,101 @@ function renderOrders(){
 // UPDATE ORDER
 // =====================================================
 
-async function updateOrder(orderId){
+async function updateOrder(
+  index,
+  button
+){
+
+  const order =
+    orders[index];
+
+
+  if(!order){
+
+    showToast(
+      "Order not found.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  const statusSelect =
+    document.querySelector(
+      `.order-status-select[data-index="${index}"]`
+    );
+
+
+  const paymentSelect =
+    document.querySelector(
+      `.payment-status-select[data-index="${index}"]`
+    );
+
+
+  if(
+    !statusSelect ||
+    !paymentSelect
+  ){
+
+    showToast(
+      "Order controls not found.",
+      "error"
+    );
+
+    return;
+
+  }
+
 
   const orderStatus =
-    document
-      .getElementById(
-        "status-" + orderId
-      )
-      .value;
+    statusSelect.value;
 
 
   const paymentStatus =
-    document
-      .getElementById(
-        "payment-" + orderId
-      )
-      .value;
+    paymentSelect.value;
+
+
+  button.disabled = true;
+
+  button.textContent =
+    "Saving...";
 
 
   try{
 
-    const response =
-      await fetch(
-        API_URL,
-        {
-
-          method:"POST",
-
-          headers:{
-            "Content-Type":
-              "text/plain;charset=utf-8"
-          },
-
-          body:
-            JSON.stringify({
-
-              action:"updateorder",
-
-              orderId,
-
-              orderStatus,
-
-              paymentStatus
-
-            })
-
-        }
-      );
-
-
     const result =
-      await response.json();
+      await adminPost({
+
+        action:"updateorder",
+
+        orderId:
+          order.OrderID,
+
+        orderStatus,
+
+        paymentStatus
+
+      });
 
 
     if(
+      !result ||
       result.success === false
     ){
 
       throw new Error(
-        result.error ||
+        result?.error ||
         "Update failed"
       );
 
     }
 
 
-    alert(
-      "Order updated successfully!"
+    showToast(
+      "Order updated successfully!",
+      "success"
     );
 
 
@@ -2526,10 +3667,31 @@ async function updateOrder(orderId){
 
   }catch(error){
 
-    alert(
+    console.error(error);
+
+
+    if(
+      error.message ===
+      "UNAUTHORIZED"
+    ){
+
+      return;
+
+    }
+
+
+    showToast(
       "Error: " +
-      error.message
+      error.message,
+      "error"
     );
+
+  }finally{
+
+    button.disabled = false;
+
+    button.textContent =
+      "Save Changes";
 
   }
 
@@ -2550,10 +3712,11 @@ function updateDashboard(){
     books.filter(
       b =>
         String(
-          b.Status || "Active"
+          b.Status ||
+          "Active"
         )
           .toLowerCase()
-        !== "hidden"
+          !== "hidden"
     ).length;
 
 
@@ -2563,7 +3726,7 @@ function updateDashboard(){
 
   const totalSales =
     orders.reduce(
-      (sum, order) =>
+      (sum,order) =>
         sum +
         Number(
           order.Total || 0
@@ -2573,28 +3736,38 @@ function updateDashboard(){
 
 
   document
-    .getElementById("totalBooks")
+    .getElementById(
+      "totalBooks"
+    )
     .textContent =
     totalBooks;
 
 
   document
-    .getElementById("activeBooks")
+    .getElementById(
+      "activeBooks"
+    )
     .textContent =
     activeBooks;
 
 
   document
-    .getElementById("totalOrders")
+    .getElementById(
+      "totalOrders"
+    )
     .textContent =
     totalOrders;
 
 
   document
-    .getElementById("totalSales")
+    .getElementById(
+      "totalSales"
+    )
     .textContent =
     "৳" +
-    formatNumber(totalSales);
+    formatNumber(
+      totalSales
+    );
 
 }
 
@@ -2605,12 +3778,18 @@ function updateDashboard(){
 
 function normalizeImage(url){
 
-  if(!url) return "";
+  if(!url){
+
+    return "";
+
+  }
+
 
   let value =
     String(url).trim();
 
 
+  // GitHub blob URL
   if(
     value.includes(
       "github.com/"
@@ -2634,6 +3813,22 @@ function normalizeImage(url){
   }
 
 
+  // Google Drive file URL
+  const driveMatch =
+    value.match(
+      /drive\.google\.com\/file\/d\/([^/]+)/
+    );
+
+
+  if(driveMatch){
+
+    value =
+      "https://drive.google.com/uc?export=view&id=" +
+      driveMatch[1];
+
+  }
+
+
   return value;
 
 }
@@ -2648,6 +3843,7 @@ function formatNumber(value){
   const number =
     Number(value || 0);
 
+
   return number.toLocaleString(
     "en-US"
   );
@@ -2661,21 +3857,34 @@ function formatNumber(value){
 
 function formatDate(value){
 
-  if(!value) return "";
+  if(!value){
+
+    return "";
+
+  }
+
 
   const date =
     new Date(value);
 
+
   if(
-    isNaN(date.getTime())
+    isNaN(
+      date.getTime()
+    )
   ){
 
     return String(value);
 
   }
 
+
   return date.toLocaleString(
-    "en-GB"
+    "en-GB",
+    {
+      dateStyle:"medium",
+      timeStyle:"short"
+    }
   );
 
 }
@@ -2720,6 +3929,48 @@ function escapeAttr(value){
 
 }
 
+
+// =====================================================
+// TOAST
+// =====================================================
+
+function showToast(
+  message,
+  type="success"
+){
+
+  const toast =
+    document.getElementById(
+      "toast"
+    );
+
+
+  toast.textContent =
+    message;
+
+
+  toast.className =
+    "toast show " +
+    type;
+
+
+  clearTimeout(
+    toastTimer
+  );
+
+
+  toastTimer =
+    setTimeout(
+      function(){
+
+        toast.className =
+          "toast";
+
+      },
+      3000
+    );
+
+}
 
 </script>
 
