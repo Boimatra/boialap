@@ -6,1910 +6,1080 @@
 
 <title>বই-আলাপ – Books & More</title>
 
-<meta
-  name="description"
-  content="বই-আলাপ — বইয়ের সাথে থাকুন। বই, জ্ঞান ও আরও কিছু।"
->
+<meta name="description" content="বই-আলাপ — বইয়ের সাথে থাকুন। বই, জ্ঞান ও আরও কিছু।">
 
 <style>
-
 :root{
-
   --primary:#274c5e;
   --primary-dark:#183746;
   --primary-light:#e8f0f2;
-
   --accent:#b88746;
   --accent-dark:#956b36;
   --accent-light:#f6ecdc;
-
   --bg:#f7f4ed;
   --bg-soft:#fcfaf5;
-
-  --white:#ffffff;
-
+  --white:#fff;
   --text:#273238;
   --heading:#183746;
   --body:#4f5a5f;
   --muted:#7b817f;
-
   --border:#e4ddd1;
-
   --success:#557b63;
   --danger:#b94b4b;
-
-  --shadow:
-    0 5px 22px rgba(32,48,54,.07);
-
-  --shadow-hover:
-    0 12px 32px rgba(32,48,54,.13);
+  --shadow:0 5px 22px rgba(32,48,54,.07);
+  --shadow-hover:0 12px 32px rgba(32,48,54,.13);
 }
 
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html{
-  scroll-behavior:smooth;
-}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 
 body{
-
-  font-family:
-    "Noto Sans Bengali",
-    "Noto Sans",
-    Arial,
-    sans-serif;
-
+  font-family:"Noto Sans Bengali","Noto Sans",Arial,sans-serif;
   background:var(--bg);
-
   color:var(--body);
-
   line-height:1.6;
 }
 
-button,
-input,
-textarea{
-  font:inherit;
-}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
 
-button{
-  cursor:pointer;
-}
-
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-
-/* =========================================================
-   TOP BAR
-   ========================================================= */
-
+/* TOP BAR */
 .topbar{
-
   background:var(--primary-dark);
-
   color:#dce7e9;
-
   font-size:13px;
-
   padding:7px 20px;
 }
 
 .topbar-inner{
-
   max-width:1200px;
-
   margin:auto;
-
   display:flex;
-
   justify-content:space-between;
-
   align-items:center;
-
   gap:15px;
 }
 
-
-/* =========================================================
-   HEADER
-   ========================================================= */
-
+/* HEADER */
 header{
-
   background:rgba(255,255,255,.97);
-
   position:sticky;
-
   top:0;
-
   z-index:1000;
-
   border-bottom:1px solid var(--border);
-
-  box-shadow:
-    0 2px 14px rgba(25,45,52,.06);
+  box-shadow:0 2px 14px rgba(25,45,52,.06);
 }
 
 .header-inner{
-
   max-width:1200px;
-
   margin:auto;
-
   padding:15px 20px;
-
   display:flex;
-
   align-items:center;
-
   gap:25px;
 }
 
 .logo{
-
   font-size:28px;
-
   font-weight:900;
-
   color:var(--heading);
-
   white-space:nowrap;
-
   letter-spacing:-.7px;
 }
 
-.logo span{
-  color:var(--accent);
-}
+.logo span{color:var(--accent)}
 
 .search-wrap{
-
   flex:1;
-
   display:flex;
-
   max-width:650px;
-
   margin:auto;
 }
 
 .search-wrap input{
-
   width:100%;
-
   height:44px;
-
   border:1px solid #d9dfe0;
-
   border-right:0;
-
   border-radius:8px 0 0 8px;
-
   padding:0 15px;
-
   outline:none;
-
   background:#fbfcfa;
-
   color:var(--text);
 }
 
 .search-wrap input:focus{
-
   border-color:var(--accent);
-
   background:#fff;
 }
 
 .search-btn{
-
   width:50px;
-
   border:0;
-
   border-radius:0 8px 8px 0;
-
   background:var(--primary);
-
   color:white;
-
-  transition:.2s;
 }
 
-.search-btn:hover{
-  background:var(--primary-dark);
-}
+.search-btn:hover{background:var(--primary-dark)}
 
 .cart-btn{
-
   position:relative;
-
   border:1px solid #d7dfe0;
-
   background:var(--primary-light);
-
   color:var(--primary-dark);
-
   height:44px;
-
   padding:0 17px;
-
   border-radius:8px;
-
   font-weight:800;
-
   white-space:nowrap;
 }
 
-.cart-btn:hover{
-  background:#dce9ec;
-}
+.cart-btn:hover{background:#dce9ec}
 
 .cart-count{
-
   position:absolute;
-
   top:-8px;
-
   right:-8px;
-
   min-width:22px;
-
   height:22px;
-
   border-radius:50%;
-
   background:var(--accent);
-
   color:white;
-
   font-size:12px;
-
   display:flex;
-
   align-items:center;
-
   justify-content:center;
-
   border:2px solid white;
 }
 
-
-/* =========================================================
-   CATEGORY NAV
-   ========================================================= */
-
+/* CATEGORY NAV */
 .category-nav{
-
   background:#fff;
-
   border-top:1px solid #f1eee8;
-
   border-bottom:1px solid var(--border);
 }
 
 .category-nav-inner{
-
   max-width:1200px;
-
   margin:auto;
-
   display:flex;
-
   align-items:center;
-
   gap:4px;
-
   overflow-x:auto;
-
   scrollbar-width:none;
-
   padding:0 20px;
 }
 
-.category-nav-inner::-webkit-scrollbar{
-  display:none;
-}
+.category-nav-inner::-webkit-scrollbar{display:none}
 
 .nav-item{
-
   border:0;
-
   background:transparent;
-
   color:#53636a;
-
   padding:11px 15px;
-
   white-space:nowrap;
-
   font-size:14px;
-
   transition:.2s;
 }
 
 .nav-item:hover{
-
   color:var(--primary);
-
   background:#eef4f5;
 }
 
 .nav-item.active{
-
   color:var(--primary-dark);
-
   font-weight:800;
-
   border-bottom:2px solid var(--accent);
 }
 
-
-/* =========================================================
-   ANNOUNCEMENT
-   ========================================================= */
-
+/* ANNOUNCEMENT */
 .announcement-bar{
-
   display:none;
-
   background:#edf6f1;
-
   border-bottom:1px solid #d8e8df;
-
   color:#355f4c;
-
   text-align:center;
-
   padding:8px 15px;
-
   font-size:13px;
-
   font-weight:700;
 }
 
-.announcement-bar.show{
-  display:block;
-}
+.announcement-bar.show{display:block}
 
-
-/* =========================================================
-   HERO
-   ========================================================= */
-
+/* HERO */
 .hero{
-
   max-width:1200px;
-
   margin:25px auto 0;
-
   padding:0 20px;
 }
 
 .hero-box{
-
-  background:
-
-    linear-gradient(
-      135deg,
-      #e9f0ef,
-      #faf6ec
-    );
-
+  background:linear-gradient(135deg,#e9f0ef,#faf6ec);
   border:1px solid #dce3df;
-
   border-radius:16px;
-
   padding:48px 35px;
-
   text-align:center;
-
   position:relative;
-
   overflow:hidden;
-
   min-height:190px;
-
   display:flex;
-
   flex-direction:column;
-
   justify-content:center;
-
   align-items:center;
-}
-
-.hero-box.has-image{
-
   background-size:cover;
-
   background-position:center;
-
-  color:white;
 }
 
 .hero-box.has-image:before{
-
   content:"";
-
   position:absolute;
-
   inset:0;
-
-  background:rgba(20,40,45,.42);
-
+  background:linear-gradient(
+    135deg,
+    rgba(20,40,45,.60),
+    rgba(20,40,45,.32)
+  );
 }
 
 .hero-box:after{
-
   content:"";
-
   position:absolute;
-
   width:180px;
-
   height:180px;
-
   border-radius:50%;
-
   background:rgba(184,135,70,.08);
-
   right:-50px;
-
   top:-70px;
 }
 
 .hero-box h1{
-
   color:var(--heading);
-
   font-size:38px;
-
   line-height:1.25;
-
   margin-bottom:10px;
-
   position:relative;
-
   z-index:1;
 }
 
 .hero-box p{
-
   color:#657276;
-
   font-size:16px;
-
   position:relative;
-
   z-index:1;
 }
 
 .hero-box.has-image h1,
 .hero-box.has-image p{
-
   color:white;
-
 }
 
-
-/* =========================================================
-   MAIN
-   ========================================================= */
-
+/* MAIN */
 .container{
-
   max-width:1200px;
-
   margin:auto;
-
   padding:0 20px;
 }
 
-.section{
-  padding:38px 0;
-}
+.section{padding:38px 0}
 
 .section-title{
-
   display:flex;
-
   justify-content:space-between;
-
   align-items:center;
-
   gap:15px;
-
   margin-bottom:20px;
 }
 
 .section-title h2{
-
   color:var(--heading);
-
   font-size:24px;
-
-  letter-spacing:-.2px;
 }
 
 .section-title button{
-
   border:0;
-
   background:transparent;
-
   color:var(--accent-dark);
-
   font-weight:800;
 }
 
-
-/* =========================================================
-   CATEGORY CARDS
-   ========================================================= */
-
+/* CATEGORY */
 .category-grid{
-
   display:grid;
-
-  grid-template-columns:
-    repeat(auto-fit,minmax(150px,1fr));
-
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
   gap:14px;
 }
 
 .category-card{
-
   background:white;
-
   border:1px solid var(--border);
-
   border-radius:12px;
-
   padding:22px 15px;
-
   text-align:center;
-
   transition:.2s;
-
   box-shadow:var(--shadow);
+  cursor:pointer;
 }
 
 .category-card:hover{
-
   transform:translateY(-3px);
-
   background:#fdf8ee;
-
   border-color:#dec8a8;
-
   box-shadow:var(--shadow-hover);
 }
 
 .category-icon{
-
   font-size:30px;
-
   margin-bottom:7px;
 }
 
 .category-name{
-
   color:var(--heading);
-
   font-weight:800;
 }
 
 .category-count{
-
   font-size:12px;
-
   color:var(--muted);
 }
 
-
-/* =========================================================
-   PRODUCTS
-   ========================================================= */
-
+/* PRODUCTS */
 .product-grid{
-
   display:grid;
-
-  grid-template-columns:
-    repeat(4,1fr);
-
+  grid-template-columns:repeat(4,1fr);
   gap:18px;
 }
 
 .product-card{
-
   background:white;
-
   border:1px solid var(--border);
-
   border-radius:12px;
-
   overflow:hidden;
-
   box-shadow:var(--shadow);
-
   transition:.2s;
 }
 
 .product-card:hover{
-
   transform:translateY(-4px);
-
   box-shadow:var(--shadow-hover);
-
-  border-color:#d8d0c4;
 }
 
 .product-image-wrap{
-
   height:280px;
-
   background:#eee9df;
-
   display:flex;
-
   align-items:center;
-
   justify-content:center;
-
   overflow:hidden;
-
   cursor:pointer;
 }
 
 .product-image{
-
   width:100%;
-
   height:100%;
-
   object-fit:cover;
-
   transition:.3s;
 }
 
 .product-card:hover .product-image{
-
   transform:scale(1.025);
 }
 
 .no-image{
-
   color:#918b82;
-
   font-size:14px;
 }
 
-.product-info{
-
-  padding:14px;
-}
+.product-info{padding:14px}
 
 .product-category{
-
   color:var(--accent-dark);
-
   font-size:12px;
-
   font-weight:800;
-
   margin-bottom:4px;
 }
 
 .product-name{
-
   font-size:17px;
-
   font-weight:800;
-
   color:var(--heading);
-
   line-height:1.4;
-
   min-height:48px;
-
   cursor:pointer;
 }
 
-.product-name:hover{
-  color:var(--primary);
-}
+.product-name:hover{color:var(--primary)}
 
 .product-description{
-
   color:#707a7c;
-
   font-size:13px;
-
   margin-top:5px;
-
   display:-webkit-box;
-
   -webkit-line-clamp:2;
-
   -webkit-box-orient:vertical;
-
   overflow:hidden;
-
   min-height:40px;
 }
 
 .product-bottom{
-
   display:flex;
-
   align-items:center;
-
   justify-content:space-between;
-
   gap:10px;
-
   margin-top:12px;
 }
 
 .price{
-
   color:var(--accent-dark);
-
   font-size:18px;
-
   font-weight:900;
 }
 
 .stock{
-
   font-size:12px;
-
   color:var(--success);
-
   font-weight:600;
 }
 
-.out-stock{
-  color:var(--danger);
-}
+.out-stock{color:var(--danger)}
 
 .add-btn{
-
   width:100%;
-
   margin-top:12px;
-
   border:0;
-
   border-radius:7px;
-
   background:var(--primary);
-
   color:white;
-
   padding:10px;
-
   font-weight:800;
-
-  transition:.2s;
 }
 
-.add-btn:hover{
-  background:var(--primary-dark);
-}
+.add-btn:hover{background:var(--primary-dark)}
 
 .add-btn:disabled{
-
   background:#c8c6c0;
-
   cursor:not-allowed;
 }
 
-
-/* =========================================================
-   FEATURES
-   ========================================================= */
-
+/* FEATURES */
 .features{
-
   display:grid;
-
-  grid-template-columns:
-    repeat(4,1fr);
-
+  grid-template-columns:repeat(4,1fr);
   gap:15px;
-
   padding:15px 0 45px;
 }
 
 .feature{
-
   background:white;
-
   border:1px solid var(--border);
-
   border-radius:12px;
-
   padding:22px 15px;
-
   text-align:center;
 }
 
 .feature-icon{
-
   font-size:28px;
-
   margin-bottom:6px;
 }
 
 .feature h3{
-
   color:var(--heading);
-
   font-size:16px;
 }
 
 .feature p{
-
   color:#727b7c;
-
   font-size:13px;
-
   margin-top:4px;
 }
 
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-
+/* FOOTER */
 footer{
-
   background:var(--primary-dark);
-
   color:#dbe5e7;
-
   padding:38px 20px;
-
   margin-top:20px;
 }
 
 .footer-inner{
-
   max-width:1200px;
-
   margin:auto;
-
   text-align:center;
 }
 
 footer h3{
-
   color:#fff;
-
   margin-bottom:5px;
 }
 
 footer p{
-
   color:#b9c7ca;
-
   font-size:13px;
 }
 
 .social-links{
-
   display:flex;
-
   justify-content:center;
-
   align-items:center;
-
   gap:10px;
-
   flex-wrap:wrap;
-
   margin-top:16px;
 }
 
 .social-links a{
-
   display:none;
-
   padding:7px 13px;
-
   border:1px solid rgba(255,255,255,.15);
-
   border-radius:20px;
-
   color:#dbe5e7;
-
   font-size:13px;
-
-  transition:.2s;
 }
 
 .social-links a:hover{
-
   background:rgba(255,255,255,.08);
-
   color:white;
 }
 
-
-/* =========================================================
-   MODAL
-   ========================================================= */
-
+/* MODAL */
 .modal-overlay{
-
   position:fixed;
-
   inset:0;
-
   background:rgba(24,38,43,.50);
-
   display:none;
-
   align-items:center;
-
   justify-content:center;
-
   padding:20px;
-
   z-index:3000;
 }
 
-.modal-overlay.show{
-  display:flex;
-}
+.modal-overlay.show{display:flex}
 
 .modal{
-
   width:min(760px,100%);
-
   max-height:90vh;
-
   overflow-y:auto;
-
   background:white;
-
   border-radius:14px;
-
-  box-shadow:
-    0 20px 60px rgba(20,35,40,.25);
-
+  box-shadow:0 20px 60px rgba(20,35,40,.25);
   position:relative;
 }
 
 .modal-close{
-
   position:absolute;
-
   top:12px;
-
   right:12px;
-
   width:36px;
-
   height:36px;
-
   border:0;
-
   border-radius:50%;
-
   background:#edf1ef;
-
   color:#43535a;
-
   font-size:22px;
-
   z-index:2;
 }
 
-.modal-close:hover{
-  background:#e0e7e5;
-}
+.modal-body{padding:28px}
 
-.modal-body{
-  padding:28px;
-}
-
-
-/* =========================================================
-   PRODUCT DETAILS
-   ========================================================= */
-
+/* DETAILS */
 .details-grid{
-
   display:grid;
-
   grid-template-columns:280px 1fr;
-
   gap:28px;
 }
 
 .details-image{
-
   width:100%;
-
   height:370px;
-
   object-fit:cover;
-
   border-radius:9px;
-
   background:#eee9df;
 }
 
 .details-info h2{
-
   color:var(--heading);
-
   font-size:28px;
-
   line-height:1.35;
-
   margin-bottom:7px;
 }
 
 .details-category{
-
   color:var(--accent-dark);
-
   font-weight:800;
-
   margin-bottom:14px;
 }
 
 .details-price{
-
   color:var(--accent-dark);
-
   font-size:24px;
-
   font-weight:900;
-
   margin-bottom:12px;
 }
 
 .details-description{
-
   color:#657074;
-
   white-space:pre-line;
-
   margin-bottom:20px;
 }
 
 .details-add{
-
   border:0;
-
   background:var(--primary);
-
   color:white;
-
   padding:12px 20px;
-
   border-radius:8px;
-
   font-weight:800;
 }
 
-.details-add:hover{
-  background:var(--primary-dark);
-}
+.details-add:disabled{background:#c9c5bd}
 
-.details-add:disabled{
-  background:#c9c5bd;
-}
-
-
-/* =========================================================
-   CART DRAWER
-   ========================================================= */
-
+/* CART */
 .cart-overlay{
-
   position:fixed;
-
   inset:0;
-
   background:rgba(24,38,43,.38);
-
   display:none;
-
   z-index:4000;
 }
 
-.cart-overlay.show{
-  display:block;
-}
+.cart-overlay.show{display:block}
 
 .cart-drawer{
-
   position:absolute;
-
   right:0;
-
   top:0;
-
   height:100%;
-
   width:min(430px,100%);
-
   background:white;
-
-  box-shadow:
-    -10px 0 35px rgba(25,40,45,.18);
-
+  box-shadow:-10px 0 35px rgba(25,40,45,.18);
   display:flex;
-
   flex-direction:column;
 }
 
 .cart-header{
-
   padding:18px 20px;
-
   border-bottom:1px solid var(--border);
-
   display:flex;
-
   justify-content:space-between;
-
   align-items:center;
 }
 
 .cart-header h2{
-
   color:var(--heading);
-
   font-size:21px;
 }
 
 .cart-close{
-
   border:0;
-
   background:#edf1ef;
-
   width:34px;
-
   height:34px;
-
   border-radius:50%;
-
   font-size:20px;
 }
 
 .cart-items{
-
   flex:1;
-
   overflow-y:auto;
-
   padding:15px;
 }
 
 .cart-item{
-
   display:grid;
-
   grid-template-columns:62px 1fr auto;
-
   gap:12px;
-
   padding:12px 0;
-
   border-bottom:1px solid #eee9e2;
 }
 
 .cart-item-image{
-
   width:62px;
-
   height:75px;
-
   border-radius:5px;
-
   object-fit:cover;
-
   background:#eee9df;
 }
 
 .cart-item-name{
-
   font-weight:800;
-
   font-size:14px;
-
   line-height:1.4;
-
   color:var(--heading);
 }
 
 .cart-item-price{
-
   color:var(--accent-dark);
-
   font-weight:800;
-
   font-size:13px;
-
   margin-top:3px;
 }
 
 .quantity-control{
-
   display:flex;
-
   align-items:center;
-
   gap:7px;
-
   margin-top:8px;
 }
 
 .quantity-control button{
-
   width:25px;
-
   height:25px;
-
   border:1px solid var(--border);
-
   background:#faf8f3;
-
   border-radius:5px;
 }
 
 .quantity-control span{
-
   min-width:20px;
-
   text-align:center;
-
   font-size:13px;
 }
 
 .remove-btn{
-
   border:0;
-
   background:transparent;
-
   color:var(--danger);
-
   font-size:12px;
-
   margin-top:8px;
 }
 
 .cart-total{
-
   border-top:1px solid var(--border);
-
   padding:18px 20px;
 }
 
 .total-row{
-
   display:flex;
-
   justify-content:space-between;
-
   font-size:18px;
-
   font-weight:900;
-
   color:var(--heading);
-
   margin-bottom:13px;
 }
 
 .checkout-btn{
-
   width:100%;
-
   border:0;
-
   background:var(--primary);
-
   color:white;
-
   padding:12px;
-
   border-radius:8px;
-
   font-weight:800;
-}
-
-.checkout-btn:hover{
-  background:var(--primary-dark);
 }
 
 .empty-cart{
-
   text-align:center;
-
   padding:50px 20px;
-
   color:var(--muted);
 }
 
-
-/* =========================================================
-   CHECKOUT
-   ========================================================= */
-
-.checkout-form{
-  padding:28px;
-}
+/* CHECKOUT */
+.checkout-form{padding:28px}
 
 .checkout-form h2{
-
   color:var(--heading);
-
   margin-bottom:20px;
 }
 
-.form-group{
-  margin-bottom:15px;
-}
+.form-group{margin-bottom:15px}
 
 .form-group label{
-
   display:block;
-
   font-size:14px;
-
   font-weight:800;
-
   margin-bottom:6px;
-
   color:#425159;
 }
 
 .form-group input,
 .form-group textarea{
-
   width:100%;
-
   border:1px solid var(--border);
-
   border-radius:7px;
-
   padding:11px 12px;
-
   outline:none;
-
   background:#fffdf9;
-
   color:var(--text);
 }
 
-.form-group input:focus,
-.form-group textarea:focus{
-
-  border-color:var(--accent);
-
-  box-shadow:
-    0 0 0 3px rgba(184,135,70,.10);
-}
-
 .form-group textarea{
-
   min-height:90px;
-
   resize:vertical;
 }
 
 .order-summary{
-
   background:#f8f5ee;
-
   border:1px solid var(--border);
-
   border-radius:8px;
-
   padding:14px;
-
   margin:18px 0;
 }
 
 .order-summary h3{
-
   color:var(--heading);
-
   font-size:16px;
-
   margin-bottom:10px;
 }
 
 .summary-item{
-
   display:flex;
-
   justify-content:space-between;
-
   gap:15px;
-
   font-size:13px;
-
   padding:5px 0;
-
   color:#5c666a;
 }
 
 .summary-total{
-
   border-top:1px solid var(--border);
-
   margin-top:8px;
-
   padding-top:10px;
-
   display:flex;
-
   justify-content:space-between;
-
   font-weight:900;
-
   color:var(--heading);
 }
 
 .checkout-actions{
-
   display:flex;
-
   gap:10px;
 }
 
 .back-btn{
-
   flex:1;
-
   border:1px solid var(--border);
-
   background:white;
-
   color:var(--primary-dark);
-
   padding:12px;
-
   border-radius:8px;
-
   font-weight:800;
 }
 
 .confirm-btn{
-
   flex:2;
-
   border:0;
-
   background:var(--primary);
-
   color:white;
-
   padding:12px;
-
   border-radius:8px;
-
   font-weight:800;
 }
 
-.confirm-btn:hover{
-  background:var(--primary-dark);
-}
-
-
-/* =========================================================
-   SUCCESS
-   ========================================================= */
-
+/* SUCCESS */
 .success-box{
-
   text-align:center;
-
   padding:40px 25px;
 }
 
 .success-icon{
-
   width:65px;
-
   height:65px;
-
   border-radius:50%;
-
   background:#edf4ef;
-
   color:var(--success);
-
   display:flex;
-
   align-items:center;
-
   justify-content:center;
-
   font-size:32px;
-
   margin:0 auto 15px;
 }
 
 .success-box h2{
-
   color:var(--heading);
-
   margin-bottom:8px;
 }
 
-.success-box p{
-  color:var(--muted);
-}
+.success-box p{color:var(--muted)}
 
 .order-id{
-
   display:inline-block;
-
   margin:12px 0 18px;
-
   padding:7px 12px;
-
   background:var(--accent-light);
-
   color:var(--accent-dark);
-
   border-radius:6px;
-
   font-weight:900;
 }
 
 .whatsapp-btn{
-
   border:0;
-
   background:#557b63;
-
   color:white;
-
   padding:12px 20px;
-
   border-radius:8px;
-
   font-weight:800;
 }
 
 .close-success-btn{
-
   margin-left:8px;
-
   border:1px solid var(--border);
-
   background:white;
-
   color:var(--primary-dark);
-
   padding:12px 18px;
-
   border-radius:8px;
 }
 
-
-/* =========================================================
-   LOADING
-   ========================================================= */
-
+/* LOADING */
 .loading{
-
   text-align:center;
-
   padding:45px 20px;
-
   color:var(--muted);
 }
 
 .spinner{
-
   width:30px;
-
   height:30px;
-
   border:3px solid #e2e0d9;
-
   border-top-color:var(--primary);
-
   border-radius:50%;
-
   animation:spin .7s linear infinite;
-
   margin:0 auto 12px;
 }
 
-@keyframes spin{
-
-  to{
-    transform:rotate(360deg);
-  }
-
-}
+@keyframes spin{to{transform:rotate(360deg)}}
 
 .no-results{
-
   grid-column:1/-1;
-
   text-align:center;
-
   padding:40px;
-
   color:var(--muted);
 }
 
-
-/* =========================================================
-   TOAST
-   ========================================================= */
-
+/* TOAST */
 .toast{
-
   position:fixed;
-
   left:50%;
-
   bottom:25px;
-
-  transform:
-    translateX(-50%)
-    translateY(20px);
-
+  transform:translateX(-50%) translateY(20px);
   background:var(--primary-dark);
-
   color:white;
-
   padding:11px 18px;
-
   border-radius:8px;
-
   opacity:0;
-
   pointer-events:none;
-
   transition:.25s;
-
   z-index:6000;
-
   font-size:14px;
 }
 
 .toast.show{
-
   opacity:1;
-
-  transform:
-    translateX(-50%)
-    translateY(0);
+  transform:translateX(-50%) translateY(0);
 }
 
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
+/* RESPONSIVE */
 @media(max-width:950px){
-
-  .product-grid{
-    grid-template-columns:repeat(3,1fr);
-  }
-
-  .features{
-    grid-template-columns:repeat(2,1fr);
-  }
-
+  .product-grid{grid-template-columns:repeat(3,1fr)}
+  .features{grid-template-columns:repeat(2,1fr)}
 }
-
 
 @media(max-width:700px){
 
   .topbar-inner{
-
     justify-content:center;
-
     text-align:center;
   }
 
-  .topbar-inner span:last-child{
-    display:none;
-  }
+  .topbar-inner span:last-child{display:none}
 
   .header-inner{
-
     flex-wrap:wrap;
-
     gap:10px;
-
     padding:12px 15px;
   }
 
-  .logo{
-    font-size:24px;
-  }
+  .logo{font-size:24px}
 
   .search-wrap{
-
     order:3;
-
     flex-basis:100%;
   }
 
-  .cart-btn{
-    margin-left:auto;
-  }
+  .cart-btn{margin-left:auto}
 
-  .hero{
-    padding:0 12px;
-  }
+  .hero{padding:0 12px}
 
-  .hero-box{
-    padding:30px 18px;
-  }
+  .hero-box{padding:30px 18px}
 
-  .hero-box h1{
-    font-size:29px;
-  }
+  .hero-box h1{font-size:29px}
 
-  .container{
-    padding:0 12px;
-  }
+  .container{padding:0 12px}
 
-  .section{
-    padding:28px 0;
-  }
+  .section{padding:28px 0}
 
-  .section-title h2{
-    font-size:21px;
-  }
+  .section-title h2{font-size:21px}
 
   .category-grid{
     grid-template-columns:repeat(2,1fr);
   }
 
   .product-grid{
-
-    grid-template-columns:
-      repeat(2,1fr);
-
+    grid-template-columns:repeat(2,1fr);
     gap:12px;
   }
 
-  .product-image-wrap{
-    height:230px;
-  }
+  .product-image-wrap{height:230px}
 
-  .product-info{
-    padding:11px;
-  }
+  .product-info{padding:11px}
 
   .product-name{
-
     font-size:15px;
-
     min-height:43px;
   }
 
-  .product-description{
-    font-size:12px;
-  }
+  .product-description{font-size:12px}
 
-  .price{
-    font-size:16px;
-  }
+  .price{font-size:16px}
 
   .details-grid{
     grid-template-columns:1fr;
     gap:18px;
   }
 
-  .details-image{
-    height:300px;
-  }
+  .details-image{height:300px}
 
-  .modal-body{
-    padding:20px;
-  }
+  .modal-body{padding:20px}
 
-  .checkout-form{
-    padding:20px;
-  }
-
+  .checkout-form{padding:20px}
 }
-
 
 @media(max-width:420px){
 
-  .product-image-wrap{
-    height:205px;
-  }
+  .product-image-wrap{height:205px}
 
-  .features{
-    grid-template-columns:1fr;
-  }
+  .features{grid-template-columns:1fr}
 
   .product-bottom{
-
     align-items:flex-start;
-
     flex-direction:column;
-
     gap:2px;
   }
-
 }
-
 </style>
 </head>
 
-
 <body>
 
-
-<!-- =======================================================
-     TOP BAR
-     ======================================================= -->
-
+<!-- TOP BAR -->
 <div class="topbar">
-
   <div class="topbar-inner">
-
-    <span id="topbarMessage">
-      মানুষ একটি হয়ে উঠবার বিষয়
-    </span>
-
-    <span>
-      Books • Lifestyle • More
-    </span>
-
+    <span id="topbarMessage">মানুষ একটি হয়ে উঠবার বিষয়</span>
+    <span>Books • Lifestyle • More</span>
   </div>
-
 </div>
 
+<!-- ANNOUNCEMENT -->
+<div class="announcement-bar" id="announcementBar"></div>
 
-<!-- =======================================================
-     ANNOUNCEMENT
-     ======================================================= -->
-
-<div
-  class="announcement-bar"
-  id="announcementBar"
-></div>
-
-
-<!-- =======================================================
-     HEADER
-     ======================================================= -->
-
+<!-- HEADER -->
 <header>
 
   <div class="header-inner">
 
-    <div
-      class="logo"
-      id="storeLogo"
-    >
+    <div class="logo" id="storeLogo">
       বই-আলাপ<span>.</span>
     </div>
-
 
     <div class="search-wrap">
 
@@ -1924,128 +1094,76 @@ footer p{
         class="search-btn"
         onclick="searchProducts()"
         aria-label="Search"
-      >
-        🔍
-      </button>
+      >🔍</button>
 
     </div>
 
-
-    <button
-      class="cart-btn"
-      onclick="openCart()"
-    >
-
+    <button class="cart-btn" onclick="openCart()">
       🛒 Cart
-
-      <span
-        class="cart-count"
-        id="cartCount"
-      >
-        0
-      </span>
-
+      <span class="cart-count" id="cartCount">0</span>
     </button>
 
   </div>
 
-
   <div class="category-nav">
-
-    <div
-      class="category-nav-inner"
-      id="categoryNav"
-    ></div>
-
+    <div class="category-nav-inner" id="categoryNav"></div>
   </div>
 
 </header>
 
-
-<!-- =======================================================
-     HERO
-     ======================================================= -->
-
+<!-- HERO -->
 <section class="hero">
 
-  <div
-    class="hero-box"
-    id="heroBox"
-  >
+  <div class="hero-box" id="heroBox">
 
     <h1 id="heroTitle">
       বইয়ের সাথে থাকুন
     </h1>
 
     <p id="heroTagline">
-      পছন্দের বই খুঁজুন, কার্টে যোগ করুন এবং সহজেই অর্ডার করুন।
+      বই, জ্ঞান ও আরও কিছু।
     </p>
 
   </div>
 
 </section>
 
-
-<!-- =======================================================
-     MAIN
-     ======================================================= -->
-
+<!-- MAIN -->
 <main class="container">
-
 
   <section class="section">
 
     <div class="section-title">
 
-      <h2>
-        বিষয় অনুযায়ী বই
-      </h2>
+      <h2>বিষয় অনুযায়ী বই</h2>
 
-      <button
-        onclick="showAllProducts()"
-      >
+      <button onclick="showAllProducts()">
         সব বই দেখুন →
       </button>
 
     </div>
 
-
-    <div
-      class="category-grid"
-      id="categoryContainer"
-    ></div>
+    <div class="category-grid" id="categoryContainer"></div>
 
   </section>
 
-
-  <section
-    class="section"
-    id="productsSection"
-  >
+  <section class="section" id="productsSection">
 
     <div class="section-title">
 
-      <h2
-        id="productSectionTitle"
-      >
+      <h2 id="productSectionTitle">
         সব বই
       </h2>
 
     </div>
 
-
-    <div
-      class="product-grid"
-      id="productGrid"
-    >
+    <div class="product-grid" id="productGrid">
 
       <div class="loading">
 
         <div class="spinner"></div>
 
-        <div>
-          বই লোড হচ্ছে...
-        </div>
+        <div>বই লোড হচ্ছে...</div>
 
       </div>
 
@@ -2053,92 +1171,42 @@ footer p{
 
   </section>
 
-
   <section class="features">
 
     <div class="feature">
-
-      <div class="feature-icon">
-        📚
-      </div>
-
-      <h3>
-        বাছাই করা বই
-      </h3>
-
-      <p>
-        পছন্দের বই সহজে খুঁজে নিন
-      </p>
-
+      <div class="feature-icon">📚</div>
+      <h3>বাছাই করা বই</h3>
+      <p>পছন্দের বই সহজে খুঁজে নিন</p>
     </div>
 
-
     <div class="feature">
-
-      <div class="feature-icon">
-        🛒
-      </div>
-
-      <h3>
-        সহজ Cart
-      </h3>
-
-      <p>
-        একসাথে একাধিক বই অর্ডার করুন
-      </p>
-
+      <div class="feature-icon">🛒</div>
+      <h3>সহজ Cart</h3>
+      <p>একসাথে একাধিক বই অর্ডার করুন</p>
     </div>
 
-
     <div class="feature">
-
-      <div class="feature-icon">
-        💬
-      </div>
-
-      <h3>
-        সহজ যোগাযোগ
-      </h3>
-
-      <p>
-        WhatsApp-এ সরাসরি অর্ডার
-      </p>
-
+      <div class="feature-icon">💬</div>
+      <h3>সহজ যোগাযোগ</h3>
+      <p>WhatsApp-এ সরাসরি অর্ডার</p>
     </div>
 
-
     <div class="feature">
-
-      <div class="feature-icon">
-        🚚
-      </div>
-
-      <h3>
-        ডেলিভারি
-      </h3>
-
-      <p>
-        ঠিকানায় বই পৌঁছে যাবে
-      </p>
-
+      <div class="feature-icon">🚚</div>
+      <h3>ডেলিভারি</h3>
+      <p>ঠিকানায় বই পৌঁছে যাবে</p>
     </div>
 
   </section>
 
 </main>
 
-
-<!-- =======================================================
-     FOOTER
-     ======================================================= -->
-
+<!-- FOOTER -->
 <footer>
 
   <div class="footer-inner">
 
-    <h3 id="footerStoreName">
-      বই-আলাপ.
-    </h3>
+    <h3 id="footerStoreName">বই-আলাপ.</h3>
 
     <p id="footerTagline">
       বই, জ্ঞান ও আরও কিছু।
@@ -2151,36 +1219,28 @@ footer p{
         href="#"
         target="_blank"
         rel="noopener"
-      >
-        Facebook
-      </a>
+      >Facebook</a>
 
       <a
         id="youtubeLink"
         href="#"
         target="_blank"
         rel="noopener"
-      >
-        YouTube
-      </a>
+      >YouTube</a>
 
       <a
         id="instagramLink"
         href="#"
         target="_blank"
         rel="noopener"
-      >
-        Instagram
-      </a>
+      >Instagram</a>
 
       <a
         id="whatsappLink"
         href="#"
         target="_blank"
         rel="noopener"
-      >
-        WhatsApp
-      </a>
+      >WhatsApp</a>
 
     </div>
 
@@ -2192,11 +1252,7 @@ footer p{
 
 </footer>
 
-
-<!-- =======================================================
-     PRODUCT DETAILS
-     ======================================================= -->
-
+<!-- PRODUCT DETAILS -->
 <div
   class="modal-overlay"
   id="productModal"
@@ -2208,9 +1264,7 @@ footer p{
     <button
       class="modal-close"
       onclick="closeProductDetails()"
-    >
-      ×
-    </button>
+    >×</button>
 
     <div
       class="modal-body"
@@ -2221,11 +1275,7 @@ footer p{
 
 </div>
 
-
-<!-- =======================================================
-     CART
-     ======================================================= -->
-
+<!-- CART -->
 <div
   class="cart-overlay"
   id="cartOverlay"
@@ -2236,40 +1286,23 @@ footer p{
 
     <div class="cart-header">
 
-      <h2>
-        আপনার Cart
-      </h2>
+      <h2>আপনার Cart</h2>
 
       <button
         class="cart-close"
         onclick="closeCart()"
-      >
-        ×
-      </button>
+      >×</button>
 
     </div>
 
-
-    <div
-      class="cart-items"
-      id="cartItems"
-    ></div>
-
+    <div class="cart-items" id="cartItems"></div>
 
     <div class="cart-total">
 
       <div class="total-row">
-
-        <span>
-          মোট
-        </span>
-
-        <span id="cartTotal">
-          ৳0
-        </span>
-
+        <span>মোট</span>
+        <span id="cartTotal">৳0</span>
       </div>
-
 
       <button
         class="checkout-btn"
@@ -2284,32 +1317,19 @@ footer p{
 
 </div>
 
-
-<!-- =======================================================
-     CHECKOUT
-     ======================================================= -->
-
-<div
-  class="modal-overlay"
-  id="checkoutModal"
->
+<!-- CHECKOUT -->
+<div class="modal-overlay" id="checkoutModal">
 
   <div class="modal">
 
     <button
       class="modal-close"
       onclick="closeCheckout()"
-    >
-      ×
-    </button>
-
+    >×</button>
 
     <div class="checkout-form">
 
-      <h2>
-        অর্ডার সম্পন্ন করুন
-      </h2>
-
+      <h2>অর্ডার সম্পন্ন করুন</h2>
 
       <div class="form-group">
 
@@ -2324,7 +1344,6 @@ footer p{
         >
 
       </div>
-
 
       <div class="form-group">
 
@@ -2341,7 +1360,6 @@ footer p{
 
       </div>
 
-
       <div class="form-group">
 
         <label for="customerAddress">
@@ -2354,7 +1372,6 @@ footer p{
         ></textarea>
 
       </div>
-
 
       <div class="form-group">
 
@@ -2369,12 +1386,10 @@ footer p{
 
       </div>
 
-
       <div
         class="order-summary"
         id="orderSummary"
       ></div>
-
 
       <div class="checkout-actions">
 
@@ -2384,7 +1399,6 @@ footer p{
         >
           ← Cart
         </button>
-
 
         <button
           class="confirm-btn"
@@ -2401,31 +1415,18 @@ footer p{
 
 </div>
 
-
-<!-- =======================================================
-     SUCCESS
-     ======================================================= -->
-
-<div
-  class="modal-overlay"
-  id="successModal"
->
+<!-- SUCCESS -->
+<div class="modal-overlay" id="successModal">
 
   <div class="modal">
 
     <div class="success-box">
 
-      <div class="success-icon">
-        ✓
-      </div>
+      <div class="success-icon">✓</div>
 
-      <h2>
-        অর্ডার তৈরি হয়েছে!
-      </h2>
+      <h2>অর্ডার তৈরি হয়েছে!</h2>
 
-      <p>
-        আপনার Order ID:
-      </p>
+      <p>আপনার Order ID:</p>
 
       <div
         class="order-id"
@@ -2436,7 +1437,6 @@ footer p{
         এখন WhatsApp-এ অর্ডারটি পাঠিয়ে দিন।
       </p>
 
-
       <div style="margin-top:20px;">
 
         <button
@@ -2445,7 +1445,6 @@ footer p{
         >
           WhatsApp-এ পাঠান
         </button>
-
 
         <button
           class="close-success-btn"
@@ -2462,16 +1461,8 @@ footer p{
 
 </div>
 
-
-<!-- =======================================================
-     TOAST
-     ======================================================= -->
-
-<div
-  class="toast"
-  id="toast"
-></div>
-
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
 
 <script>
 
@@ -2479,24 +1470,53 @@ footer p{
    CONFIGURATION
    ========================================================= */
 
-/*
-  IMPORTANT:
-  এটি আপনার নতুন Google Apps Script deployment,
-  যেখানে Website Settings-ও যুক্ত আছে।
-*/
-
 const API_URL =
   "https://script.google.com/macros/s/AKfycbxYgCkIO17GP1R5mj3g8c4wrtCv3LWleNhVEXOGm_LNTXmkq17zlbYhF419WybsJYEtwA/exec";
 
 
 /*
-  Fallback WhatsApp number.
-  Admin Settings থেকে নতুন নম্বর পাওয়া গেলে
-  সেটি automatically ব্যবহার হবে।
+  WEBSITE DEFAULT SETTINGS
+
+  Google Sheet থেকে কোনো setting না এলে
+  এগুলো ব্যবহার হবে।
+*/
+
+const DEFAULT_WEBSITE_SETTINGS = {
+
+  "Store Name":
+    "বই-আলাপ",
+
+  "Tagline":
+    "বই, জ্ঞান ও আরও কিছু।",
+
+  "WhatsApp":
+    "8801790178666",
+
+  "Announcement":
+    "মানুষ একটি হয়ে উঠবার বিষয়",
+
+  "Banner Image":
+    "",
+
+  "Facebook":
+    "",
+
+  "YouTube":
+    "",
+
+  "Instagram":
+    ""
+
+};
+
+
+/*
+  IMPORTANT:
+  এই variable একবারই declare করা হয়েছে।
 */
 
 let WHATSAPP_NUMBER =
-  "8801790178666";
+  DEFAULT_WEBSITE_SETTINGS["WhatsApp"];
 
 
 const PRODUCT_CACHE_KEY =
@@ -2525,7 +1545,9 @@ let cart =
 
 let currentOrder = null;
 
-let websiteSettings = {};
+let websiteSettings = {
+  ...DEFAULT_WEBSITE_SETTINGS
+};
 
 
 /* =========================================================
@@ -2621,7 +1643,7 @@ function getProductStock(product){
    WEBSITE SETTINGS
    ========================================================= */
 
-function getSetting(name, fallback=""){
+function getSetting(name,fallback=""){
 
   const exact =
     Object.keys(websiteSettings)
@@ -2667,26 +1689,54 @@ function loadCachedSettings(){
         SETTINGS_CACHE_KEY
       );
 
-    if(!cached) return false;
+    if(!cached){
+
+      websiteSettings =
+        {...DEFAULT_WEBSITE_SETTINGS};
+
+      applyWebsiteSettings();
+
+      return false;
+
+    }
+
 
     const settings =
       JSON.parse(cached);
+
 
     if(
       !settings ||
       typeof settings !== "object"
     ){
 
+      websiteSettings =
+        {...DEFAULT_WEBSITE_SETTINGS};
+
+      applyWebsiteSettings();
+
       return false;
 
     }
 
-    websiteSettings =
-      settings;
+
+    /*
+      DEFAULT + CACHE
+
+      এতে কোনো একটি setting missing হলেও
+      website ভেঙে যাবে না।
+    */
+
+    websiteSettings = {
+      ...DEFAULT_WEBSITE_SETTINGS,
+      ...settings
+    };
+
 
     applyWebsiteSettings();
 
     return true;
+
 
   }catch(error){
 
@@ -2694,6 +1744,12 @@ function loadCachedSettings(){
       "Settings cache error:",
       error
     );
+
+
+    websiteSettings =
+      {...DEFAULT_WEBSITE_SETTINGS};
+
+    applyWebsiteSettings();
 
     return false;
 
@@ -2734,8 +1790,8 @@ function saveSettingsCache(settings){
 async function loadWebsiteSettings(){
 
   /*
-    First show cached settings immediately.
-    This helps the website feel faster.
+    প্রথমে cached settings দেখাবে।
+    এতে page দ্রুত সম্পূর্ণ দেখাবে।
   */
 
   loadCachedSettings();
@@ -2781,8 +1837,17 @@ async function loadWebsiteSettings(){
     }
 
 
-    websiteSettings =
-      data.settings;
+    /*
+      DEFAULT + SERVER SETTINGS
+    */
+
+    websiteSettings = {
+
+      ...DEFAULT_WEBSITE_SETTINGS,
+
+      ...data.settings
+
+    };
 
 
     saveSettingsCache(
@@ -2800,6 +1865,23 @@ async function loadWebsiteSettings(){
       error
     );
 
+    /*
+      Server temporarily unavailable হলেও
+      cached/default settings চালু থাকবে।
+    */
+
+    if(
+      !websiteSettings ||
+      !Object.keys(websiteSettings).length
+    ){
+
+      websiteSettings =
+        {...DEFAULT_WEBSITE_SETTINGS};
+
+      applyWebsiteSettings();
+
+    }
+
   }
 
 }
@@ -2811,63 +1893,49 @@ async function loadWebsiteSettings(){
 
 function applyWebsiteSettings(){
 
-  /*
-    STORE NAME
-  */
+  /* STORE NAME */
 
   const storeName =
     getSetting(
       "Store Name",
-      "বই-আলাপ"
+      DEFAULT_WEBSITE_SETTINGS["Store Name"]
     );
 
 
-  /*
-    TAGLINE
-  */
+  /* TAGLINE */
 
   const tagline =
     getSetting(
       "Tagline",
-      "পছন্দের বই খুঁজুন, কার্টে যোগ করুন এবং সহজেই অর্ডার করুন।"
+      DEFAULT_WEBSITE_SETTINGS["Tagline"]
     );
 
 
-  /*
-    ANNOUNCEMENT
-  */
+  /* ANNOUNCEMENT */
 
   const announcement =
     getSetting(
       "Announcement",
-      ""
+      DEFAULT_WEBSITE_SETTINGS["Announcement"]
     );
 
 
-  /*
-    WHATSAPP
-  */
+  /* WHATSAPP */
 
   const whatsapp =
     getSetting(
       "WhatsApp",
-      WHATSAPP_NUMBER
+      DEFAULT_WEBSITE_SETTINGS["WhatsApp"]
     );
 
 
-  if(whatsapp){
-
-    WHATSAPP_NUMBER =
-      normalizeWhatsAppNumber(
-        whatsapp
-      );
-
-  }
+  WHATSAPP_NUMBER =
+    normalizeWhatsAppNumber(
+      whatsapp
+    );
 
 
-  /*
-    HEADER LOGO
-  */
+  /* HEADER LOGO */
 
   const logo =
     document.getElementById(
@@ -2884,9 +1952,7 @@ function applyWebsiteSettings(){
   }
 
 
-  /*
-    FOOTER STORE NAME
-  */
+  /* FOOTER NAME */
 
   const footerName =
     document.getElementById(
@@ -2903,7 +1969,12 @@ function applyWebsiteSettings(){
 
 
   /*
-    HERO TITLE
+    IMPORTANT:
+
+    Hero Title Store Name হবে না।
+
+    Hero title fixed থাকবে:
+    "বইয়ের সাথে থাকুন"
   */
 
   const heroTitle =
@@ -2915,14 +1986,12 @@ function applyWebsiteSettings(){
   if(heroTitle){
 
     heroTitle.textContent =
-      storeName;
+      "বইয়ের সাথে থাকুন";
 
   }
 
 
-  /*
-    HERO TAGLINE
-  */
+  /* HERO TAGLINE */
 
   const heroTagline =
     document.getElementById(
@@ -2938,9 +2007,7 @@ function applyWebsiteSettings(){
   }
 
 
-  /*
-    FOOTER TAGLINE
-  */
+  /* FOOTER TAGLINE */
 
   const footerTagline =
     document.getElementById(
@@ -2956,18 +2023,14 @@ function applyWebsiteSettings(){
   }
 
 
-  /*
-    PAGE TITLE
-  */
+  /* PAGE TITLE */
 
   document.title =
     storeName +
     " – Books & More";
 
 
-  /*
-    META DESCRIPTION
-  */
+  /* META DESCRIPTION */
 
   const metaDescription =
     document.querySelector(
@@ -2987,9 +2050,7 @@ function applyWebsiteSettings(){
   }
 
 
-  /*
-    ANNOUNCEMENT
-  */
+  /* ANNOUNCEMENT */
 
   const announcementBar =
     document.getElementById(
@@ -3022,9 +2083,7 @@ function applyWebsiteSettings(){
   }
 
 
-  /*
-    HERO BANNER IMAGE
-  */
+  /* HERO BANNER */
 
   const banner =
     convertImageUrl(
@@ -3045,8 +2104,13 @@ function applyWebsiteSettings(){
 
     if(banner){
 
+      /*
+        Image + dark overlay.
+        এতে banner-এর উপর text পরিষ্কার দেখা যাবে।
+      */
+
       heroBox.style.backgroundImage =
-        "url('" +
+        "linear-gradient(135deg, rgba(20,40,45,.60), rgba(20,40,45,.32)), url('" +
         escapeCSSUrl(banner) +
         "')";
 
@@ -3068,24 +2132,25 @@ function applyWebsiteSettings(){
   }
 
 
-  /*
-    SOCIAL LINKS
-  */
+  /* SOCIAL LINKS */
 
   applySocialLink(
     "facebookLink",
     getSetting("Facebook","")
   );
 
+
   applySocialLink(
     "youtubeLink",
     getSetting("YouTube","")
   );
 
+
   applySocialLink(
     "instagramLink",
     getSetting("Instagram","")
   );
+
 
   applySocialLink(
     "whatsappLink",
@@ -3157,7 +2222,7 @@ function applySocialLink(id,url){
 
   if(
     id === "whatsappLink" &&
-    !finalUrl.startsWith("https://")
+    !/^https?:\/\//i.test(finalUrl)
   ){
 
     finalUrl =
@@ -3184,43 +2249,60 @@ function normalizeWhatsAppNumber(number){
 
   let value =
     String(number || "")
-      .trim();
+      .trim()
+      .replace(/\D/g,"");
 
 
-  value =
-    value.replace(
-      /[^\d+]/g,
-      ""
-    );
+  if(!value){
 
-
-  if(
-    value.startsWith("+")
-  ){
-
-    value =
-      value.substring(1);
+    return DEFAULT_WEBSITE_SETTINGS[
+      "WhatsApp"
+    ];
 
   }
 
+
+  /*
+    017XXXXXXXX
+    ->
+    88017XXXXXXXX
+  */
 
   if(
     value.startsWith("01") &&
     value.length === 11
   ){
 
-    value =
-      "880" +
-      value.substring(1);
+    return "88" + value;
 
   }
 
+
+  /*
+    88017XXXXXXXX
+  */
 
   if(
     value.startsWith("880")
   ){
 
     return value;
+
+  }
+
+
+  /*
+    17XXXXXXXX
+    ->
+    88017XXXXXXXX
+  */
+
+  if(
+    value.length === 10 &&
+    value.startsWith("1")
+  ){
+
+    return "880" + value;
 
   }
 
@@ -3240,6 +2322,7 @@ function convertImageUrl(url){
 
   let imageUrl =
     String(url).trim();
+
 
   if(
     imageUrl.includes("github.com") &&
@@ -3262,6 +2345,7 @@ function convertImageUrl(url){
         );
 
   }
+
 
   return imageUrl;
 
@@ -3328,14 +2412,17 @@ function renderCategoryNavigation(){
 
   if(!nav) return;
 
+
   const categories =
     getUniqueCategories();
+
 
   nav.innerHTML = "";
 
 
   const allButton =
     document.createElement("button");
+
 
   allButton.className =
     "nav-item active";
@@ -3349,29 +2436,43 @@ function renderCategoryNavigation(){
   allButton.onclick =
     showAllProducts;
 
-  nav.appendChild(allButton);
+
+  nav.appendChild(
+    allButton
+  );
 
 
-  categories.forEach(category => {
+  categories.forEach(
+    category => {
 
-    const button =
-      document.createElement("button");
+      const button =
+        document.createElement(
+          "button"
+        );
 
-    button.className =
-      "nav-item";
 
-    button.dataset.category =
-      category;
+      button.className =
+        "nav-item";
 
-    button.textContent =
-      category;
+      button.dataset.category =
+        category;
 
-    button.onclick =
-      () => filterCategory(category);
+      button.textContent =
+        category;
 
-    nav.appendChild(button);
+      button.onclick =
+        () =>
+          filterCategory(
+            category
+          );
 
-  });
+
+      nav.appendChild(
+        button
+      );
+
+    }
+  );
 
 }
 
@@ -3384,6 +2485,7 @@ function renderCategoryCards(){
     );
 
   if(!container) return;
+
 
   const categories =
     getUniqueCategories();
@@ -3449,18 +2551,27 @@ function setActiveNav(category){
 
   document
     .querySelectorAll(".nav-item")
-    .forEach(button =>
-      button.classList.remove("active")
+    .forEach(
+      button =>
+        button.classList.remove(
+          "active"
+        )
     );
 
 
   if(category === "all"){
 
     const all =
-      document.getElementById("nav-all");
+      document.getElementById(
+        "nav-all"
+      );
 
     if(all){
-      all.classList.add("active");
+
+      all.classList.add(
+        "active"
+      );
+
     }
 
     return;
@@ -3470,23 +2581,28 @@ function setActiveNav(category){
 
   document
     .querySelectorAll(".nav-item")
-    .forEach(button => {
+    .forEach(
+      button => {
 
-      if(
-        button.dataset.category === category
-      ){
+        if(
+          button.dataset.category ===
+          category
+        ){
 
-        button.classList.add("active");
+          button.classList.add(
+            "active"
+          );
+
+        }
 
       }
-
-    });
+    );
 
 }
 
 
 /* =========================================================
-   CACHE
+   PRODUCT CACHE
    ========================================================= */
 
 function loadCachedProducts(){
@@ -3498,10 +2614,13 @@ function loadCachedProducts(){
         PRODUCT_CACHE_KEY
       );
 
+
     if(!cached) return false;
+
 
     const products =
       JSON.parse(cached);
+
 
     if(
       !Array.isArray(products) ||
@@ -3521,17 +2640,20 @@ function loadCachedProducts(){
 
     updateCategories();
 
+
     displayProducts(
       allProducts,
       "সব বই"
     );
 
+
     return true;
+
 
   }catch(error){
 
     console.warn(
-      "Cache error:",
+      "Product cache error:",
       error
     );
 
@@ -3554,7 +2676,7 @@ function saveProductCache(products){
   }catch(error){
 
     console.warn(
-      "Cache save error:",
+      "Product cache save error:",
       error
     );
 
@@ -3573,8 +2695,9 @@ function isVisibleProduct(product){
     String(
       product.Status ?? "Active"
     )
-    .trim()
-    .toLowerCase();
+      .trim()
+      .toLowerCase();
+
 
   return status !== "hidden";
 
@@ -3593,21 +2716,29 @@ async function loadProducts(){
 
   if(!hasCache){
 
-    document.getElementById(
-      "productGrid"
-    ).innerHTML = `
+    const grid =
+      document.getElementById(
+        "productGrid"
+      );
 
-      <div class="loading">
 
-        <div class="spinner"></div>
+    if(grid){
 
-        <div>
-          বই লোড হচ্ছে...
+      grid.innerHTML = `
+
+        <div class="loading">
+
+          <div class="spinner"></div>
+
+          <div>
+            বই লোড হচ্ছে...
+          </div>
+
         </div>
 
-      </div>
+      `;
 
-    `;
+    }
 
   }
 
@@ -3679,30 +2810,42 @@ async function loadProducts(){
     );
 
 
+    /*
+      Cache থাকলে cached books-ই থাকবে।
+    */
+
     if(!hasCache){
 
-      document.getElementById(
-        "productGrid"
-      ).innerHTML = `
+      const grid =
+        document.getElementById(
+          "productGrid"
+        );
 
-        <div class="no-results">
 
-          <p>
-            বই লোড করা যাচ্ছে না।
-          </p>
+      if(grid){
 
-          <p
-            style="
-              font-size:13px;
-              margin-top:5px;
-            "
-          >
-            কিছুক্ষণ পরে আবার চেষ্টা করুন।
-          </p>
+        grid.innerHTML = `
 
-        </div>
+          <div class="no-results">
 
-      `;
+            <p>
+              বই লোড করা যাচ্ছে না।
+            </p>
+
+            <p
+              style="
+                font-size:13px;
+                margin-top:5px;
+              "
+            >
+              কিছুক্ষণ পরে আবার চেষ্টা করুন।
+            </p>
+
+          </div>
+
+        `;
+
+      }
 
     }
 
@@ -3725,6 +2868,7 @@ function displayProducts(
       "productGrid"
     );
 
+
   const titleElement =
     document.getElementById(
       "productSectionTitle"
@@ -3737,6 +2881,9 @@ function displayProducts(
       title;
 
   }
+
+
+  if(!grid) return;
 
 
   if(!products.length){
@@ -3797,6 +2944,7 @@ function displayProducts(
 
               ${
                 image
+
                 ?
 
                 `
@@ -3828,11 +2976,11 @@ function displayProducts(
 
             </div>
 
-
             <div class="product-info">
 
               ${
                 category
+
                 ?
 
                 `
@@ -3844,9 +2992,9 @@ function displayProducts(
                 `
 
                 :
+
                 ""
               }
-
 
               <div
                 class="product-name"
@@ -3855,18 +3003,15 @@ function displayProducts(
                 ${escapeHTML(name)}
               </div>
 
-
               <div class="product-description">
                 ${escapeHTML(description)}
               </div>
-
 
               <div class="product-bottom">
 
                 <div class="price">
                   ${formatPrice(price)}
                 </div>
-
 
                 ${
                   stock > 0
@@ -3889,7 +3034,6 @@ function displayProducts(
                 }
 
               </div>
-
 
               <button
                 class="add-btn"
@@ -3928,12 +3072,13 @@ function searchProducts(){
       "searchInput"
     );
 
+
   const query =
     String(
       input.value || ""
     )
-    .trim()
-    .toLowerCase();
+      .trim()
+      .toLowerCase();
 
 
   if(!query){
@@ -3946,30 +3091,32 @@ function searchProducts(){
 
 
   const results =
-    allProducts.filter(product => {
+    allProducts.filter(
+      product => {
 
-      const name =
-        getProductName(product)
-          .toLowerCase();
+        const name =
+          getProductName(product)
+            .toLowerCase();
 
-      const category =
-        String(
-          product.Category || ""
-        ).toLowerCase();
+        const category =
+          String(
+            product.Category || ""
+          ).toLowerCase();
 
-      const description =
-        String(
-          product.Description || ""
-        ).toLowerCase();
+        const description =
+          String(
+            product.Description || ""
+          ).toLowerCase();
 
 
-      return (
-        name.includes(query) ||
-        category.includes(query) ||
-        description.includes(query)
-      );
+        return (
+          name.includes(query) ||
+          category.includes(query) ||
+          description.includes(query)
+        );
 
-    });
+      }
+    );
 
 
   setActiveNav("none");
@@ -3994,7 +3141,7 @@ function searchProducts(){
 
 
 /* =========================================================
-   FILTER
+   CATEGORY FILTER
    ========================================================= */
 
 function filterCategory(category){
@@ -4009,7 +3156,9 @@ function filterCategory(category){
     );
 
 
-  setActiveNav(category);
+  setActiveNav(
+    category
+  );
 
 
   displayProducts(
@@ -4037,8 +3186,11 @@ function showAllProducts(){
       "searchInput"
     );
 
+
   if(input){
+
     input.value = "";
+
   }
 
 
@@ -4072,7 +3224,8 @@ function findProductById(id){
   return allProducts.find(
     product =>
       getProductId(product)
-      === String(id)
+      ===
+      String(id)
   );
 
 }
@@ -4169,7 +3322,6 @@ function showDetailsById(id){
 
       </div>
 
-
       <div class="details-info">
 
         ${
@@ -4186,19 +3338,17 @@ function showDetailsById(id){
           `
 
           :
+
           ""
         }
-
 
         <h2>
           ${escapeHTML(name)}
         </h2>
 
-
         <div class="details-price">
           ${formatPrice(price)}
         </div>
-
 
         <div
           class="${
@@ -4217,21 +3367,13 @@ function showDetailsById(id){
 
         </div>
 
-
         <div class="details-description">
           ${escapeHTML(description)}
         </div>
 
-
         <button
           class="details-add"
-          onclick="
-            addProductById(
-              '${escapeJS(
-                getProductId(product)
-              )}'
-            )
-          "
+          onclick="addProductById('${escapeJS(getProductId(product))}')"
           ${stock <= 0 ? "disabled" : ""}
         >
 
@@ -4355,6 +3497,7 @@ function addToCart(product){
 
     }
 
+
     existing.quantity += 1;
 
   }else{
@@ -4410,10 +3553,18 @@ function updateCart(){
     );
 
 
-  document.getElementById(
-    "cartCount"
-  ).textContent =
-    count;
+  const countElement =
+    document.getElementById(
+      "cartCount"
+    );
+
+
+  if(countElement){
+
+    countElement.textContent =
+      count;
+
+  }
 
 
   renderCart();
@@ -4434,15 +3585,20 @@ function renderCart(){
     );
 
 
+  if(!container || !totalElement){
+
+    return;
+
+  }
+
+
   if(!cart.length){
 
     container.innerHTML = `
 
       <div class="empty-cart">
 
-        <div
-          style="font-size:45px;"
-        >
+        <div style="font-size:45px;">
           🛒
         </div>
 
@@ -4458,6 +3614,7 @@ function renderCart(){
     totalElement.textContent =
       "৳0";
 
+
     return;
 
   }
@@ -4471,6 +3628,7 @@ function renderCart(){
           convertImageUrl(
             item.Image
           );
+
 
         const itemTotal =
           Number(item.Price) *
@@ -4515,65 +3673,40 @@ function renderCart(){
               `
             }
 
-
             <div>
 
               <div class="cart-item-name">
                 ${escapeHTML(item.Name)}
               </div>
 
-
               <div class="cart-item-price">
                 ${formatPrice(item.Price)}
               </div>
 
-
               <div class="quantity-control">
 
                 <button
-                  onclick="
-                    changeQuantity(
-                      '${escapeJS(item.ID)}',
-                      -1
-                    )
-                  "
-                >
-                  −
-                </button>
-
+                  onclick="changeQuantity('${escapeJS(item.ID)}',-1)"
+                >−</button>
 
                 <span>
                   ${item.quantity}
                 </span>
 
-
                 <button
-                  onclick="
-                    changeQuantity(
-                      '${escapeJS(item.ID)}',
-                      1
-                    )
-                  "
-                >
-                  +
-                </button>
+                  onclick="changeQuantity('${escapeJS(item.ID)}',1)"
+                >+</button>
 
               </div>
 
-
               <button
                 class="remove-btn"
-                onclick="
-                  removeFromCart(
-                    '${escapeJS(item.ID)}'
-                  )
-                "
+                onclick="removeFromCart('${escapeJS(item.ID)}')"
               >
                 Remove
               </button>
 
             </div>
-
 
             <div
               style="
@@ -4635,10 +3768,8 @@ function changeQuantity(id,change){
 
   const stock =
     product
-    ?
-    getProductStock(product)
-    :
-    999999;
+      ? getProductStock(product)
+      : 999999;
 
 
   const newQuantity =
@@ -4783,7 +3914,6 @@ function renderOrderSummary(){
       আপনার অর্ডার
     </h3>
 
-
     ${
       cart
         .map(
@@ -4810,12 +3940,9 @@ function renderOrderSummary(){
         .join("")
     }
 
-
     <div class="summary-total">
 
-      <span>
-        মোট
-      </span>
+      <span>মোট</span>
 
       <span>
         ${formatPrice(
@@ -5150,7 +4277,9 @@ async function confirmOrder(){
 
 
   /*
-    SAVE TO GOOGLE SHEET
+    Google Sheet-এ save করার চেষ্টা।
+    Save fail হলেও customer WhatsApp order
+    করতে পারবে।
   */
 
   try{
@@ -5159,10 +4288,12 @@ async function confirmOrder(){
       currentOrder
     );
 
+
     console.log(
       "Order saved successfully:",
       currentOrder.orderId
     );
+
 
   }catch(error){
 
@@ -5341,7 +4472,9 @@ ${order.note}
     "https://wa.me/" +
     number +
     "?text=" +
-    encodeURIComponent(message);
+    encodeURIComponent(
+      message
+    );
 
 
   window.open(
@@ -5351,7 +4484,7 @@ ${order.note}
 
 
   /*
-    Clear cart after WhatsApp action
+    WhatsApp button চাপার পরে Cart clear।
   */
 
   cart = [];
@@ -5396,7 +4529,9 @@ function showToast(message){
     message;
 
 
-  toast.classList.add("show");
+  toast.classList.add(
+    "show"
+  );
 
 
   clearTimeout(
@@ -5420,7 +4555,7 @@ function showToast(message){
 
 
 /* =========================================================
-   ESC
+   ESC KEY
    ========================================================= */
 
 document.addEventListener(
@@ -5445,12 +4580,13 @@ document.addEventListener(
 
 
 /* =========================================================
-   START
+   START WEBSITE
    ========================================================= */
 
 /*
-  Settings এবং Books একই সময়ে load হবে।
-  এতে অতিরিক্ত অপেক্ষা কমবে।
+  Settings + Books একই সময়ে load হবে।
+
+  ফলে Settings-এর জন্য Books অপেক্ষা করবে না।
 */
 
 Promise.all([
@@ -5458,6 +4594,10 @@ Promise.all([
   loadProducts()
 ]);
 
+
+/*
+  Cart immediately restore হবে।
+*/
 
 updateCart();
 
