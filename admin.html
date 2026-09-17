@@ -2,413 +2,4076 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>বই-আলাপ — Admin Panel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boialap Admin Panel</title>
+
 <style>
 :root{
-  --green:#2f8f68;--green2:#dff4e8;--green3:#effaf3;--dark:#173b2c;
-  --text:#26352e;--muted:#718078;--line:#dbe9e1;--white:#fff;
-  --danger:#c94b4b;--warn:#b7791f;--blue:#3f72af;--shadow:0 8px 30px rgba(35,80,58,.08)
+  --primary:#2e7d5b;
+  --primary-dark:#205c43;
+  --primary-light:#e8f5ee;
+  --green-soft:#f3faf6;
+  --text:#24332b;
+  --muted:#6d7b73;
+  --border:#dce9e1;
+  --white:#ffffff;
+  --danger:#c62828;
+  --warning:#b77900;
+  --shadow:0 8px 30px rgba(36,80,55,.08);
+  --radius:14px;
 }
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,"Noto Sans Bengali",sans-serif;background:#f6fbf8;color:var(--text)}
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-.hidden{display:none!important}
-.login{min-height:100vh;display:grid;place-items:center;padding:20px}
-.login-card{width:min(420px,100%);background:#fff;border:1px solid var(--line);border-radius:22px;padding:32px;box-shadow:var(--shadow)}
-.logo{font-size:27px;font-weight:800;color:var(--green);margin-bottom:8px}
-.login-card p{color:var(--muted);margin:0 0 24px}
-label{display:block;font-size:13px;font-weight:700;margin:12px 0 7px}
-input,select,textarea{width:100%;border:1px solid #cfe0d7;border-radius:10px;padding:11px 12px;background:#fff;outline:none}
-input:focus,select:focus,textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(47,143,104,.1)}
-textarea{min-height:100px;resize:vertical}
-.btn{border:0;border-radius:10px;padding:10px 14px;font-weight:700}
-.btn-primary{background:var(--green);color:#fff}.btn-primary:hover{filter:brightness(.95)}
-.btn-soft{background:var(--green2);color:var(--dark)}
-.btn-danger{background:#fde9e9;color:#a73535}
-.btn-light{background:#f1f6f3;color:#355247}
-.btn:disabled{opacity:.55;cursor:not-allowed}
-.login-btn{width:100%;margin-top:18px;padding:13px}
-.error{color:#b63e3e;background:#fff0f0;padding:10px;border-radius:9px;margin-top:12px;font-size:13px}
 
-.app{min-height:100vh}
-.topbar{height:64px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 22px;position:sticky;top:0;z-index:20}
-.brand{font-size:21px;font-weight:800;color:var(--green)}
-.top-actions{display:flex;gap:8px;align-items:center}
-.layout{display:flex;min-height:calc(100vh - 64px)}
-.sidebar{width:220px;background:#fff;border-right:1px solid var(--line);padding:18px 12px}
-.nav-btn{width:100%;text-align:left;border:0;background:transparent;padding:12px 14px;border-radius:10px;margin-bottom:5px;color:#52645b;font-weight:700}
-.nav-btn.active,.nav-btn:hover{background:var(--green2);color:var(--dark)}
-.content{flex:1;padding:24px;min-width:0}
-.page-title{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:20px}
-.page-title h1{margin:0;font-size:25px;color:var(--dark)}
-.page-title p{margin:5px 0 0;color:var(--muted);font-size:13px}
-.actions{display:flex;gap:8px;flex-wrap:wrap}
-
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
-.stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
-.stat .label{font-size:12px;color:var(--muted);margin-bottom:8px}.stat .value{font-size:27px;font-weight:800;color:var(--dark)}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
-.card h3{margin:0 0 14px;color:var(--dark)}
-.quick{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.quick button{padding:13px;border:1px solid var(--line);border-radius:11px;background:var(--green3);color:var(--dark);font-weight:700}
-
-.toolbar{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;margin-bottom:15px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:9px}
-.table-wrap{overflow:auto;background:#fff;border:1px solid var(--line);border-radius:14px}
-table{width:100%;border-collapse:collapse;min-width:900px}
-th,td{padding:12px 11px;border-bottom:1px solid #edf3ef;text-align:left;vertical-align:middle;font-size:13px}
-th{background:#f0f8f3;color:#496057;font-size:12px;white-space:nowrap}
-tr:last-child td{border-bottom:0}
-.book-img{width:46px;height:58px;object-fit:cover;border-radius:7px;background:#edf5f0}
-.badge{display:inline-flex;padding:5px 9px;border-radius:999px;font-size:11px;font-weight:800;white-space:nowrap}
-.b-active,.b-paid,.b-delivered{background:#def5e8;color:#23724d}
-.b-hidden,.b-cancelled,.b-failed{background:#fde5e5;color:#a43c3c}
-.b-pending,.b-new{background:#fff1d8;color:#98621a}
-.b-processing,.b-shipped{background:#e5effb;color:#37618f}
-.stock-low{color:#b56d19;font-weight:800}.stock-out{color:#bd3838;font-weight:800}
-
-.orders{display:grid;gap:12px}
-.order-card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:16px;box-shadow:var(--shadow)}
-.order-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}
-.order-id{font-weight:800;color:var(--dark);font-size:16px}.order-date{color:var(--muted);font-size:12px;margin-top:4px}
-.order-grid{display:grid;grid-template-columns:1.1fr 1.1fr 1.5fr .8fr;gap:15px;margin-top:14px}
-.info-title{font-size:11px;text-transform:uppercase;color:#84928c;font-weight:800;margin-bottom:5px}
-.info-value{font-size:13px;line-height:1.5;word-break:break-word}
-.order-items{margin-top:13px;padding-top:12px;border-top:1px dashed var(--line);color:#53635b;font-size:13px;white-space:pre-wrap}
-.order-controls{display:flex;gap:8px;align-items:end;flex-wrap:wrap;margin-top:14px;padding-top:13px;border-top:1px solid #edf3ef}
-.control{min-width:150px}.control label{margin:0 0 5px}
-
-.modal-back{position:fixed;inset:0;background:rgba(16,45,32,.38);display:none;place-items:center;padding:18px;z-index:50}
-.modal-back.show{display:grid}
-.modal{background:#fff;width:min(650px,100%);max-height:92vh;overflow:auto;border-radius:18px;padding:21px;box-shadow:0 20px 70px rgba(0,0,0,.18)}
-.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.modal-head h2{margin:0;color:var(--dark);font-size:20px}
-.close{border:0;background:#edf4f0;border-radius:9px;width:35px;height:35px}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 13px}
-.full{grid-column:1/-1}
-.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:17px}
-.preview{margin-top:8px;width:90px;height:115px;object-fit:cover;border-radius:8px;background:#edf5f0;border:1px solid var(--line)}
-.toast{position:fixed;right:20px;bottom:20px;background:#173b2c;color:#fff;padding:12px 16px;border-radius:10px;display:none;z-index:100;box-shadow:var(--shadow);font-size:13px}
-.toast.show{display:block}
-.empty{padding:30px;text-align:center;color:var(--muted)}
-.loading{padding:25px;text-align:center;color:var(--muted)}
-@media(max-width:900px){
- .stats{grid-template-columns:repeat(2,1fr)}.toolbar{grid-template-columns:1fr 1fr}.toolbar input{grid-column:1/-1}
- .order-grid{grid-template-columns:1fr 1fr}.sidebar{width:180px}
+*{
+  box-sizing:border-box;
 }
-@media(max-width:650px){
- .topbar{padding:0 13px}.sidebar{width:62px;padding:12px 7px}.nav-btn{font-size:0;text-align:center;padding:12px 5px}.nav-btn::first-letter{font-size:19px}
- .content{padding:14px}.stats{grid-template-columns:1fr 1fr;gap:9px}.stat{padding:13px}.stat .value{font-size:21px}
- .grid2{grid-template-columns:1fr}.order-grid{grid-template-columns:1fr}.toolbar{grid-template-columns:1fr}.toolbar input{grid-column:auto}
- .form-grid{grid-template-columns:1fr}.full{grid-column:auto}.page-title{align-items:flex-start;flex-direction:column}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f5faf7;
+  color:var(--text);
+}
+
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.hidden{
+  display:none!important;
+}
+
+/* ================= LOGIN ================= */
+
+#loginPage{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:linear-gradient(135deg,#edf9f2,#f9fcfa);
+}
+
+.login-box{
+  width:100%;
+  max-width:420px;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:32px;
+  box-shadow:var(--shadow);
+}
+
+.login-logo{
+  width:65px;
+  height:65px;
+  border-radius:18px;
+  background:var(--primary-light);
+  color:var(--primary);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  margin:0 auto 15px;
+}
+
+.login-box h1{
+  text-align:center;
+  margin:0 0 6px;
+  font-size:26px;
+}
+
+.login-box p{
+  text-align:center;
+  color:var(--muted);
+  margin:0 0 25px;
+}
+
+.form-group{
+  margin-bottom:16px;
+}
+
+.form-group label{
+  display:block;
+  margin-bottom:7px;
+  font-weight:600;
+  font-size:14px;
+}
+
+input,
+select,
+textarea{
+  width:100%;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:11px 13px;
+  outline:none;
+  background:#fff;
+  color:var(--text);
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px rgba(46,125,91,.08);
+}
+
+textarea{
+  min-height:110px;
+  resize:vertical;
+}
+
+.btn{
+  border:0;
+  border-radius:10px;
+  padding:10px 15px;
+  font-weight:600;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+}
+
+.btn-primary{
+  background:var(--primary);
+  color:#fff;
+}
+
+.btn-primary:hover{
+  background:var(--primary-dark);
+}
+
+.btn-secondary{
+  background:#eef5f1;
+  color:var(--primary-dark);
+}
+
+.btn-danger{
+  background:#fdecec;
+  color:var(--danger);
+}
+
+.btn-warning{
+  background:#fff6df;
+  color:var(--warning);
+}
+
+.btn-full{
+  width:100%;
+}
+
+.login-error{
+  color:var(--danger);
+  background:#fff0f0;
+  border-radius:9px;
+  padding:10px;
+  margin-bottom:14px;
+  font-size:14px;
+}
+
+/* ================= APP ================= */
+
+#app{
+  min-height:100vh;
+}
+
+.topbar{
+  height:68px;
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 22px;
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  font-weight:800;
+  color:var(--primary-dark);
+  font-size:20px;
+}
+
+.brand-icon{
+  width:38px;
+  height:38px;
+  border-radius:11px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--primary-light);
+}
+
+.top-actions{
+  display:flex;
+  gap:8px;
+}
+
+/* ================= LAYOUT ================= */
+
+.layout{
+  display:flex;
+  min-height:calc(100vh - 68px);
+}
+
+.sidebar{
+  width:230px;
+  background:#fff;
+  border-right:1px solid var(--border);
+  padding:18px 12px;
+  flex-shrink:0;
+}
+
+.nav-btn{
+  width:100%;
+  border:0;
+  background:transparent;
+  color:#53635b;
+  padding:12px 13px;
+  margin-bottom:6px;
+  border-radius:10px;
+  text-align:left;
+  font-weight:600;
+}
+
+.nav-btn:hover{
+  background:var(--green-soft);
+  color:var(--primary);
+}
+
+.nav-btn.active{
+  background:var(--primary-light);
+  color:var(--primary-dark);
+}
+
+.content{
+  flex:1;
+  padding:24px;
+  min-width:0;
+}
+
+/* ================= PAGE HEADER ================= */
+
+.page-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:22px;
+}
+
+.page-header h2{
+  margin:0;
+  font-size:25px;
+}
+
+.page-header p{
+  margin:5px 0 0;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.header-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+/* ================= DASHBOARD ================= */
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+  margin-bottom:22px;
+}
+
+.stat-card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:20px;
+  box-shadow:var(--shadow);
+}
+
+.stat-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.stat-icon{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  background:var(--primary-light);
+  color:var(--primary);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+}
+
+.stat-label{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.stat-value{
+  margin-top:10px;
+  font-size:27px;
+  font-weight:800;
+}
+
+.dashboard-grid{
+  display:grid;
+  grid-template-columns:1.3fr .7fr;
+  gap:18px;
+}
+
+.card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:20px;
+}
+
+.card-title{
+  font-size:17px;
+  font-weight:700;
+  margin-bottom:15px;
+}
+
+.quick-actions{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+.quick-action{
+  padding:15px;
+  border:1px solid var(--border);
+  background:var(--green-soft);
+  border-radius:11px;
+  color:var(--primary-dark);
+  font-weight:600;
+  text-align:left;
+}
+
+.quick-action:hover{
+  background:var(--primary-light);
+}
+
+.stock-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 0;
+  border-bottom:1px solid #edf3ef;
+}
+
+.stock-row:last-child{
+  border-bottom:0;
+}
+
+.stock-number{
+  font-weight:800;
+}
+
+/* ================= TOOLBAR ================= */
+
+.toolbar{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:14px;
+  margin-bottom:16px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.toolbar input,
+.toolbar select{
+  width:auto;
+  min-width:180px;
+}
+
+/* ================= TABLE ================= */
+
+.table-wrap{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:auto;
+  box-shadow:var(--shadow);
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:900px;
+}
+
+th,
+td{
+  padding:13px 14px;
+  border-bottom:1px solid #edf2ef;
+  text-align:left;
+  vertical-align:middle;
+}
+
+th{
+  background:#f5faf7;
+  color:#52635a;
+  font-size:13px;
+}
+
+td{
+  font-size:14px;
+}
+
+.book-cell{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.book-thumb{
+  width:45px;
+  height:58px;
+  border-radius:6px;
+  object-fit:cover;
+  background:#eef5f1;
+  border:1px solid var(--border);
+}
+
+.book-title{
+  font-weight:700;
+}
+
+.book-id{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:3px;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  border-radius:20px;
+  padding:5px 9px;
+  font-size:11px;
+  font-weight:700;
+}
+
+.badge-green{
+  background:#e5f6ec;
+  color:#26724d;
+}
+
+.badge-red{
+  background:#fde9e9;
+  color:#b42c2c;
+}
+
+.badge-yellow{
+  background:#fff3d8;
+  color:#996800;
+}
+
+.badge-gray{
+  background:#edf0ef;
+  color:#68746f;
+}
+
+.action-buttons{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+}
+
+.action-btn{
+  border:0;
+  border-radius:8px;
+  padding:7px 9px;
+  font-size:12px;
+  font-weight:600;
+}
+
+.action-edit{
+  background:#eaf4ff;
+  color:#1767a7;
+}
+
+.action-hide{
+  background:#fff3df;
+  color:#976300;
+}
+
+/* ================= ORDERS ================= */
+
+.orders-grid{
+  display:grid;
+  gap:15px;
+}
+
+.order-card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow:var(--shadow);
+}
+
+.order-head{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:flex-start;
+  margin-bottom:14px;
+}
+
+.order-id{
+  font-weight:800;
+  color:var(--primary-dark);
+}
+
+.order-date{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:4px;
+}
+
+.order-info{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-bottom:14px;
+}
+
+.info-box{
+  background:#f7faf8;
+  border-radius:10px;
+  padding:11px;
+}
+
+.info-label{
+  font-size:11px;
+  color:var(--muted);
+  margin-bottom:4px;
+}
+
+.info-value{
+  font-weight:600;
+  font-size:13px;
+  word-break:break-word;
+}
+
+.order-items{
+  background:#f9fbfa;
+  border-radius:10px;
+  padding:12px;
+  margin-bottom:14px;
+}
+
+.order-item{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  padding:7px 0;
+  border-bottom:1px solid #e8efeb;
+  font-size:13px;
+}
+
+.order-item:last-child{
+  border-bottom:0;
+}
+
+.order-footer{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+.order-total{
+  font-size:19px;
+  font-weight:800;
+  color:var(--primary-dark);
+}
+
+.status-controls{
+  display:flex;
+  gap:7px;
+  align-items:center;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(20,40,30,.48);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:100;
+}
+
+.modal-box{
+  background:#fff;
+  width:100%;
+  max-width:720px;
+  max-height:90vh;
+  overflow:auto;
+  border-radius:18px;
+  box-shadow:0 20px 60px rgba(0,0,0,.18);
+}
+
+.modal-header{
+  padding:18px 20px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.modal-header h3{
+  margin:0;
+}
+
+.close-btn{
+  border:0;
+  background:#f0f4f2;
+  width:34px;
+  height:34px;
+  border-radius:9px;
+  font-size:18px;
+}
+
+.modal-body{
+  padding:20px;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+.full{
+  grid-column:1/-1;
+}
+
+.modal-footer{
+  padding:15px 20px;
+  border-top:1px solid var(--border);
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
+}
+
+/* ================= SETTINGS ================= */
+
+.settings-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);
+  gap:18px;
+  align-items:start;
+}
+
+.settings-card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:20px;
+}
+
+.settings-title{
+  font-size:18px;
+  font-weight:800;
+  margin-bottom:5px;
+}
+
+.settings-subtitle{
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:20px;
+}
+
+.settings-form{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+}
+
+.settings-field.full{
+  grid-column:1/-1;
+}
+
+.settings-field label{
+  display:block;
+  font-weight:700;
+  font-size:13px;
+  margin-bottom:7px;
+}
+
+.field-help{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:5px;
+}
+
+.settings-actions{
+  margin-top:20px;
+  padding-top:16px;
+  border-top:1px solid var(--border);
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
+}
+
+.preview-box{
+  border:1px solid var(--border);
+  border-radius:15px;
+  overflow:hidden;
+  background:#fff;
+}
+
+.preview-banner{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  background:linear-gradient(135deg,#dff3e7,#f3faf6);
+  display:block;
+}
+
+.preview-content{
+  padding:18px;
+}
+
+.preview-store{
+  font-size:21px;
+  font-weight:800;
+  color:var(--primary-dark);
+}
+
+.preview-tagline{
+  margin-top:5px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.preview-announcement{
+  margin-top:15px;
+  background:var(--primary-light);
+  color:var(--primary-dark);
+  border-radius:9px;
+  padding:10px;
+  font-size:12px;
+}
+
+.preview-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:13px;
+}
+
+.preview-link{
+  padding:6px 9px;
+  border-radius:20px;
+  background:#f0f5f2;
+  font-size:11px;
+  color:var(--primary-dark);
+}
+
+.settings-note{
+  margin-top:15px;
+  padding:12px;
+  background:#f6faf7;
+  border:1px solid var(--border);
+  border-radius:10px;
+  color:#617069;
+  font-size:12px;
+  line-height:1.6;
+}
+
+/* ================= TOAST ================= */
+
+#toast{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  background:#23372d;
+  color:#fff;
+  padding:12px 16px;
+  border-radius:10px;
+  box-shadow:0 8px 30px rgba(0,0,0,.18);
+  z-index:300;
+  opacity:0;
+  transform:translateY(10px);
+  pointer-events:none;
+  transition:.25s;
+  max-width:350px;
+  font-size:13px;
+}
+
+#toast.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ================= LOADING ================= */
+
+.loading{
+  text-align:center;
+  padding:35px;
+  color:var(--muted);
+}
+
+.spinner{
+  width:28px;
+  height:28px;
+  border:3px solid #dbe9e1;
+  border-top-color:var(--primary);
+  border-radius:50%;
+  animation:spin .8s linear infinite;
+  margin:0 auto 10px;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1000px){
+  .stats-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .dashboard-grid,
+  .settings-layout{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:760px){
+  .topbar{
+    padding:0 12px;
+  }
+
+  .brand span:last-child{
+    display:none;
+  }
+
+  .layout{
+    display:block;
+  }
+
+  .sidebar{
+    width:100%;
+    display:flex;
+    overflow:auto;
+    padding:8px;
+    border-right:0;
+    border-bottom:1px solid var(--border);
+  }
+
+  .nav-btn{
+    width:auto;
+    min-width:max-content;
+    margin:0 4px 0 0;
+  }
+
+  .content{
+    padding:15px;
+  }
+
+  .page-header{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .stats-grid{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
+  .stat-card{
+    padding:15px;
+  }
+
+  .stat-value{
+    font-size:22px;
+  }
+
+  .toolbar{
+    display:grid;
+    grid-template-columns:1fr;
+  }
+
+  .toolbar input,
+  .toolbar select{
+    width:100%;
+  }
+
+  .order-info{
+    grid-template-columns:1fr;
+  }
+
+  .form-grid,
+  .settings-form{
+    grid-template-columns:1fr;
+  }
+
+  .settings-field.full{
+    grid-column:auto;
+  }
+
+  .quick-actions{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:480px){
+  .stats-grid{
+    grid-template-columns:1fr;
+  }
+
+  .top-actions .btn{
+    padding:8px 10px;
+    font-size:12px;
+  }
+
+  .content{
+    padding:11px;
+  }
+
+  .modal{
+    padding:10px;
+  }
 }
 </style>
 </head>
+
 <body>
 
-<div id="loginView" class="login">
-  <div class="login-card">
-    <div class="logo">বই-আলাপ Admin</div>
-    <p>Secure administration panel</p>
-    <label for="password">Admin Password</label>
-    <input id="password" type="password" placeholder="Enter password" autocomplete="current-password">
-    <button id="loginButton" class="btn btn-primary login-btn">Login</button>
-    <div id="loginError" class="error hidden"></div>
+<!-- ================= LOGIN ================= -->
+
+<div id="loginPage">
+
+  <div class="login-box">
+
+    <div class="login-logo">📚</div>
+
+    <h1>বই-আলাপ Admin</h1>
+    <p>Book Shop Management Panel</p>
+
+    <div id="loginError" class="login-error hidden"></div>
+
+    <div class="form-group">
+      <label>Admin Password</label>
+      <input
+        type="password"
+        id="loginPassword"
+        placeholder="Enter admin password"
+        autocomplete="current-password"
+      >
+    </div>
+
+    <button class="btn btn-primary btn-full" onclick="login()">
+      🔐 Login
+    </button>
+
   </div>
+
 </div>
 
-<div id="app" class="app hidden">
-  <header class="topbar">
-    <div class="brand">বই-আলাপ • Admin</div>
-    <div class="top-actions">
-      <button id="refreshAllButton" class="btn btn-soft">↻ Refresh</button>
-      <button id="logoutButton" class="btn btn-light">Logout</button>
+
+<!-- ================= APP ================= -->
+
+<div id="app" class="hidden">
+
+  <!-- TOPBAR -->
+
+  <div class="topbar">
+
+    <div class="brand">
+      <div class="brand-icon">📚</div>
+      <span>বই-আলাপ Admin Panel</span>
     </div>
-  </header>
+
+    <div class="top-actions">
+
+      <button class="btn btn-secondary" onclick="loadAll()">
+        🔄 Refresh
+      </button>
+
+      <button class="btn btn-danger" onclick="logout()">
+        Logout
+      </button>
+
+    </div>
+
+  </div>
+
+
   <div class="layout">
+
+    <!-- SIDEBAR -->
+
     <aside class="sidebar">
-      <button class="nav-btn active" data-page="dashboard">📊 Dashboard</button>
-      <button class="nav-btn" data-page="books">📚 Books</button>
-      <button class="nav-btn" data-page="orders">🛒 Orders</button>
+
+      <button
+        class="nav-btn active"
+        data-page="dashboard"
+        onclick="showPage('dashboard')"
+      >
+        📊 Dashboard
+      </button>
+
+      <button
+        class="nav-btn"
+        data-page="books"
+        onclick="showPage('books')"
+      >
+        📚 Books
+      </button>
+
+      <button
+        class="nav-btn"
+        data-page="orders"
+        onclick="showPage('orders')"
+      >
+        📦 Orders
+      </button>
+
+      <button
+        class="nav-btn"
+        data-page="settings"
+        onclick="showPage('settings')"
+      >
+        ⚙️ Website Settings
+      </button>
+
     </aside>
 
+
+    <!-- CONTENT -->
+
     <main class="content">
-      <section id="dashboardPage" class="page">
-        <div class="page-title">
-          <div><h1>Dashboard</h1><p>বই-আলাপের বর্তমান সারসংক্ষেপ</p></div>
+
+
+      <!-- ================= DASHBOARD ================= -->
+
+      <section id="dashboardPage">
+
+        <div class="page-header">
+
+          <div>
+            <h2>Dashboard</h2>
+            <p>আপনার বইয়ের দোকানের বর্তমান সারসংক্ষেপ</p>
+          </div>
+
+          <div class="header-actions">
+
+            <button class="btn btn-primary" onclick="showPage('books')">
+              ➕ Add Book
+            </button>
+
+            <button class="btn btn-secondary" onclick="showPage('orders')">
+              📦 View Orders
+            </button>
+
+          </div>
+
         </div>
-        <div class="stats">
-          <div class="stat"><div class="label">Total Books</div><div id="totalBooks" class="value">—</div></div>
-          <div class="stat"><div class="label">Active Books</div><div id="activeBooks" class="value">—</div></div>
-          <div class="stat"><div class="label">Total Orders</div><div id="totalOrders" class="value">—</div></div>
-          <div class="stat"><div class="label">Total Sales</div><div id="totalSales" class="value">—</div></div>
-        </div>
-        <div class="grid2">
-          <div class="card">
-            <h3>Quick Actions</h3>
-            <div class="quick">
-              <button data-page-go="books" id="quickAdd">➕ Add Book</button>
-              <button data-page-go="books">📚 Manage Books</button>
-              <button data-page-go="orders">🛒 Manage Orders</button>
-              <button id="quickRefresh">🔄 Refresh Data</button>
+
+
+        <div class="stats-grid">
+
+          <div class="stat-card">
+            <div class="stat-top">
+              <div class="stat-label">Total Books</div>
+              <div class="stat-icon">📚</div>
             </div>
+            <div class="stat-value" id="totalBooks">0</div>
           </div>
+
+
+          <div class="stat-card">
+            <div class="stat-top">
+              <div class="stat-label">Active Books</div>
+              <div class="stat-icon">✅</div>
+            </div>
+            <div class="stat-value" id="activeBooks">0</div>
+          </div>
+
+
+          <div class="stat-card">
+            <div class="stat-top">
+              <div class="stat-label">Total Orders</div>
+              <div class="stat-icon">📦</div>
+            </div>
+            <div class="stat-value" id="totalOrders">0</div>
+          </div>
+
+
+          <div class="stat-card">
+            <div class="stat-top">
+              <div class="stat-label">Total Sales</div>
+              <div class="stat-icon">৳</div>
+            </div>
+            <div class="stat-value" id="totalSales">৳0</div>
+          </div>
+
+        </div>
+
+
+        <div class="dashboard-grid">
+
           <div class="card">
-            <h3>Stock Snapshot</h3>
-            <div id="stockSnapshot" class="empty">Loading...</div>
+
+            <div class="card-title">
+              ⚡ Quick Actions
+            </div>
+
+            <div class="quick-actions">
+
+              <button class="quick-action" onclick="openAddBook()">
+                ➕ Add New Book
+              </button>
+
+              <button class="quick-action" onclick="showPage('books')">
+                📚 Manage Books
+              </button>
+
+              <button class="quick-action" onclick="showPage('orders')">
+                📦 Manage Orders
+              </button>
+
+              <button class="quick-action" onclick="showPage('settings')">
+                ⚙️ Website Settings
+              </button>
+
+            </div>
+
           </div>
+
+
+          <div class="card">
+
+            <div class="card-title">
+              📦 Stock Snapshot
+            </div>
+
+            <div class="stock-row">
+              <span>Total Stock</span>
+              <span class="stock-number" id="stockTotal">0</span>
+            </div>
+
+            <div class="stock-row">
+              <span>Low Stock</span>
+              <span class="stock-number" id="stockLow">0</span>
+            </div>
+
+            <div class="stock-row">
+              <span>Out of Stock</span>
+              <span class="stock-number" id="stockOut">0</span>
+            </div>
+
+          </div>
+
         </div>
+
       </section>
 
-      <section id="booksPage" class="page hidden">
-        <div class="page-title">
-          <div><h1>Books</h1><p>Add, edit, hide এবং stock management</p></div>
-          <div class="actions"><button id="addBookButton" class="btn btn-primary">＋ Add Book</button><button id="refreshBooksButton" class="btn btn-soft">↻ Refresh</button></div>
+
+      <!-- ================= BOOKS ================= -->
+
+      <section id="booksPage" class="hidden">
+
+        <div class="page-header">
+
+          <div>
+            <h2>Books</h2>
+            <p>বই যোগ, সম্পাদনা ও স্টক ম্যানেজ করুন</p>
+          </div>
+
+          <div class="header-actions">
+
+            <button class="btn btn-primary" onclick="openAddBook()">
+              ➕ Add Book
+            </button>
+
+            <button class="btn btn-secondary" onclick="loadBooks()">
+              🔄 Refresh
+            </button>
+
+          </div>
+
         </div>
+
+
         <div class="toolbar">
-          <input id="bookSearch" placeholder="Search book name / ID...">
-          <select id="bookCategoryFilter"><option value="">All Categories</option></select>
-          <select id="bookStatusFilter"><option value="">All Status</option><option>Active</option><option>Hidden</option></select>
-          <select id="bookStockFilter"><option value="">All Stock</option><option value="low">Low Stock</option><option value="out">Out of Stock</option></select>
-          <button id="clearBookFilters" class="btn btn-light">Clear</button>
+
+          <input
+            id="bookSearch"
+            type="text"
+            placeholder="🔍 Search book name or ID..."
+            oninput="renderBooks()"
+          >
+
+          <select id="categoryFilter" onchange="renderBooks()">
+            <option value="">All Categories</option>
+          </select>
+
+          <select id="statusFilter" onchange="renderBooks()">
+            <option value="">All Status</option>
+            <option value="Active">Active</option>
+            <option value="Hidden">Hidden</option>
+          </select>
+
+          <select id="stockFilter" onchange="renderBooks()">
+            <option value="">All Stock</option>
+            <option value="low">Low Stock</option>
+            <option value="out">Out of Stock</option>
+          </select>
+
         </div>
-        <div class="table-wrap"><table>
-          <thead><tr><th>Book</th><th>Category</th><th>Price</th><th>Stock</th><th>Featured</th><th>Status</th><th>Action</th></tr></thead>
-          <tbody id="booksTable"><tr><td colspan="7" class="loading">Loading...</td></tr></tbody>
-        </table></div>
+
+
+        <div class="table-wrap">
+
+          <div id="booksLoading" class="loading hidden">
+            <div class="spinner"></div>
+            Loading books...
+          </div>
+
+          <table id="booksTable">
+
+            <thead>
+              <tr>
+                <th>Book</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Featured</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="booksBody"></tbody>
+
+          </table>
+
+        </div>
+
       </section>
 
-      <section id="ordersPage" class="page hidden">
-        <div class="page-title">
-          <div><h1>Orders</h1><p>Payment এবং delivery status সরাসরি এখান থেকে update করুন</p></div>
-          <button id="refreshOrdersButton" class="btn btn-soft">↻ Refresh Orders</button>
+
+      <!-- ================= ORDERS ================= -->
+
+      <section id="ordersPage" class="hidden">
+
+        <div class="page-header">
+
+          <div>
+            <h2>Orders</h2>
+            <p>Customer orders ও delivery status পরিচালনা করুন</p>
+          </div>
+
+          <div class="header-actions">
+
+            <button class="btn btn-secondary" onclick="loadOrders()">
+              🔄 Refresh Orders
+            </button>
+
+          </div>
+
         </div>
+
+
         <div class="toolbar">
-          <input id="orderSearch" placeholder="Search Order ID / customer / mobile...">
-          <select id="paymentFilter"><option value="">All Payment</option><option>Pending</option><option>Paid</option><option>Failed</option></select>
-          <select id="orderStatusFilter"><option value="">All Order Status</option><option>New</option><option>Processing</option><option>Shipped</option><option>Delivered</option><option>Cancelled</option></select>
-          <select id="orderSort"><option value="new">Newest First</option><option value="old">Oldest First</option><option value="high">Highest Total</option><option value="low">Lowest Total</option></select>
-          <button id="clearOrderFilters" class="btn btn-light">Clear</button>
+
+          <input
+            id="orderSearch"
+            type="text"
+            placeholder="🔍 Search Order ID / Customer / Mobile..."
+            oninput="renderOrders()"
+          >
+
+          <select id="paymentFilter" onchange="renderOrders()">
+            <option value="">All Payments</option>
+            <option value="Pending">Pending</option>
+            <option value="Paid">Paid</option>
+            <option value="Failed">Failed</option>
+          </select>
+
+          <select id="orderStatusFilter" onchange="renderOrders()">
+            <option value="">All Order Status</option>
+            <option value="New">New</option>
+            <option value="Processing">Processing</option>
+            <option value="Shipped">Shipped</option>
+            <option value="Delivered">Delivered</option>
+            <option value="Cancelled">Cancelled</option>
+          </select>
+
+          <select id="orderSort" onchange="renderOrders()">
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+            <option value="high">Highest Amount</option>
+            <option value="low">Lowest Amount</option>
+          </select>
+
         </div>
-        <div id="ordersContainer" class="orders"><div class="loading">Loading...</div></div>
+
+
+        <div id="ordersLoading" class="loading hidden">
+          <div class="spinner"></div>
+          Loading orders...
+        </div>
+
+        <div id="ordersGrid" class="orders-grid"></div>
+
       </section>
+
+
+      <!-- ================= WEBSITE SETTINGS ================= -->
+
+      <section id="settingsPage" class="hidden">
+
+        <div class="page-header">
+
+          <div>
+            <h2>Website Settings</h2>
+            <p>ওয়েবসাইটের নাম, যোগাযোগ ও social information এখান থেকে পরিবর্তন করুন</p>
+          </div>
+
+          <div class="header-actions">
+
+            <button class="btn btn-secondary" onclick="loadWebsiteSettings()">
+              🔄 Load Settings
+            </button>
+
+            <button class="btn btn-primary" onclick="saveWebsiteSettings()">
+              💾 Save Settings
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="settings-layout">
+
+
+          <!-- SETTINGS FORM -->
+
+          <div class="settings-card">
+
+            <div class="settings-title">
+              ⚙️ Website Information
+            </div>
+
+            <div class="settings-subtitle">
+              Google Sheet-এর <b>Website Settings</b> sheet থেকে এই তথ্যগুলো website-এ ব্যবহার করা যাবে।
+            </div>
+
+
+            <div class="settings-form">
+
+
+              <div class="settings-field">
+
+                <label>Store Name</label>
+
+                <input
+                  id="settingStoreName"
+                  type="text"
+                  placeholder="যেমন: বই-আলাপ"
+                  oninput="updateSettingsPreview()"
+                >
+
+              </div>
+
+
+              <div class="settings-field">
+
+                <label>Tagline</label>
+
+                <input
+                  id="settingTagline"
+                  type="text"
+                  placeholder="যেমন: আপনার পছন্দের বইয়ের ঠিকানা"
+                  oninput="updateSettingsPreview()"
+                >
+
+              </div>
+
+
+              <div class="settings-field">
+
+                <label>WhatsApp</label>
+
+                <input
+                  id="settingWhatsApp"
+                  type="text"
+                  placeholder="8801XXXXXXXXX"
+                  oninput="updateSettingsPreview()"
+                >
+
+                <div class="field-help">
+                  Country code সহ number দিলে ভালো।
+                </div>
+
+              </div>
+
+
+              <div class="settings-field">
+
+                <label>Announcement</label>
+
+                <input
+                  id="settingAnnouncement"
+                  type="text"
+                  placeholder="যেমন: নতুন বই এসেছে!"
+                  oninput="updateSettingsPreview()"
+                >
+
+              </div>
+
+
+              <div class="settings-field full">
+
+                <label>Banner Image URL</label>
+
+                <input
+                  id="settingBanner"
+                  type="url"
+                  placeholder="https://..."
+                  oninput="updateSettingsPreview()"
+                >
+
+                <div class="field-help">
+                  সরাসরি image URL ব্যবহার করুন।
+                </div>
+
+              </div>
+
+
+              <div class="settings-field">
+
+                <label>Facebook</label>
+
+                <input
+                  id="settingFacebook"
+                  type="url"
+                  placeholder="https://facebook.com/..."
+                  oninput="updateSettingsPreview()"
+                >
+
+              </div>
+
+
+              <div class="settings-field">
+
+                <label>YouTube</label>
+
+                <input
+                  id="settingYouTube"
+                  type="url"
+                  placeholder="https://youtube.com/..."
+                  oninput="updateSettingsPreview()"
+                >
+
+              </div>
+
+
+              <div class="settings-field">
+
+                <label>Instagram</label>
+
+                <input
+                  id="settingInstagram"
+                  type="url"
+                  placeholder="https://instagram.com/..."
+                  oninput="updateSettingsPreview()"
+                >
+
+              </div>
+
+
+            </div>
+
+
+            <div class="settings-actions">
+
+              <button class="btn btn-secondary" onclick="loadWebsiteSettings()">
+                ↻ Reset / Reload
+              </button>
+
+              <button class="btn btn-primary" onclick="saveWebsiteSettings()">
+                💾 Save Settings
+              </button>
+
+            </div>
+
+
+            <div class="settings-note">
+
+              ℹ️ <b>Note:</b>
+              Settings save করার পর Google Sheet-এর
+              <b>Website Settings</b> sheet-এ তথ্য update হবে।
+              বর্তমানে Status column Google Sheet থেকে নিয়ন্ত্রিত হবে।
+              Public website-এ শুধুমাত্র <b>Active</b> settings প্রকাশ করা হবে।
+
+            </div>
+
+          </div>
+
+
+          <!-- LIVE PREVIEW -->
+
+          <div class="settings-card">
+
+            <div class="settings-title">
+              👁️ Preview
+            </div>
+
+            <div class="settings-subtitle">
+              আপনি যে তথ্য লিখছেন তার একটি preview।
+            </div>
+
+
+            <div class="preview-box">
+
+              <img
+                id="settingsPreviewBanner"
+                class="preview-banner"
+                src=""
+                alt="Banner Preview"
+                onerror="this.style.display='none';"
+              >
+
+
+              <div class="preview-content">
+
+                <div
+                  id="settingsPreviewStore"
+                  class="preview-store"
+                >
+                  বই-আলাপ
+                </div>
+
+
+                <div
+                  id="settingsPreviewTagline"
+                  class="preview-tagline"
+                >
+                  আপনার পছন্দের বইয়ের ঠিকানা
+                </div>
+
+
+                <div
+                  id="settingsPreviewAnnouncement"
+                  class="preview-announcement"
+                >
+                  Announcement
+                </div>
+
+
+                <div
+                  id="settingsPreviewLinks"
+                  class="preview-links"
+                ></div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
     </main>
+
   </div>
+
 </div>
 
-<div id="bookModalBack" class="modal-back">
-  <div class="modal">
-    <div class="modal-head"><h2 id="bookModalTitle">Add Book</h2><button class="close" id="closeBookModal">×</button></div>
-    <div class="form-grid">
-      <div><label>ID</label><input id="bookID" placeholder="Auto for new book"></div>
-      <div><label>Name *</label><input id="bookName"></div>
-      <div><label>Category</label><input id="bookCategory" value="সাধারণ"></div>
-      <div><label>Price</label><input id="bookPrice" type="number" min="0"></div>
-      <div><label>Stock</label><input id="bookStock" type="number" min="0"></div>
-      <div><label>Featured</label><select id="bookFeatured"><option>No</option><option>Yes</option></select></div>
-      <div><label>Status</label><select id="bookStatus"><option>Active</option><option>Hidden</option></select></div>
-      <div><label>Image URL</label><input id="bookImage"></div>
-      <div class="full"><img id="bookImagePreview" class="preview" alt="Preview"></div>
-      <div class="full"><label>Description</label><textarea id="bookDescription"></textarea></div>
+
+<!-- ================= BOOK MODAL ================= -->
+
+<div id="bookModal" class="modal hidden">
+
+  <div class="modal-box">
+
+    <div class="modal-header">
+
+      <h3 id="bookModalTitle">Add Book</h3>
+
+      <button class="close-btn" onclick="closeBookModal()">
+        ×
+      </button>
+
     </div>
-    <div class="modal-actions"><button id="cancelBookButton" class="btn btn-light">Cancel</button><button id="saveBookButton" class="btn btn-primary">Save Book</button></div>
+
+
+    <div class="modal-body">
+
+      <div class="form-grid">
+
+
+        <div class="form-group">
+
+          <label>Book ID</label>
+
+          <input
+            id="bookId"
+            type="text"
+            placeholder="Auto generated"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Status</label>
+
+          <select id="bookStatus">
+            <option value="Active">Active</option>
+            <option value="Hidden">Hidden</option>
+          </select>
+
+        </div>
+
+
+        <div class="form-group full">
+
+          <label>Book Name *</label>
+
+          <input
+            id="bookName"
+            type="text"
+            placeholder="Book name"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Category</label>
+
+          <input
+            id="bookCategory"
+            type="text"
+            placeholder="Category"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Price</label>
+
+          <input
+            id="bookPrice"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="0"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Stock</label>
+
+          <input
+            id="bookStock"
+            type="number"
+            min="0"
+            step="1"
+            placeholder="0"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Featured</label>
+
+          <select id="bookFeatured">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+          </select>
+
+        </div>
+
+
+        <div class="form-group full">
+
+          <label>Image URL</label>
+
+          <input
+            id="bookImage"
+            type="url"
+            placeholder="https://..."
+            oninput="updatePreview()"
+          >
+
+        </div>
+
+
+        <div class="form-group full">
+
+          <label>Description</label>
+
+          <textarea
+            id="bookDescription"
+            placeholder="Book description..."
+          ></textarea>
+
+        </div>
+
+
+        <div class="form-group full">
+
+          <img
+            id="bookPreview"
+            src=""
+            alt="Preview"
+            style="
+              max-width:120px;
+              max-height:160px;
+              border-radius:8px;
+              display:none;
+              border:1px solid var(--border);
+              object-fit:cover;
+            "
+            onerror="this.style.display='none';"
+          >
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+    <div class="modal-footer">
+
+      <button class="btn btn-secondary" onclick="closeBookModal()">
+        Cancel
+      </button>
+
+      <button class="btn btn-primary" onclick="saveBook()">
+        💾 Save Book
+      </button>
+
+    </div>
+
   </div>
+
 </div>
 
-<div id="toast" class="toast"></div>
+
+<!-- ================= TOAST ================= -->
+
+<div id="toast"></div>
+
 
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbxYgCkIO17GP1R5mj3g8c4wrtCv3LWleNhVEXOGm_LNTXmkq17zlbYhF419WybsJYEtwA/exec";
-const TOKEN_KEY = "boialapAdminToken";
-let token = sessionStorage.getItem(TOKEN_KEY) || "";
-let books = [], orders = [], editingBook = false;
 
-const $ = id => document.getElementById(id);
-function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));}
-function val(o, names, fallback=""){for(const n of names){if(o && o[n]!==undefined && o[n]!==null && String(o[n])!=="") return o[n]}return fallback}
-function money(v){return "৳"+Number(v||0).toLocaleString("en-BD",{maximumFractionDigits:2})}
-function fmtDate(v){
-  if(!v)return "—";
-  const d=new Date(v); if(isNaN(d)) return esc(v);
-  return d.toLocaleString("en-GB",{day:"2-digit",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"});
+/* =========================================================
+   CONFIG
+========================================================= */
+
+const API_URL =
+"https://script.google.com/macros/s/AKfycbxYgCkIO17GP1R5mj3g8c4wrtCv3LWleNhVEXOGm_LNTXmkq17zlbYhF419WybsJYEtwA/exec";
+
+
+let books = [];
+let orders = [];
+let websiteSettings = {};
+let editingBookId = null;
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function $(id){
+  return document.getElementById(id);
 }
+
+
+function esc(value){
+
+  if(value === null || value === undefined){
+    return "";
+  }
+
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+
+function val(id){
+  return ($(id)?.value || "").trim();
+}
+
+
+function toast(message){
+
+  const el = $("toast");
+
+  el.textContent = message;
+  el.classList.add("show");
+
+  clearTimeout(window.toastTimer);
+
+  window.toastTimer = setTimeout(()=>{
+    el.classList.remove("show");
+  },3000);
+}
+
+
 function normalizeImage(url){
-  url=String(url||"").trim();
-  if(!url)return "";
-  let m=url.match(/drive\.google\.com\/file\/d\/([^/]+)/); if(m)return "https://drive.google.com/thumbnail?id="+m[1]+"&sz=w500";
-  m=url.match(/[?&]id=([^&]+)/); if(url.includes("drive.google.com")&&m)return "https://drive.google.com/thumbnail?id="+m[1]+"&sz=w500";
-  if(url.includes("github.com")&&url.includes("/blob/"))return url.replace("github.com/","raw.githubusercontent.com/").replace("/blob/","/");
-  return url;
+
+  if(!url){
+    return "";
+  }
+
+  return String(url).trim();
 }
-function toast(msg){
-  $("toast").textContent=msg;$("toast").classList.add("show");clearTimeout(window.__toast);
-  window.__toast=setTimeout(()=>$("toast").classList.remove("show"),2600);
+
+
+function money(value){
+
+  const n = Number(value || 0);
+
+  return "৳" + n.toLocaleString("en-BD",{
+    maximumFractionDigits:2
+  });
 }
+
+
+/* =========================================================
+   API
+========================================================= */
+
 async function apiGet(action){
-  const u=API_URL+"?action="+encodeURIComponent(action)+"&token="+encodeURIComponent(token);
-  const r=await fetch(u,{cache:"no-store"}); return await r.json();
+
+  const token =
+    sessionStorage.getItem("boialapAdminToken") || "";
+
+  const url =
+    API_URL +
+    "?action=" +
+    encodeURIComponent(action) +
+    "&token=" +
+    encodeURIComponent(token);
+
+  const response = await fetch(url,{
+    method:"GET"
+  });
+
+  const data = await response.json();
+
+  return data;
 }
+
+
 async function apiPost(action,data={}){
-  const r=await fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action,...data})});
-  return await r.json();
+
+  const token =
+    sessionStorage.getItem("boialapAdminToken") || "";
+
+  const payload = {
+    ...data,
+    token
+  };
+
+  const response = await fetch(API_URL,{
+    method:"POST",
+    headers:{
+      "Content-Type":"text/plain;charset=utf-8"
+    },
+    body:JSON.stringify({
+      action,
+      ...payload
+    })
+  });
+
+  const result = await response.json();
+
+  return result;
 }
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
 async function login(){
-  const err=$("loginError");err.classList.add("hidden");
-  $("loginButton").disabled=true;$("loginButton").textContent="Logging in...";
+
+  const password =
+    $("loginPassword").value.trim();
+
+  $("loginError").classList.add("hidden");
+
+  if(!password){
+
+    $("loginError").textContent =
+      "Please enter admin password.";
+
+    $("loginError").classList.remove("hidden");
+
+    return;
+  }
+
+
   try{
-    const res=await apiPost("adminlogin",{password:$("password").value});
-    if(!res.success)throw new Error(res.error||"Login failed");
-    token=res.token;sessionStorage.setItem(TOKEN_KEY,token);showApp();await loadAll();
-  }catch(e){err.textContent=e.message;err.classList.remove("hidden")}
-  finally{$("loginButton").disabled=false;$("loginButton").textContent="Login"}
+
+    const result =
+      await apiPost("adminlogin",{
+        password
+      });
+
+
+    if(!result.success){
+
+      throw new Error(
+        result.error || "Login failed."
+      );
+
+    }
+
+
+    if(result.token){
+
+      sessionStorage.setItem(
+        "boialapAdminToken",
+        result.token
+      );
+
+    }
+
+
+    $("loginPage").classList.add("hidden");
+
+    $("app").classList.remove("hidden");
+
+    await loadAll();
+
+
+  }catch(error){
+
+    $("loginError").textContent =
+      error.message || "Login failed.";
+
+    $("loginError").classList.remove("hidden");
+
+  }
+
 }
-function showApp(){$("loginView").classList.add("hidden");$("app").classList.remove("hidden")}
-function logout(){
-  if(token)apiPost("adminlogout",{token}).catch(()=>{});
-  token="";sessionStorage.removeItem(TOKEN_KEY);$("app").classList.add("hidden");$("loginView").classList.remove("hidden");$("password").value="";
+
+
+$("loginPassword").addEventListener(
+  "keydown",
+  function(e){
+
+    if(e.key === "Enter"){
+      login();
+    }
+
+  }
+);
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+async function logout(){
+
+  try{
+
+    await apiPost("adminlogout");
+
+  }catch(e){
+
+  }
+
+  sessionStorage.removeItem(
+    "boialapAdminToken"
+  );
+
+  location.reload();
 }
+
+
+/* =========================================================
+   LOAD ALL
+========================================================= */
+
 async function loadAll(){
-  await Promise.all([loadBooks(),loadOrders()]);
+
+  await Promise.all([
+    loadBooks(),
+    loadOrders(),
+    loadWebsiteSettings()
+  ]);
+
   updateDashboard();
 }
+
+
+/* =========================================================
+   BOOKS
+========================================================= */
+
 async function loadBooks(){
-  $("booksTable").innerHTML='<tr><td colspan="7" class="loading">Loading books...</td></tr>';
+
+  $("booksLoading").classList.remove("hidden");
+
   try{
-    let res=await apiGet("adminbooks");
-    if(!res.success && /unauthorized/i.test(res.error||""))return logout();
-    if(!res.success)throw new Error(res.error||"Could not load books");
-    books=Array.isArray(res.books)?res.books:[];
-    buildCategoryFilter();renderBooks();
-  }catch(e){$("booksTable").innerHTML='<tr><td colspan="7" class="empty">'+esc(e.message)+'</td></tr>'}
+
+    const result =
+      await apiGet("adminbooks");
+
+
+    if(!result.success){
+
+      if(
+        /unauthorized|invalid token|token/i
+        .test(result.error || "")
+      ){
+
+        logout();
+        return;
+
+      }
+
+      throw new Error(
+        result.error || "Failed to load books."
+      );
+
+    }
+
+
+    books =
+      Array.isArray(result.books)
+        ? result.books
+        : [];
+
+
+    buildCategoryFilter();
+
+    renderBooks();
+
+    updateDashboard();
+
+
+  }catch(error){
+
+    toast(
+      error.message ||
+      "Failed to load books."
+    );
+
+  }finally{
+
+    $("booksLoading").classList.add("hidden");
+
+  }
+
 }
-async function loadOrders(){
-  $("ordersContainer").innerHTML='<div class="loading">Loading orders...</div>';
-  try{
-    let res=await apiGet("orders");
-    if(!res.success && /unauthorized/i.test(res.error||""))return logout();
-    if(!res.success)throw new Error(res.error||"Could not load orders");
-    orders=Array.isArray(res.orders)?res.orders:[];
-    renderOrders();updateDashboard();
-  }catch(e){$("ordersContainer").innerHTML='<div class="empty">'+esc(e.message)+'</div>'}
-}
+
+
+/* =========================================================
+   CATEGORY FILTER
+========================================================= */
+
 function buildCategoryFilter(){
-  const old=$("bookCategoryFilter").value;
-  const cats=[...new Set(books.map(b=>String(val(b,["Category"])).trim()).filter(Boolean))].sort();
-  $("bookCategoryFilter").innerHTML='<option value="">All Categories</option>'+cats.map(c=>'<option value="'+esc(c)+'">'+esc(c)+'</option>').join("");
-  $("bookCategoryFilter").value=old;
+
+  const select =
+    $("categoryFilter");
+
+  const current =
+    select.value;
+
+  const categories =
+    [...new Set(
+      books
+        .map(book =>
+          String(
+            book.Category ||
+            book.category ||
+            ""
+          ).trim()
+        )
+        .filter(Boolean)
+    )]
+    .sort();
+
+
+  select.innerHTML =
+    `<option value="">All Categories</option>`;
+
+
+  categories.forEach(category =>{
+
+    const option =
+      document.createElement("option");
+
+    option.value = category;
+    option.textContent = category;
+
+    select.appendChild(option);
+
+  });
+
+
+  select.value = current;
+
 }
+
+
+/* =========================================================
+   RENDER BOOKS
+========================================================= */
+
 function renderBooks(){
-  const q=$("bookSearch").value.toLowerCase().trim(),cat=$("bookCategoryFilter").value,status=$("bookStatusFilter").value,stock=$("bookStockFilter").value;
-  const list=books.filter(b=>{
-    const name=String(val(b,["Name","name"])).toLowerCase(),id=String(val(b,["ID","Id","id"])).toLowerCase();
-    const st=String(val(b,["Status"],"Active"));
-    const s=Number(val(b,["Stock"],0));
-    return (!q||name.includes(q)||id.includes(q))&&(!cat||String(val(b,["Category"]))===cat)&&(!status||st===status)&&(!stock||(stock==="out"?s<=0:s>0&&s<=5));
-  });
-  if(!list.length){$("booksTable").innerHTML='<tr><td colspan="7" class="empty">No books found</td></tr>';return}
-  $("booksTable").innerHTML=list.map(b=>{
-    const id=String(val(b,["ID","Id","id"])),name=String(val(b,["Name","name"])),cat=String(val(b,["Category"])),price=Number(val(b,["Price"],0)),stock=Number(val(b,["Stock"],0)),featured=String(val(b,["Featured"],"No")),status=String(val(b,["Status"],"Active"));
-    const img=normalizeImage(val(b,["Image","image"]));
-    const stockClass=stock<=0?"stock-out":stock<=5?"stock-low":"";
-    return '<tr><td><div style="display:flex;gap:10px;align-items:center"><img class="book-img" src="'+esc(img)+'" onerror="this.style.visibility=\'hidden\'"><div><b>'+esc(name)+'</b><div style="font-size:11px;color:#87948e">'+esc(id)+'</div></div></div></td>'+
-      '<td>'+esc(cat)+'</td><td>'+money(price)+'</td><td class="'+stockClass+'">'+stock+'</td><td>'+esc(featured)+'</td>'+
-      '<td><span class="badge '+(status.toLowerCase()==="active"?"b-active":"b-hidden")+'">'+esc(status)+'</span></td>'+
-      '<td><button class="btn btn-soft" onclick="openEditBook('+JSON.stringify(id)+')">Edit</button></td></tr>';
-  }).join("");
+
+  const body =
+    $("booksBody");
+
+  const search =
+    val("bookSearch").toLowerCase();
+
+  const category =
+    $("categoryFilter").value;
+
+  const status =
+    $("statusFilter").value;
+
+  const stockFilter =
+    $("stockFilter").value;
+
+
+  const filtered =
+    books.filter(book =>{
+
+      const id =
+        String(
+          book.ID ||
+          book["Book ID"] ||
+          book.id ||
+          ""
+        ).toLowerCase();
+
+      const name =
+        String(
+          book.Name ||
+          book["Book Name"] ||
+          book.name ||
+          ""
+        ).toLowerCase();
+
+      const cat =
+        String(
+          book.Category ||
+          book.category ||
+          ""
+        ).trim();
+
+      const st =
+        String(
+          book.Status ||
+          book.status ||
+          "Active"
+        ).trim();
+
+
+      const stock =
+        Number(
+          book.Stock ||
+          book.stock ||
+          0
+        );
+
+
+      if(
+        search &&
+        !id.includes(search) &&
+        !name.includes(search)
+      ){
+        return false;
+      }
+
+
+      if(
+        category &&
+        cat !== category
+      ){
+        return false;
+      }
+
+
+      if(
+        status &&
+        st !== status
+      ){
+        return false;
+      }
+
+
+      if(
+        stockFilter === "low" &&
+        !(stock > 0 && stock <= 5)
+      ){
+        return false;
+      }
+
+
+      if(
+        stockFilter === "out" &&
+        stock > 0
+      ){
+        return false;
+      }
+
+
+      return true;
+
+    });
+
+
+  if(!filtered.length){
+
+    body.innerHTML = `
+      <tr>
+        <td colspan="7">
+          <div class="loading">
+            No books found.
+          </div>
+        </td>
+      </tr>
+    `;
+
+    return;
+  }
+
+
+  body.innerHTML =
+    filtered.map(book =>{
+
+      const id =
+        book.ID ||
+        book["Book ID"] ||
+        book.id ||
+        "";
+
+      const name =
+        book.Name ||
+        book["Book Name"] ||
+        book.name ||
+        "";
+
+      const category =
+        book.Category ||
+        book.category ||
+        "";
+
+      const price =
+        Number(
+          book.Price ||
+          book.price ||
+          0
+        );
+
+      const stock =
+        Number(
+          book.Stock ||
+          book.stock ||
+          0
+        );
+
+      const featured =
+        String(
+          book.Featured ||
+          book.featured ||
+          "No"
+        );
+
+      const status =
+        String(
+          book.Status ||
+          book.status ||
+          "Active"
+        );
+
+      const image =
+        normalizeImage(
+          book["Image URL"] ||
+          book.Image ||
+          book.image ||
+          ""
+        );
+
+      let stockBadge =
+        `<span class="badge badge-green">${stock}</span>`;
+
+      if(stock === 0){
+
+        stockBadge =
+          `<span class="badge badge-red">Out of Stock</span>`;
+
+      }else if(stock <= 5){
+
+        stockBadge =
+          `<span class="badge badge-yellow">${stock}</span>`;
+
+      }
+
+
+      const statusBadge =
+        status.toLowerCase() === "active"
+
+          ? `<span class="badge badge-green">Active</span>`
+
+          : `<span class="badge badge-gray">Hidden</span>`;
+
+
+      const featuredBadge =
+        featured.toLowerCase() === "yes" ||
+        featured.toLowerCase() === "true"
+
+          ? `<span class="badge badge-green">Yes</span>`
+
+          : `<span class="badge badge-gray">No</span>`;
+
+
+      return `
+        <tr>
+
+          <td>
+
+            <div class="book-cell">
+
+              ${
+                image
+                ?
+                `<img
+                  class="book-thumb"
+                  src="${esc(image)}"
+                  alt=""
+                  onerror="this.style.display='none';"
+                >`
+                :
+                `<div class="book-thumb"></div>`
+              }
+
+              <div>
+
+                <div class="book-title">
+                  ${esc(name)}
+                </div>
+
+                <div class="book-id">
+                  ${esc(id)}
+                </div>
+
+              </div>
+
+            </div>
+
+          </td>
+
+
+          <td>
+            ${esc(category)}
+          </td>
+
+
+          <td>
+            ${money(price)}
+          </td>
+
+
+          <td>
+            ${stockBadge}
+          </td>
+
+
+          <td>
+            ${featuredBadge}
+          </td>
+
+
+          <td>
+            ${statusBadge}
+          </td>
+
+
+          <td>
+
+            <div class="action-buttons">
+
+              <button
+                class="action-btn action-edit"
+                onclick='openEditBook(${JSON.stringify(String(id))})'
+              >
+                ✏️ Edit
+              </button>
+
+              <button
+                class="action-btn action-hide"
+                onclick='toggleBookStatus(${JSON.stringify(String(id))}, ${JSON.stringify(status)})'
+              >
+                ${status.toLowerCase()==="active" ? "👁 Hide" : "👁 Show"}
+              </button>
+
+            </div>
+
+          </td>
+
+        </tr>
+      `;
+
+    }).join("");
+
 }
+
+
+/* =========================================================
+   ADD BOOK
+========================================================= */
+
 function openAddBook(){
-  editingBook=false;$("bookModalTitle").textContent="Add Book";clearBookForm();$("bookModalBack").classList.add("show");
+
+  editingBookId = null;
+
+  $("bookModalTitle").textContent =
+    "Add Book";
+
+  clearBookForm();
+
+  $("bookModal").classList.remove("hidden");
+
 }
+
+
+/* =========================================================
+   EDIT BOOK
+========================================================= */
+
 function openEditBook(id){
-  const b=books.find(x=>String(val(x,["ID","Id","id"]))===String(id));if(!b)return;
-  editingBook=true;$("bookModalTitle").textContent="Edit Book";
-  $("bookID").value=val(b,["ID","Id","id"]);$("bookName").value=val(b,["Name","name"]);$("bookCategory").value=val(b,["Category"],"সাধারণ");
-  $("bookPrice").value=val(b,["Price"],0);$("bookStock").value=val(b,["Stock"],0);$("bookFeatured").value=val(b,["Featured"],"No");$("bookStatus").value=val(b,["Status"],"Active");
-  $("bookImage").value=val(b,["Image","image"]);$("bookDescription").value=val(b,["Description","description"]);updatePreview();$("bookModalBack").classList.add("show");
+
+  const book =
+    books.find(item =>
+
+      String(
+        item.ID ||
+        item["Book ID"] ||
+        item.id ||
+        ""
+      ) === String(id)
+
+    );
+
+
+  if(!book){
+
+    toast("Book not found.");
+
+    return;
+  }
+
+
+  editingBookId = String(id);
+
+
+  $("bookModalTitle").textContent =
+    "Edit Book";
+
+
+  $("bookId").value =
+    book.ID ||
+    book["Book ID"] ||
+    book.id ||
+    "";
+
+
+  $("bookName").value =
+    book.Name ||
+    book["Book Name"] ||
+    book.name ||
+    "";
+
+
+  $("bookCategory").value =
+    book.Category ||
+    book.category ||
+    "";
+
+
+  $("bookPrice").value =
+    book.Price ||
+    book.price ||
+    "";
+
+
+  $("bookStock").value =
+    book.Stock ||
+    book.stock ||
+    0;
+
+
+  $("bookFeatured").value =
+    book.Featured ||
+    book.featured ||
+    "No";
+
+
+  $("bookStatus").value =
+    book.Status ||
+    book.status ||
+    "Active";
+
+
+  $("bookImage").value =
+    book["Image URL"] ||
+    book.Image ||
+    book.image ||
+    "";
+
+
+  $("bookDescription").value =
+    book.Description ||
+    book.description ||
+    "";
+
+
+  updatePreview();
+
+  $("bookModal").classList.remove("hidden");
+
 }
+
+
+/* =========================================================
+   CLEAR BOOK FORM
+========================================================= */
+
 function clearBookForm(){
-  ["bookID","bookName","bookPrice","bookStock","bookImage","bookDescription"].forEach(id=>$(id).value="");
-  $("bookCategory").value="সাধারণ";$("bookFeatured").value="No";$("bookStatus").value="Active";$("bookImagePreview").src="";
+
+  $("bookId").value = "";
+  $("bookName").value = "";
+  $("bookCategory").value = "";
+  $("bookPrice").value = "";
+  $("bookStock").value = "0";
+  $("bookFeatured").value = "No";
+  $("bookStatus").value = "Active";
+  $("bookImage").value = "";
+  $("bookDescription").value = "";
+
+  $("bookPreview").style.display = "none";
+
 }
-function closeBookModal(){$("bookModalBack").classList.remove("show")}
-function updatePreview(){const u=normalizeImage($("bookImage").value);$("bookImagePreview").src=u}
+
+
+/* =========================================================
+   BOOK IMAGE PREVIEW
+========================================================= */
+
+function updatePreview(){
+
+  const url =
+    normalizeImage(
+      $("bookImage").value
+    );
+
+  const preview =
+    $("bookPreview");
+
+
+  if(!url){
+
+    preview.style.display =
+      "none";
+
+    preview.removeAttribute("src");
+
+    return;
+  }
+
+
+  preview.src = url;
+
+  preview.style.display =
+    "block";
+
+}
+
+
+/* =========================================================
+   CLOSE BOOK MODAL
+========================================================= */
+
+function closeBookModal(){
+
+  $("bookModal").classList.add("hidden");
+
+  editingBookId = null;
+
+}
+
+
+/* =========================================================
+   SAVE BOOK
+========================================================= */
+
 async function saveBook(){
-  const name=$("bookName").value.trim();if(!name)return toast("Book name is required");
-  const payload={token,ID:$("bookID").value.trim(),Name:name,Category:$("bookCategory").value.trim()||"সাধারণ",Price:Number($("bookPrice").value||0),Stock:Number($("bookStock").value||0),Featured:$("bookFeatured").value,Status:$("bookStatus").value,Image:$("bookImage").value.trim(),Description:$("bookDescription").value};
-  $("saveBookButton").disabled=true;
+
+  const name =
+    val("bookName");
+
+  if(!name){
+
+    toast("Book name is required.");
+
+    return;
+  }
+
+
+  const book = {
+
+    ID: val("bookId"),
+
+    Name: name,
+
+    Category: val("bookCategory"),
+
+    Price: Number(
+      $("bookPrice").value || 0
+    ),
+
+    Stock: Number(
+      $("bookStock").value || 0
+    ),
+
+    Featured:
+      $("bookFeatured").value,
+
+    Status:
+      $("bookStatus").value,
+
+    "Image URL":
+      val("bookImage"),
+
+    Description:
+      val("bookDescription")
+
+  };
+
+
   try{
-    const res=await apiPost(editingBook?"updatebook":"addbook",payload);
-    if(!res.success)throw new Error(res.error||"Save failed");
-    toast(editingBook?"Book updated":"Book added");closeBookModal();await loadBooks();updateDashboard();
-  }catch(e){toast(e.message)}
-  finally{$("saveBookButton").disabled=false}
+
+    let result;
+
+
+    if(editingBookId){
+
+      result =
+        await apiPost(
+          "updatebook",
+          {
+            id: editingBookId,
+            book
+          }
+        );
+
+    }else{
+
+      result =
+        await apiPost(
+          "addbook",
+          {
+            book
+          }
+        );
+
+    }
+
+
+    if(!result.success){
+
+      if(
+        /unauthorized|invalid token|token/i
+        .test(result.error || "")
+      ){
+
+        logout();
+        return;
+
+      }
+
+      throw new Error(
+        result.error ||
+        "Failed to save book."
+      );
+
+    }
+
+
+    toast(
+      editingBookId
+      ? "Book updated successfully."
+      : "Book added successfully."
+    );
+
+
+    closeBookModal();
+
+    await loadBooks();
+
+    updateDashboard();
+
+
+  }catch(error){
+
+    toast(
+      error.message ||
+      "Failed to save book."
+    );
+
+  }
+
 }
-function statusClass(s){
-  s=String(s||"").toLowerCase();
-  if(s==="paid"||s==="delivered"||s==="active")return "b-paid";
-  if(s==="failed"||s==="cancelled"||s==="hidden")return "b-failed";
-  if(s==="processing"||s==="shipped")return "b-processing";
-  return "b-pending";
+
+
+/* =========================================================
+   TOGGLE BOOK STATUS
+========================================================= */
+
+async function toggleBookStatus(id,currentStatus){
+
+  const newStatus =
+    String(currentStatus).toLowerCase() === "active"
+      ? "Hidden"
+      : "Active";
+
+
+  const book =
+    books.find(item =>
+
+      String(
+        item.ID ||
+        item["Book ID"] ||
+        item.id ||
+        ""
+      ) === String(id)
+
+    );
+
+
+  if(!book){
+
+    toast("Book not found.");
+
+    return;
+  }
+
+
+  const updatedBook = {
+
+    ID:
+      book.ID ||
+      book["Book ID"] ||
+      book.id ||
+      id,
+
+    Name:
+      book.Name ||
+      book["Book Name"] ||
+      book.name ||
+      "",
+
+    Category:
+      book.Category ||
+      book.category ||
+      "",
+
+    Price:
+      Number(
+        book.Price ||
+        book.price ||
+        0
+      ),
+
+    Stock:
+      Number(
+        book.Stock ||
+        book.stock ||
+        0
+      ),
+
+    Featured:
+      book.Featured ||
+      book.featured ||
+      "No",
+
+    Status:
+      newStatus,
+
+    "Image URL":
+      book["Image URL"] ||
+      book.Image ||
+      book.image ||
+      "",
+
+    Description:
+      book.Description ||
+      book.description ||
+      ""
+
+  };
+
+
+  try{
+
+    const result =
+      await apiPost(
+        "updatebook",
+        {
+          id,
+          book:updatedBook
+        }
+      );
+
+
+    if(!result.success){
+
+      if(
+        /unauthorized|invalid token|token/i
+        .test(result.error || "")
+      ){
+
+        logout();
+        return;
+
+      }
+
+      throw new Error(
+        result.error ||
+        "Failed to update status."
+      );
+
+    }
+
+
+    toast(
+      newStatus === "Active"
+      ? "Book is now Active."
+      : "Book is now Hidden."
+    );
+
+
+    await loadBooks();
+
+
+  }catch(error){
+
+    toast(
+      error.message ||
+      "Failed to update status."
+    );
+
+  }
+
 }
+
+
+/* =========================================================
+   ORDERS
+========================================================= */
+
+async function loadOrders(){
+
+  $("ordersLoading").classList.remove("hidden");
+
+  try{
+
+    const result =
+      await apiGet("orders");
+
+
+    if(!result.success){
+
+      if(
+        /unauthorized|invalid token|token/i
+        .test(result.error || "")
+      ){
+
+        logout();
+        return;
+
+      }
+
+      throw new Error(
+        result.error ||
+        "Failed to load orders."
+      );
+
+    }
+
+
+    orders =
+      Array.isArray(result.orders)
+        ? result.orders
+        : [];
+
+
+    renderOrders();
+
+    updateDashboard();
+
+
+  }catch(error){
+
+    toast(
+      error.message ||
+      "Failed to load orders."
+    );
+
+  }finally{
+
+    $("ordersLoading").classList.add("hidden");
+
+  }
+
+}
+
+
+/* =========================================================
+   RENDER ORDERS
+========================================================= */
+
 function renderOrders(){
-  const q=$("orderSearch").value.toLowerCase().trim(),pf=$("paymentFilter").value,of=$("orderStatusFilter").value,sort=$("orderSort").value;
-  let list=orders.filter(o=>{
-    const text=[val(o,["OrderID","orderId","ID"]),val(o,["CustomerName","customerName","Name"]),val(o,["Mobile","mobile","Phone"])].join(" ").toLowerCase();
-    return (!q||text.includes(q))&&(!pf||String(val(o,["PaymentStatus","paymentStatus"],"Pending"))===pf)&&(!of||String(val(o,["OrderStatus","orderStatus"],"New"))===of);
+
+  const container =
+    $("ordersGrid");
+
+
+  const search =
+    val("orderSearch").toLowerCase();
+
+  const payment =
+    $("paymentFilter").value;
+
+  const status =
+    $("orderStatusFilter").value;
+
+  const sort =
+    $("orderSort").value;
+
+
+  let filtered =
+    orders.filter(order =>{
+
+      const orderId =
+        String(
+          order["Order ID"] ||
+          order.OrderID ||
+          order.id ||
+          ""
+        ).toLowerCase();
+
+      const customer =
+        String(
+          order.Customer ||
+          order["Customer Name"] ||
+          order.Name ||
+          ""
+        ).toLowerCase();
+
+      const mobile =
+        String(
+          order.Mobile ||
+          order.Phone ||
+          order["Phone"] ||
+          ""
+        ).toLowerCase();
+
+
+      const payStatus =
+        String(
+          order["Payment Status"] ||
+          order.Payment ||
+          order.paymentStatus ||
+          "Pending"
+        );
+
+
+      const orderStatus =
+        String(
+          order["Order Status"] ||
+          order.Status ||
+          "New"
+        );
+
+
+      if(
+        search &&
+        !orderId.includes(search) &&
+        !customer.includes(search) &&
+        !mobile.includes(search)
+      ){
+        return false;
+      }
+
+
+      if(
+        payment &&
+        payStatus !== payment
+      ){
+        return false;
+      }
+
+
+      if(
+        status &&
+        orderStatus !== status
+      ){
+        return false;
+      }
+
+
+      return true;
+
+    });
+
+
+  filtered.sort((a,b)=>{
+
+    if(sort === "high"){
+
+      return (
+        Number(
+          b.Total ||
+          b["Total Amount"] ||
+          0
+        )
+        -
+        Number(
+          a.Total ||
+          a["Total Amount"] ||
+          0
+        )
+      );
+
+    }
+
+
+    if(sort === "low"){
+
+      return (
+        Number(
+          a.Total ||
+          a["Total Amount"] ||
+          0
+        )
+        -
+        Number(
+          b.Total ||
+          b["Total Amount"] ||
+          0
+        )
+      );
+
+    }
+
+
+    const da =
+      new Date(
+        a.Timestamp ||
+        a.Date ||
+        a["Order Date"] ||
+        0
+      ).getTime();
+
+    const db =
+      new Date(
+        b.Timestamp ||
+        b.Date ||
+        b["Order Date"] ||
+        0
+      ).getTime();
+
+
+    return sort === "oldest"
+      ? da-db
+      : db-da;
+
   });
-  list.sort((a,b)=>{
-    if(sort==="high")return Number(val(b,["Total"],0))-Number(val(a,["Total"],0));
-    if(sort==="low")return Number(val(a,["Total"],0))-Number(val(b,["Total"],0));
-    const da=new Date(val(a,["DateTime","Timestamp","Date","date"],0)).getTime(),db=new Date(val(b,["DateTime","Timestamp","Date","date"],0)).getTime();
-    return sort==="old"?da-db:db-da;
-  });
-  if(!list.length){$("ordersContainer").innerHTML='<div class="empty">No orders found</div>';return}
-  $("ordersContainer").innerHTML=list.map((o,i)=>{
-    const oid=String(val(o,["OrderID","orderId","ID"])),name=String(val(o,["CustomerName","customerName","Name"])),mobile=String(val(o,["Mobile","mobile","Phone"])),address=String(val(o,["Address","address"])),note=String(val(o,["Note","note"])),items=String(val(o,["Items","items"])),total=Number(val(o,["Total","total"],0)),pm=String(val(o,["PaymentMethod","paymentMethod"],"COD")),ps=String(val(o,["PaymentStatus","paymentStatus"],"Pending")),os=String(val(o,["OrderStatus","orderStatus"],"New")),date=val(o,["DateTime","Timestamp","Date","date"]);
-    return '<div class="order-card"><div class="order-head"><div><div class="order-id">'+esc(oid)+'</div><div class="order-date">'+fmtDate(date)+'</div></div><div style="text-align:right"><div style="font-size:19px;font-weight:800;color:var(--dark)">'+money(total)+'</div><div style="margin-top:5px"><span class="badge '+statusClass(ps)+'">'+esc(ps)+'</span> <span class="badge '+statusClass(os)+'">'+esc(os)+'</span></div></div></div>'+
-      '<div class="order-grid"><div><div class="info-title">Customer</div><div class="info-value"><b>'+esc(name)+'</b><br>'+esc(mobile)+'</div></div><div><div class="info-title">Address</div><div class="info-value">'+esc(address||"—")+'</div></div><div><div class="info-title">Payment</div><div class="info-value">'+esc(pm)+'<br><span class="badge '+statusClass(ps)+'">'+esc(ps)+'</span></div></div><div><div class="info-title">Note</div><div class="info-value">'+esc(note||"—")+'</div></div></div>'+
-      '<div class="order-items"><b>Items:</b> '+esc(items||"—")+'</div>'+
-      '<div class="order-controls"><div class="control"><label>Payment Status</label><select id="pay-'+i+'"><option>Pending</option><option>Paid</option><option>Failed</option></select></div><div class="control"><label>Order Status</label><select id="ord-'+i+'"><option>New</option><option>Processing</option><option>Shipped</option><option>Delivered</option><option>Cancelled</option></select></div><button class="btn btn-primary" onclick="saveOrderStatus('+JSON.stringify(oid)+','+i+')">Update Order</button></div></div>';
-  }).join("");
-  list.forEach((o,i)=>{$("pay-"+i).value=val(o,["PaymentStatus","paymentStatus"],"Pending");$("ord-"+i).value=val(o,["OrderStatus","orderStatus"],"New")});
+
+
+  if(!filtered.length){
+
+    container.innerHTML = `
+      <div class="card">
+        <div class="loading">
+          No orders found.
+        </div>
+      </div>
+    `;
+
+    return;
+  }
+
+
+  container.innerHTML =
+    filtered.map(order =>{
+
+      const orderId =
+        order["Order ID"] ||
+        order.OrderID ||
+        order.id ||
+        "N/A";
+
+
+      const customer =
+        order.Customer ||
+        order["Customer Name"] ||
+        order.Name ||
+        "N/A";
+
+
+      const mobile =
+        order.Mobile ||
+        order.Phone ||
+        order["Phone"] ||
+        "";
+
+
+      const address =
+        order.Address ||
+        order["Delivery Address"] ||
+        "";
+
+
+      const paymentStatus =
+        order["Payment Status"] ||
+        order.Payment ||
+        order.paymentStatus ||
+        "Pending";
+
+
+      const orderStatus =
+        order["Order Status"] ||
+        order.Status ||
+        "New";
+
+
+      const total =
+        Number(
+          order.Total ||
+          order["Total Amount"] ||
+          order.Amount ||
+          0
+        );
+
+
+      const date =
+        order.Timestamp ||
+        order.Date ||
+        order["Order Date"] ||
+        "";
+
+
+      const note =
+        order.Note ||
+        order.Notes ||
+        "";
+
+
+      let items = [];
+
+
+      if(Array.isArray(order.Items)){
+
+        items = order.Items;
+
+      }else if(typeof order.Items === "string"){
+
+        try{
+
+          items =
+            JSON.parse(order.Items);
+
+        }catch(e){
+
+          items =
+            [{
+              name:order.Items,
+              quantity:1
+            }];
+
+        }
+
+      }else if(order["Order Items"]){
+
+        items =
+          [{
+            name:order["Order Items"],
+            quantity:1
+          }];
+
+      }
+
+
+      const paymentClass =
+        paymentStatus === "Paid"
+          ? "badge-green"
+          : paymentStatus === "Failed"
+            ? "badge-red"
+            : "badge-yellow";
+
+
+      const statusClassName =
+        statusClass(orderStatus);
+
+
+      return `
+
+        <div class="order-card">
+
+          <div class="order-head">
+
+            <div>
+
+              <div class="order-id">
+                #${esc(orderId)}
+              </div>
+
+              <div class="order-date">
+                ${esc(date)}
+              </div>
+
+            </div>
+
+            <div>
+
+              <span class="badge ${paymentClass}">
+                ${esc(paymentStatus)}
+              </span>
+
+              <span class="badge ${statusClassName}">
+                ${esc(orderStatus)}
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="order-info">
+
+            <div class="info-box">
+
+              <div class="info-label">
+                Customer
+              </div>
+
+              <div class="info-value">
+                ${esc(customer)}
+              </div>
+
+            </div>
+
+
+            <div class="info-box">
+
+              <div class="info-label">
+                Mobile
+              </div>
+
+              <div class="info-value">
+                ${esc(mobile)}
+              </div>
+
+            </div>
+
+
+            <div class="info-box">
+
+              <div class="info-label">
+                Address
+              </div>
+
+              <div class="info-value">
+                ${esc(address)}
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="order-items">
+
+            ${
+              items.length
+
+              ?
+
+              items.map(item =>`
+
+                <div class="order-item">
+
+                  <span>
+                    ${esc(
+                      item.name ||
+                      item.Name ||
+                      item.title ||
+                      item["Book Name"] ||
+                      "Book"
+                    )}
+                  </span>
+
+                  <strong>
+                    ×${esc(
+                      item.quantity ||
+                      item.qty ||
+                      1
+                    )}
+                  </strong>
+
+                </div>
+
+              `).join("")
+
+              :
+
+              `<div style="color:#6d7b73;font-size:13px;">
+                No item details available.
+              </div>`
+
+            }
+
+          </div>
+
+
+          ${
+            note
+
+            ?
+
+            `<div style="
+              margin-bottom:14px;
+              padding:10px;
+              background:#fff8e6;
+              border-radius:9px;
+              font-size:12px;
+              color:#705b22;
+            ">
+              📝 ${esc(note)}
+            </div>`
+
+            :
+
+            ""
+          }
+
+
+          <div class="order-footer">
+
+            <div class="order-total">
+              ${money(total)}
+            </div>
+
+
+            <div class="status-controls">
+
+              <select
+                onchange='saveOrderStatus(${JSON.stringify(String(orderId))}, this.value)'
+              >
+
+                ${[
+                  "New",
+                  "Processing",
+                  "Shipped",
+                  "Delivered",
+                  "Cancelled"
+                ].map(option =>`
+
+                  <option
+                    value="${option}"
+                    ${option === orderStatus ? "selected" : ""}
+                  >
+                    ${option}
+                  </option>
+
+                `).join("")}
+
+              </select>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+
 }
-async function saveOrderStatus(orderId,i){
-  const paymentStatus=$("pay-"+i).value,orderStatus=$("ord-"+i).value;
+
+
+/* =========================================================
+   ORDER STATUS CLASS
+========================================================= */
+
+function statusClass(status){
+
+  switch(String(status).toLowerCase()){
+
+    case "delivered":
+      return "badge-green";
+
+    case "cancelled":
+      return "badge-red";
+
+    case "shipped":
+      return "badge-green";
+
+    case "processing":
+      return "badge-yellow";
+
+    default:
+      return "badge-gray";
+
+  }
+
+}
+
+
+/* =========================================================
+   SAVE ORDER STATUS
+========================================================= */
+
+async function saveOrderStatus(orderId,status){
+
   try{
-    const res=await apiPost("updateorder",{token,orderId,paymentStatus,orderStatus});
-    if(!res.success)throw new Error(res.error||"Update failed");
-    toast("Order "+orderId+" updated");await loadOrders();updateDashboard();
-  }catch(e){toast(e.message)}
+
+    const result =
+      await apiPost(
+        "updateorder",
+        {
+          orderId,
+          status
+        }
+      );
+
+
+    if(!result.success){
+
+      if(
+        /unauthorized|invalid token|token/i
+        .test(result.error || "")
+      ){
+
+        logout();
+        return;
+
+      }
+
+      throw new Error(
+        result.error ||
+        "Failed to update order."
+      );
+
+    }
+
+
+    toast(
+      "Order status updated."
+    );
+
+
+    await loadOrders();
+
+
+  }catch(error){
+
+    toast(
+      error.message ||
+      "Failed to update order."
+    );
+
+  }
+
 }
+
+
+/* =========================================================
+   WEBSITE SETTINGS
+========================================================= */
+
+async function loadWebsiteSettings(){
+
+  try{
+
+    const result =
+      await apiGet("adminsettings");
+
+
+    if(!result.success){
+
+      if(
+        /unauthorized|invalid token|token/i
+        .test(result.error || "")
+      ){
+
+        logout();
+        return;
+
+      }
+
+      throw new Error(
+        result.error ||
+        "Failed to load website settings."
+      );
+
+    }
+
+
+    websiteSettings =
+      result.settings || {};
+
+
+    populateWebsiteSettings(
+      websiteSettings
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "Website Settings Error:",
+      error
+    );
+
+    toast(
+      error.message ||
+      "Failed to load website settings."
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   POPULATE SETTINGS
+========================================================= */
+
+function populateWebsiteSettings(settings){
+
+  $("settingStoreName").value =
+    settings["Store Name"] || "";
+
+
+  $("settingTagline").value =
+    settings["Tagline"] || "";
+
+
+  $("settingWhatsApp").value =
+    settings["WhatsApp"] || "";
+
+
+  $("settingAnnouncement").value =
+    settings["Announcement"] || "";
+
+
+  $("settingBanner").value =
+    settings["Banner Image"] || "";
+
+
+  $("settingFacebook").value =
+    settings["Facebook"] || "";
+
+
+  $("settingYouTube").value =
+    settings["YouTube"] || "";
+
+
+  $("settingInstagram").value =
+    settings["Instagram"] || "";
+
+
+  updateSettingsPreview();
+
+}
+
+
+/* =========================================================
+   UPDATE SETTINGS PREVIEW
+========================================================= */
+
+function updateSettingsPreview(){
+
+  const storeName =
+    val("settingStoreName") ||
+    "বই-আলাপ";
+
+
+  const tagline =
+    val("settingTagline") ||
+    "আপনার পছন্দের বইয়ের ঠিকানা";
+
+
+  const announcement =
+    val("settingAnnouncement") ||
+    "Announcement";
+
+
+  const banner =
+    normalizeImage(
+      val("settingBanner")
+    );
+
+
+  $("settingsPreviewStore").textContent =
+    storeName;
+
+
+  $("settingsPreviewTagline").textContent =
+    tagline;
+
+
+  $("settingsPreviewAnnouncement").textContent =
+    announcement;
+
+
+  const img =
+    $("settingsPreviewBanner");
+
+
+  if(banner){
+
+    img.src = banner;
+
+    img.style.display =
+      "block";
+
+  }else{
+
+    img.removeAttribute("src");
+
+    img.style.display =
+      "block";
+
+  }
+
+
+  const links =
+    [];
+
+
+  const whatsapp =
+    val("settingWhatsApp");
+
+  const facebook =
+    val("settingFacebook");
+
+  const youtube =
+    val("settingYouTube");
+
+  const instagram =
+    val("settingInstagram");
+
+
+  if(whatsapp){
+
+    links.push(
+      `<span class="preview-link">💬 WhatsApp</span>`
+    );
+
+  }
+
+
+  if(facebook){
+
+    links.push(
+      `<span class="preview-link">📘 Facebook</span>`
+    );
+
+  }
+
+
+  if(youtube){
+
+    links.push(
+      `<span class="preview-link">▶️ YouTube</span>`
+    );
+
+  }
+
+
+  if(instagram){
+
+    links.push(
+      `<span class="preview-link">📷 Instagram</span>`
+    );
+
+  }
+
+
+  $("settingsPreviewLinks").innerHTML =
+    links.join("");
+
+}
+
+
+/* =========================================================
+   SAVE WEBSITE SETTINGS
+========================================================= */
+
+async function saveWebsiteSettings(){
+
+  const settings = {
+
+    "Store Name":
+      val("settingStoreName"),
+
+    "Tagline":
+      val("settingTagline"),
+
+    "WhatsApp":
+      val("settingWhatsApp"),
+
+    "Announcement":
+      val("settingAnnouncement"),
+
+    "Banner Image":
+      val("settingBanner"),
+
+    "Facebook":
+      val("settingFacebook"),
+
+    "YouTube":
+      val("settingYouTube"),
+
+    "Instagram":
+      val("settingInstagram")
+
+  };
+
+
+  try{
+
+    const result =
+      await apiPost(
+        "savesettings",
+        {
+          settings
+        }
+      );
+
+
+    if(!result.success){
+
+      if(
+        /unauthorized|invalid token|token/i
+        .test(result.error || "")
+      ){
+
+        logout();
+        return;
+
+      }
+
+      throw new Error(
+        result.error ||
+        "Failed to save website settings."
+      );
+
+    }
+
+
+    websiteSettings =
+      result.settings ||
+      settings;
+
+
+    populateWebsiteSettings(
+      websiteSettings
+    );
+
+
+    toast(
+      "✅ Website Settings saved successfully."
+    );
+
+
+  }catch(error){
+
+    toast(
+      error.message ||
+      "Failed to save website settings."
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
 function updateDashboard(){
-  $("totalBooks").textContent=books.length.toLocaleString();
-  $("activeBooks").textContent=books.filter(b=>String(val(b,["Status"],"Active")).toLowerCase()==="active").length.toLocaleString();
-  $("totalOrders").textContent=orders.length.toLocaleString();
-  $("totalSales").textContent=money(orders.filter(o=>String(val(o,["PaymentStatus","paymentStatus"],"Pending")).toLowerCase()==="paid").reduce((s,o)=>s+Number(val(o,["Total","total"],0)),0));
-  const low=books.filter(b=>Number(val(b,["Stock"],0))<=5),out=low.filter(b=>Number(val(b,["Stock"],0))<=0);
-  $("stockSnapshot").innerHTML='<div style="font-size:27px;font-weight:800;color:var(--dark)">'+low.length+'</div><div style="color:var(--muted);font-size:13px">Low stock books</div><div style="margin-top:12px"><span class="badge b-failed">'+out.length+' Out of stock</span></div>';
+
+  const totalBooks =
+    books.length;
+
+
+  const activeBooks =
+    books.filter(book =>
+
+      String(
+        book.Status ||
+        book.status ||
+        "Active"
+      ).toLowerCase() === "active"
+
+    ).length;
+
+
+  const totalStock =
+    books.reduce(
+      (sum,book)=>
+        sum +
+        Number(
+          book.Stock ||
+          book.stock ||
+          0
+        ),
+      0
+    );
+
+
+  const lowStock =
+    books.filter(book =>{
+
+      const stock =
+        Number(
+          book.Stock ||
+          book.stock ||
+          0
+        );
+
+      return stock > 0 && stock <= 5;
+
+    }).length;
+
+
+  const outStock =
+    books.filter(book =>{
+
+      const stock =
+        Number(
+          book.Stock ||
+          book.stock ||
+          0
+        );
+
+      return stock <= 0;
+
+    }).length;
+
+
+  const totalSales =
+    orders.reduce(
+      (sum,order)=>
+        sum +
+        Number(
+          order.Total ||
+          order["Total Amount"] ||
+          order.Amount ||
+          0
+        ),
+      0
+    );
+
+
+  $("totalBooks").textContent =
+    totalBooks;
+
+
+  $("activeBooks").textContent =
+    activeBooks;
+
+
+  $("totalOrders").textContent =
+    orders.length;
+
+
+  $("totalSales").textContent =
+    money(totalSales);
+
+
+  $("stockTotal").textContent =
+    totalStock;
+
+
+  $("stockLow").textContent =
+    lowStock;
+
+
+  $("stockOut").textContent =
+    outStock;
+
 }
+
+
+/* =========================================================
+   PAGE NAVIGATION
+========================================================= */
+
 function showPage(page){
-  document.querySelectorAll(".page").forEach(p=>p.classList.add("hidden"));$(page+"Page").classList.remove("hidden");
-  document.querySelectorAll(".nav-btn").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
-  if(page==="orders")loadOrders();if(page==="books")renderBooks();
+
+  const pages = {
+
+    dashboard:
+      $("dashboardPage"),
+
+    books:
+      $("booksPage"),
+
+    orders:
+      $("ordersPage"),
+
+    settings:
+      $("settingsPage")
+
+  };
+
+
+  Object.values(pages).forEach(el =>{
+
+    el.classList.add("hidden");
+
+  });
+
+
+  if(pages[page]){
+
+    pages[page].classList.remove("hidden");
+
+  }
+
+
+  document
+    .querySelectorAll(".nav-btn")
+    .forEach(btn =>{
+
+      btn.classList.toggle(
+        "active",
+        btn.dataset.page === page
+      );
+
+    });
+
+
+  if(page === "settings"){
+
+    updateSettingsPreview();
+
+  }
+
 }
+
+
+/* =========================================================
+   SETUP
+========================================================= */
+
 function setup(){
-  $("loginButton").onclick=login;$("password").onkeydown=e=>{if(e.key==="Enter")login()};$("logoutButton").onclick=logout;
-  $("refreshAllButton").onclick=loadAll;$("quickRefresh").onclick=loadAll;$("refreshBooksButton").onclick=loadBooks;$("refreshOrdersButton").onclick=loadOrders;
-  $("addBookButton").onclick=openAddBook;$("quickAdd").onclick=()=>{showPage("books");openAddBook()};
-  document.querySelectorAll(".nav-btn").forEach(b=>b.onclick=()=>showPage(b.dataset.page));
-  document.querySelectorAll("[data-page-go]").forEach(b=>b.onclick=()=>showPage(b.dataset.pageGo));
-  ["bookSearch","bookCategoryFilter","bookStatusFilter","bookStockFilter"].forEach(id=>$(id).addEventListener("input",renderBooks));
-  $("clearBookFilters").onclick=()=>{$("bookSearch").value="";$("bookCategoryFilter").value="";$("bookStatusFilter").value="";$("bookStockFilter").value="";renderBooks()};
-  ["orderSearch","paymentFilter","orderStatusFilter","orderSort"].forEach(id=>$(id).addEventListener("input",renderOrders));
-  $("clearOrderFilters").onclick=()=>{$("orderSearch").value="";$("paymentFilter").value="";$("orderStatusFilter").value="";$("orderSort").value="new";renderOrders()};
-  $("closeBookModal").onclick=closeBookModal;$("cancelBookButton").onclick=closeBookModal;$("saveBookButton").onclick=saveBook;$("bookImage").addEventListener("input",updatePreview);
-  $("bookModalBack").onclick=e=>{if(e.target.id==="bookModalBack")closeBookModal()};
+
+  const token =
+    sessionStorage.getItem(
+      "boialapAdminToken"
+    );
+
+
+  if(token){
+
+    $("loginPage").classList.add("hidden");
+
+    $("app").classList.remove("hidden");
+
+    loadAll();
+
+  }else{
+
+    $("loginPage").classList.remove("hidden");
+
+    $("app").classList.add("hidden");
+
+  }
+
 }
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
 setup();
-if(token){showApp();loadAll()}else{$("loginView").classList.remove("hidden")}
+
 </script>
+
 </body>
 </html>
