@@ -4911,25 +4911,27 @@ async function confirmOrder(){
 
   currentOrder = {
 
-    orderId:orderId,
+    action: "saveorder",
 
-    customerName:name,
+  orderId: orderId,
 
-    mobile:mobile,
+  customerName: name,
 
-    address:address,
+  mobile: mobile,
 
-    note:note,
+  address: address,
 
-    items:itemsText,
+  note: note,
 
-    total:getCartTotal(),
+  items: itemsText,
 
-    paymentMethod:"COD",
+  total: getCartTotal(),
 
-    paymentStatus:"Pending",
+  paymentMethod: "COD",
 
-    orderStatus:"New"
+  paymentStatus: "Pending",
+
+  orderStatus: "New"
 
   };
 
@@ -5031,25 +5033,24 @@ async function saveOrderToGoogleSheet(
 
   const response =
     await fetch(
-      API_URL,
-      {
-        method:"POST",
+    API_URL,
+    {
+      method: "POST",
 
-        headers:{
-          "Content-Type":
-            "text/plain;charset=utf-8"
-        },
+      headers: {
+        "Content-Type":
+          "text/plain;charset=utf-8"
+      },
 
-        body:
-          JSON.stringify(order)
-      }
-    );
+      body: JSON.stringify(order)
+    }
+  );
 
 
   if(!response.ok){
 
     throw new Error(
-      "Order save HTTP error: " +
+      "Server HTTP Error: " +
       response.status
     );
 
@@ -5060,10 +5061,16 @@ async function saveOrderToGoogleSheet(
     await response.text();
 
 
+  console.log(
+    "Order server response:",
+    text
+  );
+
+
   if(!text){
 
     throw new Error(
-      "Empty response from server"
+      "Server returned empty response"
     );
 
   }
@@ -5074,36 +5081,29 @@ async function saveOrderToGoogleSheet(
 
   try{
 
-    result =
-      JSON.parse(text);
+    result = JSON.parse(text);
 
   }catch(error){
 
-    console.error(
-      "Invalid server JSON:",
-      text
-    );
-
     throw new Error(
-      "Invalid server response"
+      "Invalid server response: " +
+      text
     );
 
   }
 
 
-  /*
-    Backend success false হলে fail.
-  */
-
-  if(
-    result &&
-    result.success === false
-  ){
+  if(result.success !== true){
 
     throw new Error(
       result.error ||
-      "Order save failed"
+      "Order was not saved"
     );
+
+  }
+
+
+  return result;
 
   }
 
