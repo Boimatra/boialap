@@ -10,28 +10,35 @@
 
 <style>
 :root{
-  --primary:#274c5e;
-  --primary-dark:#183746;
-  --primary-light:#e8f0f2;
+  --primary:#557b63;
+  --primary-dark:#3f624f;
+  --primary-light:#edf4ef;
   --accent:#b88746;
   --accent-dark:#956b36;
   --accent-light:#f6ecdc;
-  --bg:#f7f4ed;
-  --bg-soft:#fcfaf5;
+  --bg:#f7f8f4;
+  --bg-soft:#fcfdf9;
   --white:#fff;
   --text:#273238;
-  --heading:#183746;
+  --heading:#29463a;
   --body:#4f5a5f;
   --muted:#7b817f;
-  --border:#e4ddd1;
+  --border:#dfe7e1;
   --success:#557b63;
   --danger:#b94b4b;
   --shadow:0 5px 22px rgba(32,48,54,.07);
   --shadow-hover:0 12px 32px rgba(32,48,54,.13);
 }
 
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
 
 body{
   font-family:"Noto Sans Bengali","Noto Sans",Arial,sans-serif;
@@ -40,14 +47,28 @@ body{
   line-height:1.6;
 }
 
-button,input,textarea{font:inherit}
-button{cursor:pointer}
-a{color:inherit;text-decoration:none}
+button,
+input,
+textarea{
+  font:inherit;
+}
 
-/* TOP BAR */
+button{
+  cursor:pointer;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+/* =========================================================
+   TOP BAR
+   ========================================================= */
+
 .topbar{
   background:var(--primary-dark);
-  color:#dce7e9;
+  color:#e5eee8;
   font-size:13px;
   padding:7px 20px;
 }
@@ -61,9 +82,12 @@ a{color:inherit;text-decoration:none}
   gap:15px;
 }
 
-/* HEADER */
+/* =========================================================
+   HEADER
+   ========================================================= */
+
 header{
-  background:rgba(255,255,255,.97);
+  background:rgba(255,255,255,.98);
   position:sticky;
   top:0;
   z-index:1000;
@@ -88,7 +112,9 @@ header{
   letter-spacing:-.7px;
 }
 
-.logo span{color:var(--accent)}
+.logo span{
+  color:var(--accent);
+}
 
 .search-wrap{
   flex:1;
@@ -100,7 +126,7 @@ header{
 .search-wrap input{
   width:100%;
   height:44px;
-  border:1px solid #d9dfe0;
+  border:1px solid #d9e1dc;
   border-right:0;
   border-radius:8px 0 0 8px;
   padding:0 15px;
@@ -110,7 +136,7 @@ header{
 }
 
 .search-wrap input:focus{
-  border-color:var(--accent);
+  border-color:var(--primary);
   background:#fff;
 }
 
@@ -122,11 +148,13 @@ header{
   color:white;
 }
 
-.search-btn:hover{background:var(--primary-dark)}
+.search-btn:hover{
+  background:var(--primary-dark);
+}
 
 .cart-btn{
   position:relative;
-  border:1px solid #d7dfe0;
+  border:1px solid #d7e1db;
   background:var(--primary-light);
   color:var(--primary-dark);
   height:44px;
@@ -136,7 +164,9 @@ header{
   white-space:nowrap;
 }
 
-.cart-btn:hover{background:#dce9ec}
+.cart-btn:hover{
+  background:#dfece4;
+}
 
 .cart-count{
   position:absolute;
@@ -154,10 +184,13 @@ header{
   border:2px solid white;
 }
 
-/* CATEGORY NAV */
+/* =========================================================
+   CATEGORY NAV
+   ========================================================= */
+
 .category-nav{
   background:#fff;
-  border-top:1px solid #f1eee8;
+  border-top:1px solid #f1f4f1;
   border-bottom:1px solid var(--border);
 }
 
@@ -172,7 +205,9 @@ header{
   padding:0 20px;
 }
 
-.category-nav-inner::-webkit-scrollbar{display:none}
+.category-nav-inner::-webkit-scrollbar{
+  display:none;
+}
 
 .nav-item{
   border:0;
@@ -185,8 +220,8 @@ header{
 }
 
 .nav-item:hover{
-  color:var(--primary);
-  background:#eef4f5;
+  color:var(--primary-dark);
+  background:#eef5f0;
 }
 
 .nav-item.active{
@@ -195,7 +230,10 @@ header{
   border-bottom:2px solid var(--accent);
 }
 
-/* ANNOUNCEMENT */
+/* =========================================================
+   ANNOUNCEMENT
+   ========================================================= */
+
 .announcement-bar{
   display:none;
   background:#edf6f1;
@@ -207,9 +245,14 @@ header{
   font-weight:700;
 }
 
-.announcement-bar.show{display:block}
+.announcement-bar.show{
+  display:block;
+}
 
-/* HERO */
+/* =========================================================
+   HERO
+   ========================================================= */
+
 .hero{
   max-width:1200px;
   margin:25px auto 0;
@@ -217,8 +260,8 @@ header{
 }
 
 .hero-box{
-  background:linear-gradient(135deg,#e9f0ef,#faf6ec);
-  border:1px solid #dce3df;
+  background:linear-gradient(135deg,#eaf3ed,#faf6ec);
+  border:1px solid #dce6df;
   border-radius:16px;
   padding:48px 35px;
   text-align:center;
@@ -276,14 +319,19 @@ header{
   color:white;
 }
 
-/* MAIN */
+/* =========================================================
+   MAIN
+   ========================================================= */
+
 .container{
   max-width:1200px;
   margin:auto;
   padding:0 20px;
 }
 
-.section{padding:38px 0}
+.section{
+  padding:38px 0;
+}
 
 .section-title{
   display:flex;
@@ -305,7 +353,10 @@ header{
   font-weight:800;
 }
 
-/* CATEGORY */
+/* =========================================================
+   CATEGORY
+   ========================================================= */
+
 .category-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
@@ -325,8 +376,8 @@ header{
 
 .category-card:hover{
   transform:translateY(-3px);
-  background:#fdf8ee;
-  border-color:#dec8a8;
+  background:#f7fbf8;
+  border-color:#bcd2c4;
   box-shadow:var(--shadow-hover);
 }
 
@@ -345,7 +396,10 @@ header{
   color:var(--muted);
 }
 
-/* PRODUCTS */
+/* =========================================================
+   PRODUCTS
+   ========================================================= */
+
 .product-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -392,7 +446,9 @@ header{
   font-size:14px;
 }
 
-.product-info{padding:14px}
+.product-info{
+  padding:14px;
+}
 
 .product-category{
   color:var(--accent-dark);
@@ -410,7 +466,22 @@ header{
   cursor:pointer;
 }
 
-.product-name:hover{color:var(--primary)}
+.product-name:hover{
+  color:var(--primary);
+}
+
+/* WRITER */
+
+.product-writer{
+  color:#557b63;
+  font-size:13px;
+  font-weight:700;
+  margin-top:4px;
+  margin-bottom:3px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
 
 .product-description{
   color:#707a7c;
@@ -443,7 +514,9 @@ header{
   font-weight:600;
 }
 
-.out-stock{color:var(--danger)}
+.out-stock{
+  color:var(--danger);
+}
 
 .add-btn{
   width:100%;
@@ -456,14 +529,19 @@ header{
   font-weight:800;
 }
 
-.add-btn:hover{background:var(--primary-dark)}
+.add-btn:hover{
+  background:var(--primary-dark);
+}
 
 .add-btn:disabled{
   background:#c8c6c0;
   cursor:not-allowed;
 }
 
-/* FEATURES */
+/* =========================================================
+   FEATURES
+   ========================================================= */
+
 .features{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -495,7 +573,10 @@ header{
   margin-top:4px;
 }
 
-/* FOOTER */
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
 footer{
   background:var(--primary-dark);
   color:#dbe5e7;
@@ -542,7 +623,10 @@ footer p{
   color:white;
 }
 
-/* MODAL */
+/* =========================================================
+   MODAL
+   ========================================================= */
+
 .modal-overlay{
   position:fixed;
   inset:0;
@@ -554,7 +638,9 @@ footer p{
   z-index:3000;
 }
 
-.modal-overlay.show{display:flex}
+.modal-overlay.show{
+  display:flex;
+}
 
 .modal{
   width:min(760px,100%);
@@ -580,9 +666,14 @@ footer p{
   z-index:2;
 }
 
-.modal-body{padding:28px}
+.modal-body{
+  padding:28px;
+}
 
-/* DETAILS */
+/* =========================================================
+   DETAILS
+   ========================================================= */
+
 .details-grid{
   display:grid;
   grid-template-columns:280px 1fr;
@@ -606,6 +697,15 @@ footer p{
 
 .details-category{
   color:var(--accent-dark);
+  font-weight:800;
+  margin-bottom:8px;
+}
+
+/* DETAILS WRITER */
+
+.details-writer{
+  color:var(--primary);
+  font-size:15px;
   font-weight:800;
   margin-bottom:14px;
 }
@@ -632,9 +732,14 @@ footer p{
   font-weight:800;
 }
 
-.details-add:disabled{background:#c9c5bd}
+.details-add:disabled{
+  background:#c9c5bd;
+}
 
-/* CART */
+/* =========================================================
+   CART
+   ========================================================= */
+
 .cart-overlay{
   position:fixed;
   inset:0;
@@ -643,7 +748,9 @@ footer p{
   z-index:4000;
 }
 
-.cart-overlay.show{display:block}
+.cart-overlay.show{
+  display:block;
+}
 
 .cart-drawer{
   position:absolute;
@@ -706,6 +813,13 @@ footer p{
   font-size:14px;
   line-height:1.4;
   color:var(--heading);
+}
+
+.cart-item-writer{
+  color:var(--primary);
+  font-size:12px;
+  font-weight:700;
+  margin-top:2px;
 }
 
 .cart-item-price{
@@ -774,15 +888,22 @@ footer p{
   color:var(--muted);
 }
 
-/* CHECKOUT */
-.checkout-form{padding:28px}
+/* =========================================================
+   CHECKOUT
+   ========================================================= */
+
+.checkout-form{
+  padding:28px;
+}
 
 .checkout-form h2{
   color:var(--heading);
   margin-bottom:20px;
 }
 
-.form-group{margin-bottom:15px}
+.form-group{
+  margin-bottom:15px;
+}
 
 .form-group label{
   display:block;
@@ -801,6 +922,11 @@ footer p{
   outline:none;
   background:#fffdf9;
   color:var(--text);
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+  border-color:var(--primary);
 }
 
 .form-group textarea{
@@ -829,6 +955,17 @@ footer p{
   font-size:13px;
   padding:5px 0;
   color:#5c666a;
+}
+
+.summary-item-info{
+  display:flex;
+  flex-direction:column;
+}
+
+.summary-writer{
+  color:var(--primary);
+  font-size:11px;
+  font-weight:700;
 }
 
 .summary-total{
@@ -866,7 +1003,15 @@ footer p{
   font-weight:800;
 }
 
-/* SUCCESS */
+.confirm-btn:disabled{
+  opacity:.65;
+  cursor:not-allowed;
+}
+
+/* =========================================================
+   SUCCESS
+   ========================================================= */
+
 .success-box{
   text-align:center;
   padding:40px 25px;
@@ -890,7 +1035,9 @@ footer p{
   margin-bottom:8px;
 }
 
-.success-box p{color:var(--muted)}
+.success-box p{
+  color:var(--muted);
+}
 
 .order-id{
   display:inline-block;
@@ -920,7 +1067,10 @@ footer p{
   border-radius:8px;
 }
 
-/* LOADING */
+/* =========================================================
+   LOADING
+   ========================================================= */
+
 .loading{
   text-align:center;
   padding:45px 20px;
@@ -937,7 +1087,11 @@ footer p{
   margin:0 auto 12px;
 }
 
-@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
 
 .no-results{
   grid-column:1/-1;
@@ -946,7 +1100,10 @@ footer p{
   color:var(--muted);
 }
 
-/* TOAST */
+/* =========================================================
+   TOAST
+   ========================================================= */
+
 .toast{
   position:fixed;
   left:50%;
@@ -968,10 +1125,20 @@ footer p{
   transform:translateX(-50%) translateY(0);
 }
 
-/* RESPONSIVE */
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
 @media(max-width:950px){
-  .product-grid{grid-template-columns:repeat(3,1fr)}
-  .features{grid-template-columns:repeat(2,1fr)}
+
+  .product-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .features{
+    grid-template-columns:repeat(2,1fr);
+  }
+
 }
 
 @media(max-width:700px){
@@ -981,7 +1148,9 @@ footer p{
     text-align:center;
   }
 
-  .topbar-inner span:last-child{display:none}
+  .topbar-inner span:last-child{
+    display:none;
+  }
 
   .header-inner{
     flex-wrap:wrap;
@@ -989,26 +1158,42 @@ footer p{
     padding:12px 15px;
   }
 
-  .logo{font-size:24px}
+  .logo{
+    font-size:24px;
+  }
 
   .search-wrap{
     order:3;
     flex-basis:100%;
   }
 
-  .cart-btn{margin-left:auto}
+  .cart-btn{
+    margin-left:auto;
+  }
 
-  .hero{padding:0 12px}
+  .hero{
+    padding:0 12px;
+  }
 
-  .hero-box{padding:30px 18px}
+  .hero-box{
+    padding:30px 18px;
+  }
 
-  .hero-box h1{font-size:29px}
+  .hero-box h1{
+    font-size:29px;
+  }
 
-  .container{padding:0 12px}
+  .container{
+    padding:0 12px;
+  }
 
-  .section{padding:28px 0}
+  .section{
+    padding:28px 0;
+  }
 
-  .section-title h2{font-size:21px}
+  .section-title h2{
+    font-size:21px;
+  }
 
   .category-grid{
     grid-template-columns:repeat(2,1fr);
@@ -1019,65 +1204,107 @@ footer p{
     gap:12px;
   }
 
-  .product-image-wrap{height:230px}
+  .product-image-wrap{
+    height:230px;
+  }
 
-  .product-info{padding:11px}
+  .product-info{
+    padding:11px;
+  }
 
   .product-name{
     font-size:15px;
     min-height:43px;
   }
 
-  .product-description{font-size:12px}
+  .product-description{
+    font-size:12px;
+  }
 
-  .price{font-size:16px}
+  .price{
+    font-size:16px;
+  }
 
   .details-grid{
     grid-template-columns:1fr;
     gap:18px;
   }
 
-  .details-image{height:300px}
+  .details-image{
+    height:300px;
+  }
 
-  .modal-body{padding:20px}
+  .modal-body{
+    padding:20px;
+  }
 
-  .checkout-form{padding:20px}
+  .checkout-form{
+    padding:20px;
+  }
+
 }
 
 @media(max-width:420px){
 
-  .product-image-wrap{height:205px}
+  .product-image-wrap{
+    height:205px;
+  }
 
-  .features{grid-template-columns:1fr}
+  .features{
+    grid-template-columns:1fr;
+  }
 
   .product-bottom{
     align-items:flex-start;
     flex-direction:column;
     gap:2px;
   }
+
 }
 </style>
 </head>
 
 <body>
 
-<!-- TOP BAR -->
+<!-- =========================================================
+     TOP BAR
+     ========================================================= -->
+
 <div class="topbar">
   <div class="topbar-inner">
-    <span id="topbarMessage">মানুষ একটি হয়ে উঠবার বিষয়</span>
-    <span>Books • Lifestyle • More</span>
+
+    <span id="topbarMessage">
+      মানুষ একটি হয়ে উঠবার বিষয়
+    </span>
+
+    <span>
+      Books • Lifestyle • More
+    </span>
+
   </div>
 </div>
 
-<!-- ANNOUNCEMENT -->
-<div class="announcement-bar" id="announcementBar"></div>
+<!-- =========================================================
+     ANNOUNCEMENT
+     ========================================================= -->
 
-<!-- HEADER -->
+<div
+  class="announcement-bar"
+  id="announcementBar"
+></div>
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+
 <header>
 
   <div class="header-inner">
 
-    <div class="logo" id="storeLogo">
+    <div
+      class="logo"
+      id="storeLogo"
+    >
       বই-আলাপ<span>.</span>
     </div>
 
@@ -1086,7 +1313,7 @@ footer p{
       <input
         type="search"
         id="searchInput"
-        placeholder="বই খুঁজুন..."
+        placeholder="বই, লেখক বা বিষয় খুঁজুন..."
         oninput="searchProducts()"
       >
 
@@ -1094,27 +1321,50 @@ footer p{
         class="search-btn"
         onclick="searchProducts()"
         aria-label="Search"
-      >🔍</button>
+      >
+        🔍
+      </button>
 
     </div>
 
-    <button class="cart-btn" onclick="openCart()">
+    <button
+      class="cart-btn"
+      onclick="openCart()"
+    >
       🛒 Cart
-      <span class="cart-count" id="cartCount">0</span>
+
+      <span
+        class="cart-count"
+        id="cartCount"
+      >
+        0
+      </span>
+
     </button>
 
   </div>
 
   <div class="category-nav">
-    <div class="category-nav-inner" id="categoryNav"></div>
+
+    <div
+      class="category-nav-inner"
+      id="categoryNav"
+    ></div>
+
   </div>
 
 </header>
 
-<!-- HERO -->
+<!-- =========================================================
+     HERO
+     ========================================================= -->
+
 <section class="hero">
 
-  <div class="hero-box" id="heroBox">
+  <div
+    class="hero-box"
+    id="heroBox"
+  >
 
     <h1 id="heroTitle">
       বইয়ের সাথে থাকুন
@@ -1128,14 +1378,19 @@ footer p{
 
 </section>
 
-<!-- MAIN -->
+<!-- =========================================================
+     MAIN
+     ========================================================= -->
+
 <main class="container">
 
   <section class="section">
 
     <div class="section-title">
 
-      <h2>বিষয় অনুযায়ী বই</h2>
+      <h2>
+        বিষয় অনুযায়ী বই
+      </h2>
 
       <button onclick="showAllProducts()">
         সব বই দেখুন →
@@ -1143,11 +1398,17 @@ footer p{
 
     </div>
 
-    <div class="category-grid" id="categoryContainer"></div>
+    <div
+      class="category-grid"
+      id="categoryContainer"
+    ></div>
 
   </section>
 
-  <section class="section" id="productsSection">
+  <section
+    class="section"
+    id="productsSection"
+  >
 
     <div class="section-title">
 
@@ -1157,13 +1418,18 @@ footer p{
 
     </div>
 
-    <div class="product-grid" id="productGrid">
+    <div
+      class="product-grid"
+      id="productGrid"
+    >
 
       <div class="loading">
 
         <div class="spinner"></div>
 
-        <div>বই লোড হচ্ছে...</div>
+        <div>
+          বই লোড হচ্ছে...
+        </div>
 
       </div>
 
@@ -1174,39 +1440,84 @@ footer p{
   <section class="features">
 
     <div class="feature">
-      <div class="feature-icon">📚</div>
-      <h3>বাছাই করা বই</h3>
-      <p>পছন্দের বই সহজে খুঁজে নিন</p>
+
+      <div class="feature-icon">
+        📚
+      </div>
+
+      <h3>
+        বাছাই করা বই
+      </h3>
+
+      <p>
+        পছন্দের বই সহজে খুঁজে নিন
+      </p>
+
     </div>
 
     <div class="feature">
-      <div class="feature-icon">🛒</div>
-      <h3>সহজ Cart</h3>
-      <p>একসাথে একাধিক বই অর্ডার করুন</p>
+
+      <div class="feature-icon">
+        🛒
+      </div>
+
+      <h3>
+        সহজ Cart
+      </h3>
+
+      <p>
+        একসাথে একাধিক বই অর্ডার করুন
+      </p>
+
     </div>
 
     <div class="feature">
-      <div class="feature-icon">💬</div>
-      <h3>সহজ যোগাযোগ</h3>
-      <p>WhatsApp-এ সরাসরি অর্ডার</p>
+
+      <div class="feature-icon">
+        💬
+      </div>
+
+      <h3>
+        সহজ যোগাযোগ
+      </h3>
+
+      <p>
+        WhatsApp-এ সরাসরি অর্ডার
+      </p>
+
     </div>
 
     <div class="feature">
-      <div class="feature-icon">🚚</div>
-      <h3>ডেলিভারি</h3>
-      <p>ঠিকানায় বই পৌঁছে যাবে</p>
+
+      <div class="feature-icon">
+        🚚
+      </div>
+
+      <h3>
+        ডেলিভারি
+      </h3>
+
+      <p>
+        ঠিকানায় বই পৌঁছে যাবে
+      </p>
+
     </div>
 
   </section>
 
 </main>
 
-<!-- FOOTER -->
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
 <footer>
 
   <div class="footer-inner">
 
-    <h3 id="footerStoreName">বই-আলাপ.</h3>
+    <h3 id="footerStoreName">
+      বই-আলাপ.
+    </h3>
 
     <p id="footerTagline">
       বই, জ্ঞান ও আরও কিছু।
@@ -1219,28 +1530,36 @@ footer p{
         href="#"
         target="_blank"
         rel="noopener"
-      >Facebook</a>
+      >
+        Facebook
+      </a>
 
       <a
         id="youtubeLink"
         href="#"
         target="_blank"
         rel="noopener"
-      >YouTube</a>
+      >
+        YouTube
+      </a>
 
       <a
         id="instagramLink"
         href="#"
         target="_blank"
         rel="noopener"
-      >Instagram</a>
+      >
+        Instagram
+      </a>
 
       <a
         id="whatsappLink"
         href="#"
         target="_blank"
         rel="noopener"
-      >WhatsApp</a>
+      >
+        WhatsApp
+      </a>
 
     </div>
 
@@ -1252,7 +1571,10 @@ footer p{
 
 </footer>
 
-<!-- PRODUCT DETAILS -->
+<!-- =========================================================
+     PRODUCT DETAILS
+     ========================================================= -->
+
 <div
   class="modal-overlay"
   id="productModal"
@@ -1264,7 +1586,9 @@ footer p{
     <button
       class="modal-close"
       onclick="closeProductDetails()"
-    >×</button>
+    >
+      ×
+    </button>
 
     <div
       class="modal-body"
@@ -1275,7 +1599,10 @@ footer p{
 
 </div>
 
-<!-- CART -->
+<!-- =========================================================
+     CART
+     ========================================================= -->
+
 <div
   class="cart-overlay"
   id="cartOverlay"
@@ -1286,22 +1613,36 @@ footer p{
 
     <div class="cart-header">
 
-      <h2>আপনার Cart</h2>
+      <h2>
+        আপনার Cart
+      </h2>
 
       <button
         class="cart-close"
         onclick="closeCart()"
-      >×</button>
+      >
+        ×
+      </button>
 
     </div>
 
-    <div class="cart-items" id="cartItems"></div>
+    <div
+      class="cart-items"
+      id="cartItems"
+    ></div>
 
     <div class="cart-total">
 
       <div class="total-row">
-        <span>মোট</span>
-        <span id="cartTotal">৳0</span>
+
+        <span>
+          মোট
+        </span>
+
+        <span id="cartTotal">
+          ৳0
+        </span>
+
       </div>
 
       <button
@@ -1317,19 +1658,29 @@ footer p{
 
 </div>
 
-<!-- CHECKOUT -->
-<div class="modal-overlay" id="checkoutModal">
+<!-- =========================================================
+     CHECKOUT
+     ========================================================= -->
+
+<div
+  class="modal-overlay"
+  id="checkoutModal"
+>
 
   <div class="modal">
 
     <button
       class="modal-close"
       onclick="closeCheckout()"
-    >×</button>
+    >
+      ×
+    </button>
 
     <div class="checkout-form">
 
-      <h2>অর্ডার সম্পন্ন করুন</h2>
+      <h2>
+        অর্ডার সম্পন্ন করুন
+      </h2>
 
       <div class="form-group">
 
@@ -1402,6 +1753,7 @@ footer p{
 
         <button
           class="confirm-btn"
+          id="confirmOrderBtn"
           onclick="confirmOrder()"
         >
           WhatsApp-এ অর্ডার করুন
@@ -1415,18 +1767,30 @@ footer p{
 
 </div>
 
-<!-- SUCCESS -->
-<div class="modal-overlay" id="successModal">
+<!-- =========================================================
+     SUCCESS
+     ========================================================= -->
+
+<div
+  class="modal-overlay"
+  id="successModal"
+>
 
   <div class="modal">
 
     <div class="success-box">
 
-      <div class="success-icon">✓</div>
+      <div class="success-icon">
+        ✓
+      </div>
 
-      <h2>অর্ডার তৈরি হয়েছে!</h2>
+      <h2>
+        অর্ডার তৈরি হয়েছে!
+      </h2>
 
-      <p>আপনার Order ID:</p>
+      <p>
+        আপনার Order ID:
+      </p>
 
       <div
         class="order-id"
@@ -1461,8 +1825,14 @@ footer p{
 
 </div>
 
-<!-- TOAST -->
-<div class="toast" id="toast"></div>
+<!-- =========================================================
+     TOAST
+     ========================================================= -->
+
+<div
+  class="toast"
+  id="toast"
+></div>
 
 <script>
 
@@ -1473,13 +1843,6 @@ footer p{
 const API_URL =
   "https://script.google.com/macros/s/AKfycbzqGDqWILX4fuuZXzGSg5X18-VUaaWCI6H8vfF91OvkkIgQ8yt9aSriV-qrlJya7tzGFw/exec";
 
-
-/*
-  WEBSITE DEFAULT SETTINGS
-
-  Google Sheet থেকে কোনো setting না এলে
-  এগুলো ব্যবহার হবে।
-*/
 
 const DEFAULT_WEBSITE_SETTINGS = {
 
@@ -1509,11 +1872,6 @@ const DEFAULT_WEBSITE_SETTINGS = {
 
 };
 
-
-/*
-  IMPORTANT:
-  এই variable একবারই declare করা হয়েছে।
-*/
 
 let WHATSAPP_NUMBER =
   DEFAULT_WEBSITE_SETTINGS["WhatsApp"];
@@ -1548,6 +1906,8 @@ let currentOrder = null;
 let websiteSettings = {
   ...DEFAULT_WEBSITE_SETTINGS
 };
+
+let isSubmittingOrder = false;
 
 
 /* =========================================================
@@ -1592,6 +1952,10 @@ function formatPrice(value){
 }
 
 
+/* =========================================================
+   PRODUCT FIELD HELPERS
+   ========================================================= */
+
 function getProductId(product){
 
   return String(
@@ -1611,6 +1975,118 @@ function getProductName(product){
     product.name ??
     ""
   ).trim();
+
+}
+
+
+/*
+  Writer / Author support.
+
+  নিচের যেকোনো column থাকলে website চিনবে:
+
+  Writer
+  Author
+  writer
+  author
+  লেখক
+  লেখক/Writer
+  Writer Name
+  Author Name
+*/
+
+function getProductWriter(product){
+
+  const possibleFields = [
+
+    "Writer",
+    "writer",
+
+    "Author",
+    "author",
+
+    "লেখক",
+
+    "Writer Name",
+    "writer name",
+
+    "Author Name",
+    "author name",
+
+    "লেখক/Writer",
+    "Writer/Author"
+
+  ];
+
+
+  for(
+    const field of possibleFields
+  ){
+
+    if(
+      Object.prototype.hasOwnProperty.call(
+        product,
+        field
+      )
+    ){
+
+      const value =
+        String(
+          product[field] ?? ""
+        ).trim();
+
+
+      if(value){
+
+        return value;
+
+      }
+
+    }
+
+  }
+
+
+  /*
+    Case-insensitive fallback.
+  */
+
+  const keys =
+    Object.keys(product || {});
+
+
+  const matchedKey =
+    keys.find(
+      key => {
+
+        const normalized =
+          String(key)
+            .trim()
+            .toLowerCase();
+
+        return [
+
+          "writer",
+          "author",
+          "লেখক",
+          "writer name",
+          "author name"
+
+        ].includes(normalized);
+
+      }
+    );
+
+
+  if(matchedKey){
+
+    return String(
+      product[matchedKey] ?? ""
+    ).trim();
+
+  }
+
+
+  return "";
 
 }
 
@@ -1639,25 +2115,67 @@ function getProductStock(product){
 }
 
 
+function getProductCategory(product){
+
+  return String(
+    product.Category ??
+    product.category ??
+    ""
+  ).trim();
+
+}
+
+
+function getProductDescription(product){
+
+  return String(
+    product.Description ??
+    product.description ??
+    ""
+  ).trim();
+
+}
+
+
+function getProductImage(product){
+
+  return (
+    product.Image ??
+    product.image ??
+    ""
+  );
+
+}
+
+
 /* =========================================================
    WEBSITE SETTINGS
    ========================================================= */
 
-function getSetting(name,fallback=""){
+function getSetting(
+  name,
+  fallback=""
+){
 
   const exact =
     Object.keys(websiteSettings)
       .find(
         key =>
-          String(key).trim().toLowerCase()
+          String(key)
+            .trim()
+            .toLowerCase()
           ===
-          String(name).trim().toLowerCase()
+          String(name)
+            .trim()
+            .toLowerCase()
       );
+
 
   if(exact){
 
     const value =
       websiteSettings[exact];
+
 
     if(
       value !== undefined &&
@@ -1670,6 +2188,7 @@ function getSetting(name,fallback=""){
     }
 
   }
+
 
   return fallback;
 
@@ -1688,6 +2207,7 @@ function loadCachedSettings(){
       localStorage.getItem(
         SETTINGS_CACHE_KEY
       );
+
 
     if(!cached){
 
@@ -1720,16 +2240,11 @@ function loadCachedSettings(){
     }
 
 
-    /*
-      DEFAULT + CACHE
-
-      এতে কোনো একটি setting missing হলেও
-      website ভেঙে যাবে না।
-    */
-
     websiteSettings = {
+
       ...DEFAULT_WEBSITE_SETTINGS,
       ...settings
+
     };
 
 
@@ -1789,11 +2304,6 @@ function saveSettingsCache(settings){
 
 async function loadWebsiteSettings(){
 
-  /*
-    প্রথমে cached settings দেখাবে।
-    এতে page দ্রুত সম্পূর্ণ দেখাবে।
-  */
-
   loadCachedSettings();
 
 
@@ -1837,14 +2347,9 @@ async function loadWebsiteSettings(){
     }
 
 
-    /*
-      DEFAULT + SERVER SETTINGS
-    */
-
     websiteSettings = {
 
       ...DEFAULT_WEBSITE_SETTINGS,
-
       ...data.settings
 
     };
@@ -1865,10 +2370,6 @@ async function loadWebsiteSettings(){
       error
     );
 
-    /*
-      Server temporarily unavailable হলেও
-      cached/default settings চালু থাকবে।
-    */
 
     if(
       !websiteSettings ||
@@ -1893,16 +2394,12 @@ async function loadWebsiteSettings(){
 
 function applyWebsiteSettings(){
 
-  /* STORE NAME */
-
   const storeName =
     getSetting(
       "Store Name",
       DEFAULT_WEBSITE_SETTINGS["Store Name"]
     );
 
-
-  /* TAGLINE */
 
   const tagline =
     getSetting(
@@ -1911,16 +2408,12 @@ function applyWebsiteSettings(){
     );
 
 
-  /* ANNOUNCEMENT */
-
   const announcement =
     getSetting(
       "Announcement",
       DEFAULT_WEBSITE_SETTINGS["Announcement"]
     );
 
-
-  /* WHATSAPP */
 
   const whatsapp =
     getSetting(
@@ -1934,8 +2427,6 @@ function applyWebsiteSettings(){
       whatsapp
     );
 
-
-  /* HEADER LOGO */
 
   const logo =
     document.getElementById(
@@ -1952,8 +2443,6 @@ function applyWebsiteSettings(){
   }
 
 
-  /* FOOTER NAME */
-
   const footerName =
     document.getElementById(
       "footerStoreName"
@@ -1967,15 +2456,6 @@ function applyWebsiteSettings(){
 
   }
 
-
-  /*
-    IMPORTANT:
-
-    Hero Title Store Name হবে না।
-
-    Hero title fixed থাকবে:
-    "বইয়ের সাথে থাকুন"
-  */
 
   const heroTitle =
     document.getElementById(
@@ -1991,8 +2471,6 @@ function applyWebsiteSettings(){
   }
 
 
-  /* HERO TAGLINE */
-
   const heroTagline =
     document.getElementById(
       "heroTagline"
@@ -2006,8 +2484,6 @@ function applyWebsiteSettings(){
 
   }
 
-
-  /* FOOTER TAGLINE */
 
   const footerTagline =
     document.getElementById(
@@ -2023,14 +2499,10 @@ function applyWebsiteSettings(){
   }
 
 
-  /* PAGE TITLE */
-
   document.title =
     storeName +
     " – Books & More";
 
-
-  /* META DESCRIPTION */
 
   const metaDescription =
     document.querySelector(
@@ -2050,7 +2522,20 @@ function applyWebsiteSettings(){
   }
 
 
-  /* ANNOUNCEMENT */
+  const topbarMessage =
+    document.getElementById(
+      "topbarMessage"
+    );
+
+
+  if(topbarMessage){
+
+    topbarMessage.textContent =
+      announcement ||
+      "মানুষ একটি হয়ে উঠবার বিষয়";
+
+  }
+
 
   const announcementBar =
     document.getElementById(
@@ -2083,8 +2568,6 @@ function applyWebsiteSettings(){
   }
 
 
-  /* HERO BANNER */
-
   const banner =
     convertImageUrl(
       getSetting(
@@ -2103,11 +2586,6 @@ function applyWebsiteSettings(){
   if(heroBox){
 
     if(banner){
-
-      /*
-        Image + dark overlay.
-        এতে banner-এর উপর text পরিষ্কার দেখা যাবে।
-      */
 
       heroBox.style.backgroundImage =
         "linear-gradient(135deg, rgba(20,40,45,.60), rgba(20,40,45,.32)), url('" +
@@ -2131,8 +2609,6 @@ function applyWebsiteSettings(){
 
   }
 
-
-  /* SOCIAL LINKS */
 
   applySocialLink(
     "facebookLink",
@@ -2182,10 +2658,14 @@ function escapeCSSUrl(url){
    SOCIAL LINK
    ========================================================= */
 
-function applySocialLink(id,url){
+function applySocialLink(
+  id,
+  url
+){
 
   const element =
     document.getElementById(id);
+
 
   if(!element) return;
 
@@ -2209,20 +2689,9 @@ function applySocialLink(id,url){
 
 
   if(
-    id !== "whatsappLink" &&
-    !/^https?:\/\//i.test(finalUrl)
-  ){
-
-    finalUrl =
-      "https://" +
-      finalUrl;
-
-  }
-
-
-  if(
-    id === "whatsappLink" &&
-    !/^https?:\/\//i.test(finalUrl)
+    !/^https?:\/\//i.test(
+      finalUrl
+    )
   ){
 
     finalUrl =
@@ -2255,18 +2724,10 @@ function normalizeWhatsAppNumber(number){
 
   if(!value){
 
-    return DEFAULT_WEBSITE_SETTINGS[
-      "WhatsApp"
-    ];
+    return "";
 
   }
 
-
-  /*
-    017XXXXXXXX
-    ->
-    88017XXXXXXXX
-  */
 
   if(
     value.startsWith("01") &&
@@ -2278,10 +2739,6 @@ function normalizeWhatsAppNumber(number){
   }
 
 
-  /*
-    88017XXXXXXXX
-  */
-
   if(
     value.startsWith("880")
   ){
@@ -2290,12 +2747,6 @@ function normalizeWhatsAppNumber(number){
 
   }
 
-
-  /*
-    17XXXXXXXX
-    ->
-    88017XXXXXXXX
-  */
 
   if(
     value.length === 10 &&
@@ -2376,6 +2827,7 @@ function getCategoryIcon(category){
 
   };
 
+
   return icons[category] || "📚";
 
 }
@@ -2392,9 +2844,7 @@ function getUniqueCategories(){
       allProducts
         .map(
           p =>
-            String(
-              p.Category || ""
-            ).trim()
+            getProductCategory(p)
         )
         .filter(Boolean)
     )
@@ -2410,6 +2860,7 @@ function renderCategoryNavigation(){
       "categoryNav"
     );
 
+
   if(!nav) return;
 
 
@@ -2421,7 +2872,9 @@ function renderCategoryNavigation(){
 
 
   const allButton =
-    document.createElement("button");
+    document.createElement(
+      "button"
+    );
 
 
   allButton.className =
@@ -2484,6 +2937,7 @@ function renderCategoryCards(){
       "categoryContainer"
     );
 
+
   if(!container) return;
 
 
@@ -2498,10 +2952,9 @@ function renderCategoryCards(){
         const count =
           allProducts.filter(
             p =>
-              String(
-                p.Category || ""
-              ).trim()
-              === category
+              getProductCategory(p)
+              ===
+              category
           ).length;
 
 
@@ -2566,6 +3019,7 @@ function setActiveNav(category){
         "nav-all"
       );
 
+
     if(all){
 
       all.classList.add(
@@ -2573,6 +3027,7 @@ function setActiveNav(category){
       );
 
     }
+
 
     return;
 
@@ -2657,6 +3112,7 @@ function loadCachedProducts(){
       error
     );
 
+
     return false;
 
   }
@@ -2693,7 +3149,8 @@ function isVisibleProduct(product){
 
   const status =
     String(
-      product.Status ?? "Active"
+      product.Status ??
+      "Active"
     )
       .trim()
       .toLowerCase();
@@ -2810,10 +3267,6 @@ async function loadProducts(){
     );
 
 
-    /*
-      Cache থাকলে cached books-ই থাকবে।
-    */
-
     if(!hasCache){
 
       const grid =
@@ -2911,10 +3364,11 @@ function displayProducts(
         const name =
           getProductName(product);
 
+        const writer =
+          getProductWriter(product);
+
         const category =
-          String(
-            product.Category || ""
-          ).trim();
+          getProductCategory(product);
 
         const price =
           getProductPrice(product);
@@ -2924,13 +3378,11 @@ function displayProducts(
 
         const image =
           convertImageUrl(
-            product.Image
+            getProductImage(product)
           );
 
         const description =
-          String(
-            product.Description || ""
-          );
+          getProductDescription(product);
 
 
         return `
@@ -3002,6 +3454,27 @@ function displayProducts(
               >
                 ${escapeHTML(name)}
               </div>
+
+              ${
+                writer
+
+                ?
+
+                `
+
+                  <div
+                    class="product-writer"
+                    title="${escapeHTML(writer)}"
+                  >
+                    ✍️ ${escapeHTML(writer)}
+                  </div>
+
+                `
+
+                :
+
+                ""
+              }
 
               <div class="product-description">
                 ${escapeHTML(description)}
@@ -3098,19 +3571,22 @@ function searchProducts(){
           getProductName(product)
             .toLowerCase();
 
+        const writer =
+          getProductWriter(product)
+            .toLowerCase();
+
         const category =
-          String(
-            product.Category || ""
-          ).toLowerCase();
+          getProductCategory(product)
+            .toLowerCase();
 
         const description =
-          String(
-            product.Description || ""
-          ).toLowerCase();
+          getProductDescription(product)
+            .toLowerCase();
 
 
         return (
           name.includes(query) ||
+          writer.includes(query) ||
           category.includes(query) ||
           description.includes(query)
         );
@@ -3128,14 +3604,20 @@ function searchProducts(){
   );
 
 
-  document
-    .getElementById(
+  const section =
+    document.getElementById(
       "productsSection"
-    )
-    .scrollIntoView({
+    );
+
+
+  if(section){
+
+    section.scrollIntoView({
       behavior:"smooth",
       block:"start"
     });
+
+  }
 
 }
 
@@ -3149,10 +3631,9 @@ function filterCategory(category){
   const results =
     allProducts.filter(
       product =>
-        String(
-          product.Category || ""
-        ).trim()
-        === category
+        getProductCategory(product)
+        ===
+        category
     );
 
 
@@ -3167,14 +3648,20 @@ function filterCategory(category){
   );
 
 
-  document
-    .getElementById(
+  const section =
+    document.getElementById(
       "productsSection"
-    )
-    .scrollIntoView({
+    );
+
+
+  if(section){
+
+    section.scrollIntoView({
       behavior:"smooth",
       block:"start"
     });
+
+  }
 
 }
 
@@ -3203,14 +3690,20 @@ function showAllProducts(){
   );
 
 
-  document
-    .getElementById(
+  const section =
+    document.getElementById(
       "productsSection"
-    )
-    .scrollIntoView({
+    );
+
+
+  if(section){
+
+    section.scrollIntoView({
       behavior:"smooth",
       block:"start"
     });
+
+  }
 
 }
 
@@ -3255,10 +3748,11 @@ function showDetailsById(id){
   const name =
     getProductName(product);
 
+  const writer =
+    getProductWriter(product);
+
   const category =
-    String(
-      product.Category || ""
-    ).trim();
+    getProductCategory(product);
 
   const price =
     getProductPrice(product);
@@ -3268,13 +3762,11 @@ function showDetailsById(id){
 
   const image =
     convertImageUrl(
-      product.Image
+      getProductImage(product)
     );
 
   const description =
-    String(
-      product.Description || ""
-    );
+    getProductDescription(product);
 
 
   document.getElementById(
@@ -3346,6 +3838,24 @@ function showDetailsById(id){
           ${escapeHTML(name)}
         </h2>
 
+        ${
+          writer
+
+          ?
+
+          `
+
+            <div class="details-writer">
+              ✍️ লেখক: ${escapeHTML(writer)}
+            </div>
+
+          `
+
+          :
+
+          ""
+        }
+
         <div class="details-price">
           ${formatPrice(price)}
         </div>
@@ -3367,9 +3877,23 @@ function showDetailsById(id){
 
         </div>
 
-        <div class="details-description">
-          ${escapeHTML(description)}
-        </div>
+        ${
+          description
+
+          ?
+
+          `
+
+            <div class="details-description">
+              ${escapeHTML(description)}
+            </div>
+
+          `
+
+          :
+
+          ""
+        }
 
         <button
           class="details-add"
@@ -3508,9 +4032,11 @@ function addToCart(product){
 
       Name:getProductName(product),
 
+      Writer:getProductWriter(product),
+
       Price:getProductPrice(product),
 
-      Image:product.Image || "",
+      Image:getProductImage(product),
 
       quantity:1
 
@@ -3585,7 +4111,10 @@ function renderCart(){
     );
 
 
-  if(!container || !totalElement){
+  if(
+    !container ||
+    !totalElement
+  ){
 
     return;
 
@@ -3635,6 +4164,10 @@ function renderCart(){
           Number(item.quantity);
 
 
+        const writer =
+          item.Writer || "";
+
+
         return `
 
           <div class="cart-item">
@@ -3679,6 +4212,24 @@ function renderCart(){
                 ${escapeHTML(item.Name)}
               </div>
 
+              ${
+                writer
+
+                ?
+
+                `
+
+                  <div class="cart-item-writer">
+                    ✍️ ${escapeHTML(writer)}
+                  </div>
+
+                `
+
+                :
+
+                ""
+              }
+
               <div class="cart-item-price">
                 ${formatPrice(item.Price)}
               </div>
@@ -3687,7 +4238,9 @@ function renderCart(){
 
                 <button
                   onclick="changeQuantity('${escapeJS(item.ID)}',-1)"
-                >−</button>
+                >
+                  −
+                </button>
 
                 <span>
                   ${item.quantity}
@@ -3695,7 +4248,9 @@ function renderCart(){
 
                 <button
                   onclick="changeQuantity('${escapeJS(item.ID)}',1)"
-                >+</button>
+                >
+                  +
+                </button>
 
               </div>
 
@@ -3749,7 +4304,10 @@ function getCartTotal(){
 }
 
 
-function changeQuantity(id,change){
+function changeQuantity(
+  id,
+  change
+){
 
   const item =
     cart.find(
@@ -3917,32 +4475,62 @@ function renderOrderSummary(){
     ${
       cart
         .map(
-          item => `
+          item => {
 
-            <div class="summary-item">
+            const writer =
+              item.Writer || "";
 
-              <span>
-                ${escapeHTML(item.Name)}
-                × ${item.quantity}
-              </span>
 
-              <span>
-                ${formatPrice(
-                  Number(item.Price) *
-                  Number(item.quantity)
-                )}
-              </span>
+            return `
 
-            </div>
+              <div class="summary-item">
 
-          `
+                <div class="summary-item-info">
+
+                  <span>
+                    ${escapeHTML(item.Name)}
+                    × ${item.quantity}
+                  </span>
+
+                  ${
+                    writer
+
+                    ?
+
+                    `
+                      <span class="summary-writer">
+                        ${escapeHTML(writer)}
+                      </span>
+                    `
+
+                    :
+
+                    ""
+                  }
+
+                </div>
+
+                <span>
+                  ${formatPrice(
+                    Number(item.Price) *
+                    Number(item.quantity)
+                  )}
+                </span>
+
+              </div>
+
+            `;
+
+          }
         )
         .join("")
     }
 
     <div class="summary-total">
 
-      <span>মোট</span>
+      <span>
+        মোট
+      </span>
 
       <span>
         ${formatPrice(
@@ -4077,6 +4665,13 @@ function backToCart(){
 
 function closeCheckout(){
 
+  if(isSubmittingOrder){
+
+    return;
+
+  }
+
+
   document
     .getElementById(
       "checkoutModal"
@@ -4150,10 +4745,49 @@ function generateOrderId(){
 
 
 /* =========================================================
+   CREATE ORDER ITEMS
+   ========================================================= */
+
+function getOrderItemsText(){
+
+  return cart
+    .map(
+      item => {
+
+        const writer =
+          item.Writer
+            ? ` - ${item.Writer}`
+            : "";
+
+
+        return (
+          `${item.ID} x ${item.quantity}` +
+          writer
+        );
+
+      }
+    )
+    .join(", ");
+
+}
+
+
+/* =========================================================
    CONFIRM ORDER
    ========================================================= */
 
 async function confirmOrder(){
+
+  /*
+    Duplicate submit protection.
+  */
+
+  if(isSubmittingOrder){
+
+    return;
+
+  }
+
 
   const name =
     document
@@ -4235,6 +4869,30 @@ async function confirmOrder(){
   }
 
 
+  /*
+    Prevent duplicate submit.
+  */
+
+  isSubmittingOrder = true;
+
+
+  const confirmButton =
+    document.getElementById(
+      "confirmOrderBtn"
+    );
+
+
+  if(confirmButton){
+
+    confirmButton.disabled =
+      true;
+
+    confirmButton.textContent =
+      "অর্ডার সংরক্ষণ হচ্ছে...";
+
+  }
+
+
   saveCustomerInfo();
 
 
@@ -4276,23 +4934,50 @@ async function confirmOrder(){
   };
 
 
-  /*
-    Google Sheet-এ save করার চেষ্টা।
-    Save fail হলেও customer WhatsApp order
-    করতে পারবে।
-  */
-
   try{
 
-    await saveOrderToGoogleSheet(
-      currentOrder
-    );
+    /*
+      IMPORTANT:
+
+      Google Sheet save সফল না হলে
+      Success modal দেখানো হবে না।
+    */
+
+    const result =
+      await saveOrderToGoogleSheet(
+        currentOrder
+      );
 
 
     console.log(
       "Order saved successfully:",
-      currentOrder.orderId
+      result
     );
+
+
+    /*
+      Save successful.
+      এখনই success দেখানো হবে।
+    */
+
+    document.getElementById(
+      "successOrderId"
+    ).textContent =
+      orderId;
+
+
+    document
+      .getElementById(
+        "checkoutModal"
+      )
+      .classList.remove("show");
+
+
+    document
+      .getElementById(
+        "successModal"
+      )
+      .classList.add("show");
 
 
   }catch(error){
@@ -4302,27 +4987,36 @@ async function confirmOrder(){
       error
     );
 
+
+    /*
+      Failed হলে currentOrder বাতিল।
+    */
+
+    currentOrder = null;
+
+
+    showToast(
+      "অর্ডার সংরক্ষণ করা যায়নি। আবার চেষ্টা করুন।"
+    );
+
+
+  }finally{
+
+    isSubmittingOrder =
+      false;
+
+
+    if(confirmButton){
+
+      confirmButton.disabled =
+        false;
+
+      confirmButton.textContent =
+        "WhatsApp-এ অর্ডার করুন";
+
+    }
+
   }
-
-
-  document.getElementById(
-    "successOrderId"
-  ).textContent =
-    orderId;
-
-
-  document
-    .getElementById(
-      "checkoutModal"
-    )
-    .classList.remove("show");
-
-
-  document
-    .getElementById(
-      "successModal"
-    )
-    .classList.add("show");
 
 }
 
@@ -4331,7 +5025,9 @@ async function confirmOrder(){
    SAVE ORDER TO GOOGLE SHEET
    ========================================================= */
 
-async function saveOrderToGoogleSheet(order){
+async function saveOrderToGoogleSheet(
+  order
+){
 
   const response =
     await fetch(
@@ -4360,9 +5056,44 @@ async function saveOrderToGoogleSheet(order){
   }
 
 
-  const result =
-    await response.json();
+  const text =
+    await response.text();
 
+
+  if(!text){
+
+    throw new Error(
+      "Empty response from server"
+    );
+
+  }
+
+
+  let result;
+
+
+  try{
+
+    result =
+      JSON.parse(text);
+
+  }catch(error){
+
+    console.error(
+      "Invalid server JSON:",
+      text
+    );
+
+    throw new Error(
+      "Invalid server response"
+    );
+
+  }
+
+
+  /*
+    Backend success false হলে fail.
+  */
 
   if(
     result &&
@@ -4377,7 +5108,37 @@ async function saveOrderToGoogleSheet(order){
   }
 
 
-  return result;
+  /*
+    Backend success true হলে successful.
+
+    যদি backend কোনো success field না দেয়,
+    কিন্তু valid object দেয়, সেটাকেও accept করা হচ্ছে
+    যাতে পুরোনো working backend compatibility থাকে।
+  */
+
+  if(
+    result &&
+    result.success === true
+  ){
+
+    return result;
+
+  }
+
+
+  if(
+    result &&
+    typeof result === "object"
+  ){
+
+    return result;
+
+  }
+
+
+  throw new Error(
+    "Unknown server response"
+  );
 
 }
 
@@ -4403,6 +5164,32 @@ function openWhatsApp(){
     currentOrder;
 
 
+  const orderLines =
+    cart
+      .map(
+        item => {
+
+          const writer =
+            item.Writer
+              ? ` — ${item.Writer}`
+              : "";
+
+
+          return (
+            `• ${item.Name}` +
+            `${writer}` +
+            ` — ${item.quantity} টি — ` +
+            `${formatPrice(
+              Number(item.Price) *
+              Number(item.quantity)
+            )}`
+          );
+
+        }
+      )
+      .join("\n");
+
+
   let message =
 `আসসালামু আলাইকুম।
 
@@ -4418,15 +5205,7 @@ Order ID: ${order.orderId}
 ${order.address}
 
 অর্ডার:
-${cart
-  .map(
-    item =>
-      `• ${item.Name} — ${item.quantity} টি — ${formatPrice(
-        Number(item.Price) *
-        Number(item.quantity)
-      )}`
-  )
-  .join("\n")}
+${orderLines}
 
 মোট: ${formatPrice(order.total)}
 
@@ -4484,7 +5263,7 @@ ${order.note}
 
 
   /*
-    WhatsApp button চাপার পরে Cart clear।
+    WhatsApp-এ পাঠানোর পরে Cart clear।
   */
 
   cart = [];
@@ -4496,6 +5275,10 @@ ${order.note}
 }
 
 
+/* =========================================================
+   SUCCESS
+   ========================================================= */
+
 function closeSuccess(){
 
   document
@@ -4505,7 +5288,13 @@ function closeSuccess(){
     .classList.remove("show");
 
 
-  currentOrder = null;
+  /*
+    currentOrder এখানে clear করছি না,
+    কারণ user চাইলে modal বন্ধ করে পরে
+    WhatsApp button ব্যবহার করতে পারবে না।
+
+    তাই WhatsApp পাঠানো পর্যন্ত order memory থাকবে।
+  */
 
 }
 
@@ -4523,6 +5312,9 @@ function showToast(message){
     document.getElementById(
       "toast"
     );
+
+
+  if(!toast) return;
 
 
   toast.textContent =
@@ -4548,7 +5340,7 @@ function showToast(message){
         );
 
       },
-      2200
+      2500
     );
 
 }
@@ -4564,7 +5356,18 @@ document.addEventListener(
 
     if(
       event.key !== "Escape"
-    ) return;
+    ){
+
+      return;
+
+    }
+
+
+    if(isSubmittingOrder){
+
+      return;
+
+    }
 
 
     closeProductDetails();
@@ -4583,15 +5386,12 @@ document.addEventListener(
    START WEBSITE
    ========================================================= */
 
-/*
-  Settings + Books একই সময়ে load হবে।
-
-  ফলে Settings-এর জন্য Books অপেক্ষা করবে না।
-*/
-
 Promise.all([
+
   loadWebsiteSettings(),
+
   loadProducts()
+
 ]);
 
 
