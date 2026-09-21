@@ -1823,6 +1823,42 @@ function getProductPrice(product){
 }
 
 
+function getProductAuthor(product){
+
+  /*
+    Sheet-এ কলামের নাম Author / Writer / লেখক যাই হোক, চিনে নেবে।
+  */
+
+  const keys = [
+    "Author","author",
+    "Writer","writer",
+    "Author Name","AuthorName",
+    "Writer Name","WriterName",
+    "লেখক"
+  ];
+
+  for(const key of keys){
+
+    const value =
+      product[key];
+
+    if(
+      value !== undefined &&
+      value !== null &&
+      String(value).trim() !== ""
+    ){
+
+      return String(value).trim();
+
+    }
+
+  }
+
+  return "";
+
+}
+
+
 function getProductStock(product){
 
   return Number(
@@ -3311,9 +3347,7 @@ function displayProducts(
           );
 
         const author =
-          String(
-            product.Author || ""
-          ).trim();
+          getProductAuthor(product);
 
         const hasPdf =
           !!safeUrl(product.PreviewPDF);
@@ -3513,9 +3547,8 @@ function searchProducts(){
           ).toLowerCase();
 
         const author =
-          String(
-            product.Author || ""
-          ).toLowerCase();
+          getProductAuthor(product)
+            .toLowerCase();
 
 
         return (
@@ -3687,9 +3720,7 @@ function showDetailsById(id){
     );
 
   const author =
-    String(
-      product.Author || ""
-    ).trim();
+    getProductAuthor(product);
 
   const hasPdf =
     !!safeUrl(product.PreviewPDF);
