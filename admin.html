@@ -2001,6 +2001,8 @@ async function ensureBackendV2(){
 
   if(backendVerified) return true;
 
+  let detail = "";
+
   try{
 
     const response =
@@ -2011,35 +2013,63 @@ async function ensureBackendV2(){
         { cache:"no-store" }
       );
 
-    const data =
-      await response.json();
+    const text =
+      await response.text();
 
-    if(
-      data &&
-      data.success &&
-      String(data.version || "").startsWith("2")
-    ){
+    let data = null;
 
-      backendVerified = true;
+    try{
 
-      return true;
+      data = JSON.parse(text);
+
+    }catch(parseError){
+
+      detail =
+        "সার্ভার JSON দেয়নি (সম্ভবত Google-এর পারমিশন/এরর পেজ)। শুরুর অংশ: " +
+        text.replace(/\s+/g," ").slice(0,120);
+
+    }
+
+    if(data){
+
+      if(
+        data.success &&
+        String(data.version || "").startsWith("2")
+      ){
+
+        backendVerified = true;
+
+        return true;
+
+      }
+
+      detail =
+        "সার্ভারের উত্তর: " +
+        JSON.stringify(data).slice(0,160);
 
     }
 
   }catch(error){
 
-    console.error(error);
+    detail =
+      "সংযোগ ব্যর্থ: " +
+      (error && error.message ? error.message : error);
 
   }
 
+  console.warn("Backend check failed:", API_URL, detail);
+
   alert(
     "⚠️ সেভ বন্ধ রাখা হয়েছে!\n\n" +
-    "আপনার Apps Script-এ এখনো পুরানো Code.gs চালু আছে " +
-    "(অথবা API_URL ভুল)। এই অবস্থায় বই সেভ করলে Sheet-এর " +
-    "ডাটা উল্টাপাল্টা হয়ে যাবে।\n\n" +
-    "করণীয়: নতুন Code.gs Paste করে " +
-    "Deploy → Manage deployments → ✏️ → New version → Deploy করুন, " +
-    "এবং index.html ও admin.html-এ একই API_URL দিন।"
+    "নতুন Code.gs (v2) এই URL-এ চালু পাওয়া যায়নি। " +
+    "এই অবস্থায় বই সেভ করলে Sheet-এর ডাটা উল্টাপাল্টা হতে পারে।\n\n" +
+    "ব্যবহৃত URL-এর শেষ অংশ:\n..." +
+    API_URL.slice(-28) +
+    "\n\n" +
+    detail +
+    "\n\n" +
+    "সমাধান: ব্রাউজারে API_URL?action=ping খুলে দেখুন। " +
+    "version 2.0 না এলে Deploy → Manage deployments → ✏️ → New version → Deploy করুন।"
   );
 
   return false;
