@@ -920,6 +920,170 @@ footer p{
   border-radius:8px;
 }
 
+/* ===== v2 ADDITIONS: author, preview PDF, video, order result ===== */
+.product-author{
+  color:#707a7c;
+  font-size:13px;
+  margin-top:1px;
+}
+.product-author::before{content:"✍️ "}
+
+.mini-badges{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  margin-top:7px;
+}
+.mini-badge{
+  font-size:11px;
+  font-weight:800;
+  color:var(--primary);
+  background:var(--primary-light);
+  padding:2px 8px;
+  border-radius:20px;
+}
+
+.details-author{
+  color:#5c676b;
+  font-size:15px;
+  margin-bottom:10px;
+}
+.details-author::before{content:"✍️ লেখক: "}
+
+.media-buttons{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:14px;
+}
+.media-btn{
+  border:1.5px solid var(--primary);
+  background:white;
+  color:var(--primary);
+  padding:10px 16px;
+  border-radius:8px;
+  font-weight:800;
+  font-size:14px;
+  cursor:pointer;
+}
+.media-btn:hover{background:var(--primary-light)}
+
+#mediaModal{z-index:3100}
+.media-box{
+  width:min(860px,100%);
+  max-height:94vh;
+  background:white;
+  border-radius:14px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  box-shadow:0 20px 60px rgba(20,35,40,.35);
+}
+.media-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px 16px;
+  border-bottom:1px solid var(--border);
+}
+.media-title{
+  font-weight:800;
+  color:var(--heading);
+  font-size:15px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.media-close{
+  border:0;
+  background:#edf1ef;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  font-size:20px;
+  cursor:pointer;
+  flex-shrink:0;
+}
+.media-body{background:#111}
+.media-frame{
+  width:100%;
+  height:72vh;
+  border:0;
+  display:block;
+  background:white;
+}
+.media-video-wrap{
+  width:100%;
+  aspect-ratio:16/9;
+  max-height:76vh;
+  margin:0 auto;
+}
+.media-video-wrap.vertical{
+  aspect-ratio:9/16;
+  height:76vh;
+  width:auto;
+  max-width:100%;
+}
+.media-video-wrap iframe,
+.media-video-wrap video{
+  width:100%;
+  height:100%;
+  border:0;
+  display:block;
+}
+.media-foot{
+  padding:10px 16px;
+  font-size:13px;
+  color:var(--muted);
+  text-align:center;
+  border-top:1px solid var(--border);
+}
+.media-foot a{color:var(--primary);font-weight:800}
+.media-fallback{
+  padding:40px 20px;
+  text-align:center;
+  background:white;
+  color:var(--body);
+}
+.media-fallback a{
+  display:inline-block;
+  margin-top:12px;
+  background:var(--primary);
+  color:white;
+  padding:11px 20px;
+  border-radius:8px;
+  font-weight:800;
+  text-decoration:none;
+}
+
+.confirm-btn:disabled{
+  background:#9fb1b9;
+  cursor:wait;
+}
+.success-icon.fail{
+  background:#f8e9e9;
+  color:var(--danger);
+}
+.result-note{
+  font-size:13px;
+  color:var(--muted);
+  margin-top:14px;
+}
+.retry-btn{
+  border:0;
+  background:var(--primary);
+  color:white;
+  padding:12px 20px;
+  border-radius:8px;
+  font-weight:800;
+}
+
+@media(max-width:700px){
+  .media-frame{height:68vh}
+  .media-video-wrap.vertical{height:70vh}
+}
+
 /* LOADING */
 .loading{
   text-align:center;
@@ -1188,7 +1352,7 @@ footer p{
     <div class="feature">
       <div class="feature-icon">💬</div>
       <h3>সহজ যোগাযোগ</h3>
-      <p>WhatsApp-এ সরাসরি অর্ডার</p>
+      <p>প্রয়োজনে WhatsApp-এ কথা বলুন</p>
     </div>
 
     <div class="feature">
@@ -1402,9 +1566,10 @@ footer p{
 
         <button
           class="confirm-btn"
+          id="confirmOrderBtn"
           onclick="confirmOrder()"
         >
-          WhatsApp-এ অর্ডার করুন
+          ✓ অর্ডার নিশ্চিত করুন
         </button>
 
       </div>
@@ -1415,16 +1580,16 @@ footer p{
 
 </div>
 
-<!-- SUCCESS -->
+<!-- ORDER RESULT (success / failure) -->
 <div class="modal-overlay" id="successModal">
 
   <div class="modal">
 
     <div class="success-box">
 
-      <div class="success-icon">✓</div>
+      <div class="success-icon" id="successIcon">✓</div>
 
-      <h2>অর্ডার তৈরি হয়েছে!</h2>
+      <h2 id="successTitle">অর্ডার সফল হয়েছে!</h2>
 
       <p>আপনার Order ID:</p>
 
@@ -1433,17 +1598,25 @@ footer p{
         id="successOrderId"
       ></div>
 
-      <p>
-        এখন WhatsApp-এ অর্ডারটি পাঠিয়ে দিন।
-      </p>
+      <p id="successText"></p>
 
       <div style="margin-top:20px;">
 
         <button
+          class="retry-btn"
+          id="retryOrderBtn"
+          style="display:none"
+          onclick="retryOrder()"
+        >
+          আবার চেষ্টা করুন
+        </button>
+
+        <button
           class="whatsapp-btn"
+          id="successWhatsappBtn"
           onclick="openWhatsApp()"
         >
-          WhatsApp-এ পাঠান
+          💬 WhatsApp-এ জানান
         </button>
 
         <button
@@ -1455,7 +1628,27 @@ footer p{
 
       </div>
 
+      <div class="result-note" id="successNote"></div>
+
     </div>
+
+  </div>
+
+</div>
+
+<!-- MEDIA (PDF sample / video) -->
+<div class="modal-overlay" id="mediaModal" onclick="closeMediaOutside(event)">
+
+  <div class="media-box">
+
+    <div class="media-head">
+      <div class="media-title" id="mediaTitle"></div>
+      <button class="media-close" onclick="closeMedia()">×</button>
+    </div>
+
+    <div class="media-body" id="mediaBody"></div>
+
+    <div class="media-foot" id="mediaFoot"></div>
 
   </div>
 
@@ -1544,6 +1737,8 @@ let cart =
   );
 
 let currentOrder = null;
+let isSubmittingOrder = false;
+let pendingOrderId = null;
 
 let websiteSettings = {
   ...DEFAULT_WEBSITE_SETTINGS
@@ -2347,7 +2542,190 @@ function convertImageUrl(url){
   }
 
 
+  /* Google Drive ছবি */
+  if(
+    imageUrl.includes("drive.google.com") ||
+    imageUrl.includes("docs.google.com")
+  ){
+
+    const driveId =
+      getDriveId(imageUrl);
+
+    if(driveId){
+
+      return (
+        "https://drive.google.com/thumbnail?id=" +
+        driveId +
+        "&sz=w800"
+      );
+
+    }
+
+  }
+
+
   return imageUrl;
+
+}
+
+
+/* =========================================================
+   MEDIA HELPERS  (PDF sample + video)
+   ========================================================= */
+
+function safeUrl(url){
+
+  const value =
+    String(url || "").trim();
+
+  return /^https?:\/\//i.test(value)
+    ? value
+    : "";
+
+}
+
+
+function getDriveId(url){
+
+  const value =
+    String(url || "");
+
+  const match =
+    value.match(/\/d\/([a-zA-Z0-9_-]+)/) ||
+    value.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+
+  return match ? match[1] : "";
+
+}
+
+
+function getPdfEmbedUrl(url){
+
+  url = safeUrl(url);
+
+  if(!url) return "";
+
+  if(/drive\.google\.com|docs\.google\.com/.test(url)){
+
+    const id =
+      getDriveId(url);
+
+    if(id){
+
+      return (
+        "https://drive.google.com/file/d/" +
+        id +
+        "/preview"
+      );
+
+    }
+
+  }
+
+  /* অন্য জায়গার PDF (যেমন GitHub) */
+  const direct =
+    convertImageUrl(url);
+
+  return (
+    "https://docs.google.com/viewer?embedded=true&url=" +
+    encodeURIComponent(direct)
+  );
+
+}
+
+
+function getPdfOpenUrl(url){
+
+  url = safeUrl(url);
+
+  const id =
+    /drive\.google\.com|docs\.google\.com/.test(url)
+      ? getDriveId(url)
+      : "";
+
+  return id
+    ? "https://drive.google.com/file/d/" + id + "/view"
+    : url;
+
+}
+
+
+function parseVideo(url){
+
+  url = safeUrl(url);
+
+  if(!url) return null;
+
+  /* YouTube: watch / youtu.be / shorts / embed */
+  const yt =
+    url.match(/youtu\.be\/([a-zA-Z0-9_-]{6,})/) ||
+    url.match(/youtube\.com\/shorts\/([a-zA-Z0-9_-]{6,})/) ||
+    url.match(/youtube\.com\/embed\/([a-zA-Z0-9_-]{6,})/) ||
+    url.match(/[?&]v=([a-zA-Z0-9_-]{6,})/);
+
+  if(/youtu\.?be/.test(url) && yt){
+
+    return {
+      type:"iframe",
+      vertical:/\/shorts\//.test(url),
+      src:
+        "https://www.youtube.com/embed/" +
+        yt[1] +
+        "?rel=0&playsinline=1"
+    };
+
+  }
+
+  /* Facebook video / reel */
+  if(/facebook\.com|fb\.watch/.test(url)){
+
+    return {
+      type:"iframe",
+      vertical:/\/reel/.test(url),
+      src:
+        "https://www.facebook.com/plugins/video.php?show_text=false&href=" +
+        encodeURIComponent(url)
+    };
+
+  }
+
+  /* Google Drive video */
+  if(/drive\.google\.com/.test(url)){
+
+    const id =
+      getDriveId(url);
+
+    if(id){
+
+      return {
+        type:"iframe",
+        vertical:false,
+        src:
+          "https://drive.google.com/file/d/" +
+          id +
+          "/preview"
+      };
+
+    }
+
+  }
+
+  /* সরাসরি ভিডিও ফাইল */
+  if(/\.(mp4|webm|ogg)(\?.*)?$/i.test(url)){
+
+    return {
+      type:"video",
+      vertical:false,
+      src:url
+    };
+
+  }
+
+  return {
+    type:"link",
+    vertical:false,
+    src:url
+  };
 
 }
 
@@ -2932,6 +3310,17 @@ function displayProducts(
             product.Description || ""
           );
 
+        const author =
+          String(
+            product.Author || ""
+          ).trim();
+
+        const hasPdf =
+          !!safeUrl(product.PreviewPDF);
+
+        const hasVideo =
+          !!safeUrl(product.VideoURL);
+
 
         return `
 
@@ -3003,9 +3392,24 @@ function displayProducts(
                 ${escapeHTML(name)}
               </div>
 
+              ${
+                author
+                ? `<div class="product-author">${escapeHTML(author)}</div>`
+                : ""
+              }
+
               <div class="product-description">
                 ${escapeHTML(description)}
               </div>
+
+              ${
+                (hasPdf || hasVideo)
+                ? `<div class="mini-badges">
+                    ${hasPdf ? `<span class="mini-badge">📖 নমুনা পাতা</span>` : ""}
+                    ${hasVideo ? `<span class="mini-badge">🎬 ভিডিও</span>` : ""}
+                  </div>`
+                : ""
+              }
 
               <div class="product-bottom">
 
@@ -3108,9 +3512,15 @@ function searchProducts(){
             product.Description || ""
           ).toLowerCase();
 
+        const author =
+          String(
+            product.Author || ""
+          ).toLowerCase();
+
 
         return (
           name.includes(query) ||
+          author.includes(query) ||
           category.includes(query) ||
           description.includes(query)
         );
@@ -3276,6 +3686,20 @@ function showDetailsById(id){
       product.Description || ""
     );
 
+  const author =
+    String(
+      product.Author || ""
+    ).trim();
+
+  const hasPdf =
+    !!safeUrl(product.PreviewPDF);
+
+  const hasVideo =
+    !!safeUrl(product.VideoURL);
+
+  const productKey =
+    escapeJS(getProductId(product));
+
 
   document.getElementById(
     "productDetails"
@@ -3346,6 +3770,12 @@ function showDetailsById(id){
           ${escapeHTML(name)}
         </h2>
 
+        ${
+          author
+          ? `<div class="details-author">${escapeHTML(author)}</div>`
+          : ""
+        }
+
         <div class="details-price">
           ${formatPrice(price)}
         </div>
@@ -3370,6 +3800,23 @@ function showDetailsById(id){
         <div class="details-description">
           ${escapeHTML(description)}
         </div>
+
+        ${
+          (hasPdf || hasVideo)
+          ? `<div class="media-buttons">
+              ${
+                hasPdf
+                ? `<button class="media-btn" onclick="openPdfPreview('${productKey}')">📖 নমুনা পাতা দেখুন</button>`
+                : ""
+              }
+              ${
+                hasVideo
+                ? `<button class="media-btn" onclick="openVideoPreview('${productKey}')">🎬 ছোট ভিডিও দেখুন</button>`
+                : ""
+              }
+            </div>`
+          : ""
+        }
 
         <button
           class="details-add"
@@ -3426,6 +3873,171 @@ function closeModalOutside(event){
   }
 
 }
+
+
+/* =========================================================
+   MEDIA MODAL  (PDF sample / video)
+   ========================================================= */
+
+function openMedia(title, bodyHTML, footHTML){
+
+  document.getElementById(
+    "mediaTitle"
+  ).textContent = title;
+
+  document.getElementById(
+    "mediaBody"
+  ).innerHTML = bodyHTML;
+
+  document.getElementById(
+    "mediaFoot"
+  ).innerHTML = footHTML || "";
+
+  document
+    .getElementById("mediaModal")
+    .classList.add("show");
+
+}
+
+
+function closeMedia(){
+
+  document
+    .getElementById("mediaModal")
+    .classList.remove("show");
+
+  /* iframe/video বন্ধ করলে চলা বন্ধ হবে */
+  document.getElementById(
+    "mediaBody"
+  ).innerHTML = "";
+
+}
+
+
+function closeMediaOutside(event){
+
+  if(
+    event.target ===
+    document.getElementById("mediaModal")
+  ){
+
+    closeMedia();
+
+  }
+
+}
+
+
+function openPdfPreview(id){
+
+  const product =
+    findProductById(id);
+
+  if(!product) return;
+
+  const embed =
+    getPdfEmbedUrl(product.PreviewPDF);
+
+  const openUrl =
+    getPdfOpenUrl(product.PreviewPDF);
+
+  if(!embed){
+
+    showToast("নমুনা পাতা পাওয়া যায়নি।");
+
+    return;
+
+  }
+
+  openMedia(
+    "📖 " + getProductName(product) + " — নমুনা পাতা",
+    `<iframe
+       class="media-frame"
+       src="${escapeHTML(embed)}"
+       allow="autoplay"
+       loading="lazy"
+     ></iframe>`,
+    `দেখতে সমস্যা হলে
+     <a href="${escapeHTML(openUrl)}" target="_blank" rel="noopener">নতুন ট্যাবে খুলুন</a>`
+  );
+
+}
+
+
+function openVideoPreview(id){
+
+  const product =
+    findProductById(id);
+
+  if(!product) return;
+
+  const video =
+    parseVideo(product.VideoURL);
+
+  if(!video){
+
+    showToast("ভিডিও পাওয়া যায়নি।");
+
+    return;
+
+  }
+
+  const title =
+    "🎬 " + getProductName(product);
+
+  if(video.type === "link"){
+
+    openMedia(
+      title,
+      `<div class="media-fallback">
+         <p>ভিডিওটি নতুন ট্যাবে দেখুন।</p>
+         <a href="${escapeHTML(video.src)}" target="_blank" rel="noopener">▶ ভিডিও খুলুন</a>
+       </div>`,
+      ""
+    );
+
+    return;
+
+  }
+
+  const inner =
+    video.type === "video"
+      ? `<video src="${escapeHTML(video.src)}" controls playsinline autoplay></video>`
+      : `<iframe
+           src="${escapeHTML(video.src)}"
+           allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+           allowfullscreen
+         ></iframe>`;
+
+  openMedia(
+    title,
+    `<div class="media-video-wrap ${video.vertical ? "vertical" : ""}">${inner}</div>`,
+    `ভিডিও চলছে না?
+     <a href="${escapeHTML(safeUrl(product.VideoURL))}" target="_blank" rel="noopener">মূল লিংকে দেখুন</a>`
+  );
+
+}
+
+
+document.addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key === "Escape"){
+
+      const media =
+        document.getElementById("mediaModal");
+
+      if(media && media.classList.contains("show")){
+
+        closeMedia();
+
+      }
+
+    }
+
+  }
+);
 
 
 /* =========================================================
@@ -4235,20 +4847,33 @@ async function confirmOrder(){
   }
 
 
+  if(isSubmittingOrder) return;
+
   saveCustomerInfo();
 
 
+  /*
+    আগের চেষ্টা ব্যর্থ হলে একই Order ID ব্যবহার হবে,
+    যেন network retry-তে একই অর্ডার দুইবার না হয়।
+  */
+
   const orderId =
+    pendingOrderId ||
     generateOrderId();
 
+  pendingOrderId =
+    orderId;
 
-  const itemsText =
-    cart
-      .map(
-        item =>
-          `${item.ID} x ${item.quantity}`
-      )
-      .join(", ");
+
+  const lines =
+    cart.map(item => ({
+
+      id:item.ID,
+      name:item.Name,
+      price:Number(item.Price),
+      quantity:Number(item.quantity)
+
+    }));
 
 
   currentOrder = {
@@ -4263,65 +4888,209 @@ async function confirmOrder(){
 
     note:note,
 
-    items:itemsText,
+    /* সার্ভার নিজে দাম ও স্টক যাচাই করবে */
+    items:lines.map(line => ({
+      id:line.id,
+      quantity:line.quantity
+    })),
+
+    /* শুধু WhatsApp মেসেজ ও দেখানোর জন্য */
+    lines:lines,
 
     total:getCartTotal(),
 
-    paymentMethod:"COD",
-
-    paymentStatus:"Pending",
-
-    orderStatus:"New"
+    paymentMethod:"COD"
 
   };
 
 
-  /*
-    Google Sheet-এ save করার চেষ্টা।
-    Save fail হলেও customer WhatsApp order
-    করতে পারবে।
-  */
+  const button =
+    document.getElementById(
+      "confirmOrderBtn"
+    );
+
+
+  isSubmittingOrder = true;
+
+  if(button){
+
+    button.disabled = true;
+
+    button.textContent =
+      "অর্ডার জমা হচ্ছে...";
+
+  }
+
 
   try{
 
-    await saveOrderToGoogleSheet(
-      currentOrder
-    );
+    const result =
+      await saveOrderToGoogleSheet(
+        currentOrder
+      );
 
 
-    console.log(
-      "Order saved successfully:",
-      currentOrder.orderId
-    );
+    /* সার্ভার যদি নিজে নতুন ID দেয় */
+    if(result && result.orderId){
+
+      currentOrder.orderId =
+        result.orderId;
+
+    }
+
+
+    /* সফল — Cart খালি করুন */
+    cart = [];
+
+    saveCart();
+
+    updateCart();
+
+    pendingOrderId = null;
+
+
+    document
+      .getElementById("checkoutModal")
+      .classList.remove("show");
+
+
+    showOrderResult(true);
 
 
   }catch(error){
 
     console.error(
-      "Google Sheet order save failed:",
+      "Order save failed:",
       error
     );
 
+
+    document
+      .getElementById("checkoutModal")
+      .classList.remove("show");
+
+
+    showOrderResult(
+      false,
+      error && error.userMessage
+        ? error.userMessage
+        : "ইন্টারনেট বা সার্ভারের সমস্যায় অর্ডার জমা হয়নি।"
+    );
+
+  }finally{
+
+    isSubmittingOrder = false;
+
+    if(button){
+
+      button.disabled = false;
+
+      button.textContent =
+        "✓ অর্ডার নিশ্চিত করুন";
+
+    }
+
   }
+
+}
+
+
+/* =========================================================
+   ORDER RESULT (success / failure)
+   ========================================================= */
+
+function showOrderResult(success, message){
+
+  const icon =
+    document.getElementById("successIcon");
+
+  const title =
+    document.getElementById("successTitle");
+
+  const text =
+    document.getElementById("successText");
+
+  const note =
+    document.getElementById("successNote");
+
+  const retry =
+    document.getElementById("retryOrderBtn");
+
+  const whatsapp =
+    document.getElementById("successWhatsappBtn");
 
 
   document.getElementById(
     "successOrderId"
   ).textContent =
-    orderId;
+    currentOrder
+      ? currentOrder.orderId
+      : "";
+
+
+  if(success){
+
+    icon.textContent = "✓";
+
+    icon.classList.remove("fail");
+
+    title.textContent =
+      "অর্ডার সফল হয়েছে!";
+
+    text.textContent =
+      "আপনার অর্ডার আমাদের কাছে পৌঁছে গেছে। শীঘ্রই ফোনে যোগাযোগ করে কনফার্ম করা হবে।";
+
+    retry.style.display = "none";
+
+    whatsapp.style.display = "";
+
+    whatsapp.textContent =
+      "💬 WhatsApp-এও জানান (ঐচ্ছিক)";
+
+    note.textContent =
+      "WhatsApp-এ মেসেজ পাঠানো আবশ্যক নয় — আপনার অর্ডার ইতিমধ্যেই জমা হয়েছে।";
+
+  }else{
+
+    icon.textContent = "!";
+
+    icon.classList.add("fail");
+
+    title.textContent =
+      "অর্ডার জমা হয়নি";
+
+    text.textContent =
+      message ||
+      "কিছু একটা সমস্যা হয়েছে।";
+
+    retry.style.display = "";
+
+    whatsapp.style.display = "";
+
+    whatsapp.textContent =
+      "💬 বিকল্প: WhatsApp-এ অর্ডার পাঠান";
+
+    note.textContent =
+      "আপনার Cart অক্ষত আছে। আবার চেষ্টা করুন অথবা WhatsApp-এ পাঠান।";
+
+  }
 
 
   document
-    .getElementById(
-      "checkoutModal"
-    )
+    .getElementById("successModal")
+    .classList.add("show");
+
+}
+
+
+function retryOrder(){
+
+  document
+    .getElementById("successModal")
     .classList.remove("show");
 
-
   document
-    .getElementById(
-      "successModal"
-    )
+    .getElementById("checkoutModal")
     .classList.add("show");
 
 }
@@ -4333,46 +5102,122 @@ async function confirmOrder(){
 
 async function saveOrderToGoogleSheet(order){
 
-  const response =
-    await fetch(
-      API_URL,
-      {
-        method:"POST",
+  const controller =
+    new AbortController();
 
-        headers:{
-          "Content-Type":
-            "text/plain;charset=utf-8"
-        },
-
-        body:
-          JSON.stringify(order)
-      }
+  const timer =
+    setTimeout(
+      () => controller.abort(),
+      30000
     );
 
 
-  if(!response.ok){
+  let response;
 
-    throw new Error(
-      "Order save HTTP error: " +
-      response.status
-    );
+  try{
+
+    response =
+      await fetch(
+        API_URL,
+        {
+          method:"POST",
+
+          headers:{
+            "Content-Type":
+              "text/plain;charset=utf-8"
+          },
+
+          signal:controller.signal,
+
+          body:
+            JSON.stringify({
+
+              action:"saveOrder",
+
+              orderId:order.orderId,
+              customerName:order.customerName,
+              mobile:order.mobile,
+              address:order.address,
+              note:order.note,
+              items:order.items,
+              paymentMethod:order.paymentMethod
+
+            })
+        }
+      );
+
+  }catch(networkError){
+
+    const error =
+      new Error("Network error");
+
+    error.userMessage =
+      networkError.name === "AbortError"
+        ? "সার্ভার সাড়া দিতে দেরি করছে। আবার চেষ্টা করুন।"
+        : "ইন্টারনেট সংযোগ পাওয়া যায়নি। সংযোগ দেখে আবার চেষ্টা করুন।";
+
+    throw error;
+
+  }finally{
+
+    clearTimeout(timer);
 
   }
 
 
-  const result =
-    await response.json();
+  if(!response.ok){
+
+    const error =
+      new Error(
+        "Order save HTTP error: " +
+        response.status
+      );
+
+    error.userMessage =
+      "সার্ভারে সমস্যা হয়েছে। একটু পরে আবার চেষ্টা করুন।";
+
+    throw error;
+
+  }
+
+
+  let result;
+
+  try{
+
+    result =
+      await response.json();
+
+  }catch(parseError){
+
+    const error =
+      new Error("Invalid server response");
+
+    error.userMessage =
+      "সার্ভার থেকে সঠিক উত্তর আসেনি। আবার চেষ্টা করুন।";
+
+    throw error;
+
+  }
 
 
   if(
-    result &&
-    result.success === false
+    !result ||
+    result.success !== true
   ){
 
-    throw new Error(
-      result.error ||
-      "Order save failed"
-    );
+    const error =
+      new Error(
+        (result && result.error) ||
+        "Order save failed"
+      );
+
+    /* সার্ভারের বাংলা বার্তা (যেমন স্টক শেষ) সরাসরি দেখাবে */
+    error.userMessage =
+      (result && result.error) ||
+      "অর্ডার জমা হয়নি।";
+
+    throw error;
 
   }
 
@@ -4383,7 +5228,7 @@ async function saveOrderToGoogleSheet(order){
 
 
 /* =========================================================
-   WHATSAPP
+   WHATSAPP  (ঐচ্ছিক — কাস্টমার চাইলে)
    ========================================================= */
 
 function openWhatsApp(){
@@ -4391,7 +5236,7 @@ function openWhatsApp(){
   if(!currentOrder){
 
     showToast(
-      "Order information পাওয়া যায়নি।"
+      "Order information পাওয়া যায়নি।"
     );
 
     return;
@@ -4403,10 +5248,16 @@ function openWhatsApp(){
     currentOrder;
 
 
+  const lines =
+    Array.isArray(order.lines)
+      ? order.lines
+      : [];
+
+
   let message =
 `আসসালামু আলাইকুম।
 
-${getSetting("Store Name","বই-আলাপ")} থেকে আমি একটি অর্ডার করতে চাই।
+${getSetting("Store Name","বই-আলাপ")} থেকে আমি একটি অর্ডার করেছি।
 
 Order ID: ${order.orderId}
 
@@ -4418,11 +5269,11 @@ Order ID: ${order.orderId}
 ${order.address}
 
 অর্ডার:
-${cart
+${lines
   .map(
     item =>
-      `• ${item.Name} — ${item.quantity} টি — ${formatPrice(
-        Number(item.Price) *
+      `• ${item.name} — ${item.quantity} টি — ${formatPrice(
+        Number(item.price) *
         Number(item.quantity)
       )}`
   )
@@ -4460,7 +5311,7 @@ ${order.note}
   if(!number){
 
     showToast(
-      "WhatsApp নম্বর পাওয়া যায়নি।"
+      "WhatsApp নম্বর পাওয়া যায়নি।"
     );
 
     return;
@@ -4481,17 +5332,6 @@ ${order.note}
     url,
     "_blank"
   );
-
-
-  /*
-    WhatsApp button চাপার পরে Cart clear।
-  */
-
-  cart = [];
-
-  saveCart();
-
-  updateCart();
 
 }
 
