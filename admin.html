@@ -1975,6 +1975,40 @@ function normalizeImage(url){
 }
 
 
+function getBookAuthor(book){
+
+  /* Sheet-এ কলামের নাম Author / Writer / লেখক যাই হোক, চিনে নেবে */
+
+  const keys = [
+    "Author","author",
+    "Writer","writer",
+    "Author Name","AuthorName",
+    "Writer Name","WriterName",
+    "লেখক"
+  ];
+
+  for(const key of keys){
+
+    const value =
+      book[key];
+
+    if(
+      value !== undefined &&
+      value !== null &&
+      String(value).trim() !== ""
+    ){
+
+      return String(value).trim();
+
+    }
+
+  }
+
+  return "";
+
+}
+
+
 function money(value){
 
   const n = Number(value || 0);
@@ -2468,7 +2502,7 @@ function renderBooks(){
         !search ||
         id.includes(search) ||
         name.includes(search) ||
-        String(book.Author || "").toLowerCase().includes(search) ||
+        getBookAuthor(book).toLowerCase().includes(search) ||
         cat.toLowerCase().includes(search);
 
 
@@ -2599,8 +2633,8 @@ function renderBooks(){
                 </div>
 
                 ${
-                  book.Author
-                  ? `<div style="font-size:12px;color:#6d7b73;">✍️ ${esc(book.Author)}</div>`
+                  getBookAuthor(book)
+                  ? `<div style="font-size:12px;color:#6d7b73;">✍️ ${esc(getBookAuthor(book))}</div>`
                   : ""
                 }
 
@@ -2785,8 +2819,7 @@ function editBook(id){
     "";
 
   $("bookAuthor").value =
-    book.Author ||
-    "";
+    getBookAuthor(book);
 
   $("bookPreviewPDF").value =
     book.PreviewPDF ||
