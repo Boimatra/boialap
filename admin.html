@@ -1990,6 +1990,63 @@ function money(value){
    API
 ========================================================= */
 
+/*
+  নিরাপত্তা: পুরানো Code.gs কলামের নাম না দেখে ভ্যালু ঢালে,
+  ফলে Sheet-এর ডাটা এক ঘর সরে নষ্ট হয়। তাই বই সেভ করার আগে
+  যাচাই করা হয় যে নতুন (v2) Code.gs চালু আছে কিনা।
+*/
+let backendVerified = false;
+
+async function ensureBackendV2(){
+
+  if(backendVerified) return true;
+
+  try{
+
+    const response =
+      await fetch(
+        API_URL +
+        "?action=ping&_=" +
+        Date.now(),
+        { cache:"no-store" }
+      );
+
+    const data =
+      await response.json();
+
+    if(
+      data &&
+      data.success &&
+      String(data.version || "").startsWith("2")
+    ){
+
+      backendVerified = true;
+
+      return true;
+
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+
+  alert(
+    "⚠️ সেভ বন্ধ রাখা হয়েছে!\n\n" +
+    "আপনার Apps Script-এ এখনো পুরানো Code.gs চালু আছে " +
+    "(অথবা API_URL ভুল)। এই অবস্থায় বই সেভ করলে Sheet-এর " +
+    "ডাটা উল্টাপাল্টা হয়ে যাবে।\n\n" +
+    "করণীয়: নতুন Code.gs Paste করে " +
+    "Deploy → Manage deployments → ✏️ → New version → Deploy করুন, " +
+    "এবং index.html ও admin.html-এ একই API_URL দিন।"
+  );
+
+  return false;
+
+}
+
+
 async function apiGet(action){
 
   const token =
@@ -2752,6 +2809,8 @@ function editBook(id){
 
 async function saveBook(){
 
+  if(!(await ensureBackendV2())) return;
+
   const name =
     val("bookName");
 
@@ -2877,6 +2936,8 @@ async function saveBook(){
 
 
 async function toggleBookStatus(id){
+
+  if(!(await ensureBackendV2())) return;
 
   const book =
     books.find(
