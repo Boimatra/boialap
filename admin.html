@@ -565,6 +565,7 @@ td{font-size:14px}
   display:flex;
   gap:7px;
   align-items:center;
+  flex-wrap:wrap;
 }
 
 .modal{
@@ -1712,6 +1713,20 @@ td{font-size:14px}
         <div class="form-group">
 
           <label>
+            Author (লেখক)
+          </label>
+
+          <input
+            id="bookAuthor"
+            placeholder="লেখকের নাম"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
             Category
           </label>
 
@@ -1764,6 +1779,34 @@ td{font-size:14px}
           <input
             id="bookImage"
             placeholder="https://..."
+          >
+
+        </div>
+
+
+        <div class="form-group full">
+
+          <label>
+            Preview PDF Link (৪-৫ পাতার নমুনা)
+          </label>
+
+          <input
+            id="bookPreviewPDF"
+            placeholder="Google Drive PDF link (Anyone with the link → Viewer)"
+          >
+
+        </div>
+
+
+        <div class="form-group full">
+
+          <label>
+            Short Video Link (১ মিনিটের কম — ঐচ্ছিক)
+          </label>
+
+          <input
+            id="bookVideoURL"
+            placeholder="YouTube / Shorts / Facebook Reel / Drive link"
           >
 
         </div>
@@ -1862,8 +1905,13 @@ td{font-size:14px}
    CONFIG
 ========================================================= */
 
+/*
+  ⚠️ গুরুত্বপূর্ণ: এই URL এবং index.html-এর API_URL অবশ্যই হুবহু একই হতে হবে।
+  Apps Script → Deploy → Manage deployments থেকে Web app URL কপি করে
+  দুই ফাইলেই বসান।
+*/
 const API_URL =
-"https://script.google.com/macros/s/AKfycbxYgCkIO17GP1R5mj3g8c4wrtCv3LWleNhVEXOGm_LNTXmkq17zlbYhF419WybsJYEtwA/exec";
+"https://script.google.com/macros/s/AKfycbzqGDqWILX4fuuZXzGSg5X18-VUaaWCI6H8vfF91OvkkIgQ8yt9aSriV-qrlJya7tzGFw/exec";
 
 
 let books = [];
@@ -2333,6 +2381,7 @@ function renderBooks(){
         !search ||
         id.includes(search) ||
         name.includes(search) ||
+        String(book.Author || "").toLowerCase().includes(search) ||
         cat.toLowerCase().includes(search);
 
 
@@ -2462,6 +2511,21 @@ function renderBooks(){
                   ${esc(name)}
                 </div>
 
+                ${
+                  book.Author
+                  ? `<div style="font-size:12px;color:#6d7b73;">✍️ ${esc(book.Author)}</div>`
+                  : ""
+                }
+
+                ${
+                  (book.PreviewPDF || book.VideoURL)
+                  ? `<div style="font-size:11px;margin-top:2px;">
+                       ${book.PreviewPDF ? "📖 PDF" : ""}
+                       ${book.VideoURL ? " 🎬 Video" : ""}
+                     </div>`
+                  : ""
+                }
+
                 <div class="book-id">
                   ID: ${esc(id)}
                 </div>
@@ -2577,6 +2641,9 @@ function openBookModal(){
     "Add Book";
 
   $("bookName").value = "";
+  $("bookAuthor").value = "";
+  $("bookPreviewPDF").value = "";
+  $("bookVideoURL").value = "";
   $("bookCategory").value = "";
   $("bookPrice").value = "";
   $("bookStock").value = "";
@@ -2628,6 +2695,18 @@ function editBook(id){
   $("bookName").value =
     book.Name ||
     book.name ||
+    "";
+
+  $("bookAuthor").value =
+    book.Author ||
+    "";
+
+  $("bookPreviewPDF").value =
+    book.PreviewPDF ||
+    "";
+
+  $("bookVideoURL").value =
+    book.VideoURL ||
     "";
 
   $("bookCategory").value =
@@ -2693,6 +2772,15 @@ async function saveBook(){
 
     Name:
       name,
+
+    Author:
+      val("bookAuthor"),
+
+    PreviewPDF:
+      val("bookPreviewPDF"),
+
+    VideoURL:
+      val("bookVideoURL"),
 
     Category:
       val("bookCategory") ||
@@ -3282,7 +3370,7 @@ function renderOrders(){
 
               :
 
-              `<div style="color:#6d7b73;font-size:13px;">
+              `<div style="color:#6d7b73;font-size:13px;white-space:pre-line;">
                 ${esc(itemsRaw || "No item details available.")}
               </div>`
 
@@ -3322,7 +3410,40 @@ function renderOrders(){
 
             <div class="status-controls">
 
+              ${
+                mobile
+                ? `<a class="action-btn action-edit" style="text-decoration:none"
+                      href="tel:${esc(String(mobile).replace(/[^\d+]/g,""))}">📞</a>
+                   <a class="action-btn action-edit" style="text-decoration:none" target="_blank" rel="noopener"
+                      href="https://wa.me/${esc(toWhatsAppNumber(mobile))}">💬</a>`
+                : ""
+              }
+
               <select
+                title="Payment status"
+                onchange='savePaymentStatus(${JSON.stringify(String(orderId))}, this.value)'
+              >
+
+                ${[
+                  "Pending",
+                  "Paid",
+                  "Refunded",
+                  "Failed"
+                ].map(option =>`
+
+                  <option
+                    value="${option}"
+                    ${option === paymentStatus ? "selected" : ""}
+                  >
+                    💳 ${option}
+                  </option>
+
+                `).join("")}
+
+              </select>
+
+              <select
+                title="Order status"
                 onchange='saveOrderStatus(${JSON.stringify(String(orderId))}, this.value)'
               >
 
@@ -3390,6 +3511,77 @@ function statusClass(status){
 }
 
 
+function toWhatsAppNumber(mobile){
+
+  let n =
+    String(mobile || "").replace(/\D/g,"");
+
+  if(n.startsWith("880")) return n;
+
+  if(n.startsWith("0")) return "88" + n;
+
+  return "880" + n;
+
+}
+
+
+async function savePaymentStatus(
+  orderId,
+  paymentStatus
+){
+
+  try{
+
+    const result =
+      await apiPost(
+        "updateorder",
+        {
+          orderId,
+          paymentStatus
+        }
+      );
+
+
+    if(!result.success){
+
+      if(
+        /unauthorized|invalid token/i
+        .test(result.error || "")
+      ){
+
+        logout();
+        return;
+
+      }
+
+      throw new Error(
+        result.error ||
+        "Failed to update payment."
+      );
+
+    }
+
+
+    toast(
+      "Payment status updated."
+    );
+
+
+    await loadOrders();
+
+
+  }catch(error){
+
+    toast(
+      error.message ||
+      "Failed to update payment."
+    );
+
+  }
+
+}
+
+
 async function saveOrderStatus(
   orderId,
   status
@@ -3402,7 +3594,7 @@ async function saveOrderStatus(
         "updateorder",
         {
           orderId,
-          status
+          orderStatus:status
         }
       );
 
